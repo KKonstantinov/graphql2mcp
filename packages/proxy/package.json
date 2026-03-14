@@ -1,0 +1,60 @@
+{
+    "name": "graphql-to-mcp",
+    "version": "0.0.0",
+    "description": "Standalone proxy that converts GraphQL endpoints into MCP servers",
+    "type": "module",
+    "sideEffects": false,
+    "engines": {
+        "node": ">=24"
+    },
+    "files": [
+        "dist",
+        "bin",
+        "LICENSE"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.mts",
+            "import": "./dist/index.mjs"
+        }
+    },
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts",
+    "bin": {
+        "graphql-to-mcp": "./bin/graphql-to-mcp.mjs"
+    },
+    "scripts": {
+        "build": "tsdown",
+        "dev": "tsdown --watch",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "typecheck": "tsc --noEmit",
+        "release:jsr": "npx jsr publish --allow-dirty"
+    },
+    "dependencies": {
+        "@graphql-to-mcp/core": "workspace:*"
+    },
+    "keywords": [
+        "graphql",
+        "mcp",
+        "model-context-protocol",
+        "proxy",
+        "cli",
+        "ai",
+        "agent"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/KKonstantinov/graphql-to-mcp.git",
+        "directory": "packages/proxy"
+    },
+    "homepage": "https://kkonstantinov.github.io/graphql-to-mcp/",
+    "bugs": {
+        "url": "https://github.com/KKonstantinov/graphql-to-mcp/issues"
+    },
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    },
+    "license": "MIT"
+}

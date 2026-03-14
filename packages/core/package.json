@@ -1,0 +1,52 @@
+{
+    "name": "@graphql-to-mcp/core",
+    "version": "0.0.0",
+    "description": "Shared conversion engine: GraphQL schemas to MCP tool definitions",
+    "type": "module",
+    "sideEffects": false,
+    "engines": {
+        "node": ">=24"
+    },
+    "files": [
+        "dist",
+        "LICENSE"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.mts",
+            "import": "./dist/index.mjs"
+        }
+    },
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts",
+    "scripts": {
+        "build": "tsdown",
+        "dev": "tsdown --watch",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "typecheck": "tsc --noEmit",
+        "release:jsr": "npx jsr publish --allow-dirty"
+    },
+    "dependencies": {},
+    "keywords": [
+        "graphql",
+        "mcp",
+        "model-context-protocol",
+        "schema",
+        "converter"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/KKonstantinov/graphql-to-mcp.git",
+        "directory": "packages/core"
+    },
+    "homepage": "https://github.com/KKonstantinov/graphql-to-mcp/tree/main/packages/core#readme",
+    "bugs": {
+        "url": "https://github.com/KKonstantinov/graphql-to-mcp/issues"
+    },
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    },
+    "license": "MIT"
+}

@@ -1,0 +1,7 @@
+packages:
+    - 'packages/core'
+    - 'packages/proxy'
+    - 'packages/lib'
+
+overrides:
+    esbuild: '>=0.25.0'
