@@ -1,0 +1,15 @@
+{
+    "name": "@graphql-to-mcp/example-graphql-file",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "start": "tsx src/index.ts"
+    },
+    "dependencies": {
+        "graphql-to-mcp": "workspace:*",
+        "@modelcontextprotocol/sdk": "^1.27.1"
+    },
+    "devDependencies": {
+        "tsx": "^4.0.0"
+    }
+}

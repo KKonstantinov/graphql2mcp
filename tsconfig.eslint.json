@@ -15,7 +15,8 @@
         "packages/lib/test",
         "packages/lib/*.config.ts",
         "*.config.ts",
-        "docs/.vitepress/**/*.ts"
+        "docs/.vitepress/**/*.ts",
+        "examples/*/src"
     ],
-    "exclude": ["node_modules", "**/dist", "**/node_modules"]
+    "exclude": ["node_modules", "**/dist", "**/node_modules", "**/coverage"]
 }

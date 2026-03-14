@@ -7,7 +7,7 @@ import prettier from 'eslint-plugin-prettier/recommended';
 // eslint-disable-next-line @typescript-eslint/no-deprecated -- defineConfig not yet available in this version
 export default tseslint.config(
     {
-        ignores: ['**/dist/', '**/node_modules/', '**/bin/', 'docs/.vitepress/cache/', 'docs/.vitepress/dist/', 'scripts/']
+        ignores: ['**/dist/', '**/node_modules/', '**/bin/', '**/coverage/', 'docs/.vitepress/cache/', 'docs/.vitepress/dist/', 'scripts/']
     },
     eslint.configs.recommended,
     tseslint.configs.strictTypeChecked,
@@ -48,6 +48,11 @@ export default tseslint.config(
             // Tests use `any` casts for mock objects
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-unsafe-argument': 'off',
+            '@typescript-eslint/no-unsafe-assignment': 'off',
+            '@typescript-eslint/no-unsafe-member-access': 'off',
+            '@typescript-eslint/restrict-template-expressions': 'off',
+            '@typescript-eslint/no-unused-expressions': 'off',
+            '@typescript-eslint/no-misused-promises': 'off',
             // Tests use non-null assertions on known-good values
             '@typescript-eslint/no-non-null-assertion': 'off',
             // Test describe/it return promises that don't need handling

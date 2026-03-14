@@ -2,6 +2,7 @@ packages:
     - 'packages/core'
     - 'packages/proxy'
     - 'packages/lib'
+    - 'examples/*'
 
 overrides:
     esbuild: '>=0.25.0'

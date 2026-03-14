@@ -1,0 +1,20 @@
+type Query {
+  node(id: ID!): Node
+  search(query: String!): [SearchResult!]!
+}
+
+interface Node {
+  id: ID!
+}
+
+type User implements Node {
+  id: ID!
+  name: String!
+}
+
+type Post implements Node {
+  id: ID!
+  title: String!
+}
+
+union SearchResult = User | Post

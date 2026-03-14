@@ -1,0 +1,22 @@
+type Query {
+    "Get a user by ID"
+    user(id: ID!): User
+    "List all users with optional pagination"
+    users(limit: Int, offset: Int): [User!]!
+    "Search users by name"
+    searchUsers(query: String!): [User!]!
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    role: Role!
+    createdAt: String
+}
+
+enum Role {
+    ADMIN
+    USER
+    MODERATOR
+}

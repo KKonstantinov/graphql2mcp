@@ -32,7 +32,11 @@
         "release:jsr": "npx jsr publish --allow-dirty"
     },
     "dependencies": {
-        "@graphql-to-mcp/core": "workspace:*"
+        "@graphql-to-mcp/core": "workspace:*",
+        "@modelcontextprotocol/sdk": "^1.27.1",
+        "commander": "^14.0.3",
+        "graphql": "^16.13.1",
+        "zod": "^4.3.6"
     },
     "keywords": [
         "graphql",
