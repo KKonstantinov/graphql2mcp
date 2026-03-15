@@ -2,14 +2,15 @@ import { describe, it, expect } from 'vitest';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 
-const CLI_PATH = path.join(import.meta.dirname, '../../src/cli.ts');
+const PKG_ROOT = path.join(import.meta.dirname, '../..');
+const BIN_PATH = path.join(PKG_ROOT, 'bin/graphql-to-mcp.mjs');
 
 function runCli(args: string[]): { stdout: string; stderr: string; exitCode: number } {
     try {
-        const stdout = execFileSync('npx', ['tsx', CLI_PATH, ...args], {
+        const stdout = execFileSync(process.execPath, [BIN_PATH, ...args], {
             encoding: 'utf8',
             timeout: 10_000,
-            cwd: path.join(import.meta.dirname, '../..'),
+            cwd: PKG_ROOT,
             stdio: ['pipe', 'pipe', 'pipe']
         });
         return { stdout, stderr: '', exitCode: 0 };
