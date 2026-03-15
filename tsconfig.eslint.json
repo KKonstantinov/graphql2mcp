@@ -18,5 +18,13 @@
         "docs/.vitepress/**/*.ts",
         "examples/*/src"
     ],
-    "exclude": ["node_modules", "**/dist", "**/node_modules", "**/coverage"]
+    "exclude": [
+        "node_modules",
+        "**/dist",
+        "**/node_modules",
+        "**/coverage",
+        "**/test/integration/bun.test.ts",
+        "**/test/integration/deno.test.ts",
+        "**/test/integration/node.test.mts"
+    ]
 }

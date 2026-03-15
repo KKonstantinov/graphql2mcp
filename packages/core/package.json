@@ -24,7 +24,10 @@
         "dev": "tsdown --watch",
         "test": "vitest run",
         "test:watch": "vitest",
-        "test:integration": "vitest run test/integration",
+        "test:integration:node": "node --test test/integration/node.test.mts",
+        "test:integration:bun": "bun test test/integration/bun.test.ts",
+        "test:integration:deno": "deno test --no-check --allow-read --allow-env test/integration/deno.test.ts",
+        "test:integration": "pnpm run build && pnpm run test:integration:node",
         "typecheck": "tsc --noEmit",
         "release:jsr": "npx jsr publish --allow-dirty"
     },
@@ -37,7 +40,9 @@
         "mcp",
         "model-context-protocol",
         "schema",
-        "converter"
+        "converter",
+        "deno",
+        "bun"
     ],
     "repository": {
         "type": "git",

@@ -7,7 +7,18 @@ import prettier from 'eslint-plugin-prettier/recommended';
 // eslint-disable-next-line @typescript-eslint/no-deprecated -- defineConfig not yet available in this version
 export default tseslint.config(
     {
-        ignores: ['**/dist/', '**/node_modules/', '**/bin/', '**/coverage/', 'docs/.vitepress/cache/', 'docs/.vitepress/dist/', 'scripts/']
+        ignores: [
+            '**/dist/',
+            '**/node_modules/',
+            '**/bin/',
+            '**/coverage/',
+            'docs/.vitepress/cache/',
+            'docs/.vitepress/dist/',
+            'scripts/',
+            '**/test/integration/bun.test.ts',
+            '**/test/integration/deno.test.ts',
+            '**/test/integration/node.test.mts'
+        ]
     },
     eslint.configs.recommended,
     tseslint.configs.strictTypeChecked,
