@@ -1,13 +1,13 @@
 type Query {
-  findNodes(filter: NodeFilter!): [Node!]!
+    findNodes(filter: NodeFilter!): [Node!]!
 }
 
 type Node {
-  id: ID!
-  name: String!
+    id: ID!
+    name: String!
 }
 
 input NodeFilter {
-  name: String
-  children: NodeFilter
+    name: String
+    children: NodeFilter
 }

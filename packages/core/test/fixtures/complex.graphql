@@ -1,73 +1,73 @@
 type Query {
-  "Search for users by filter"
-  searchUsers(filter: UserFilter!, pagination: PaginationInput): UserConnection!
-  "Get a specific user by ID"
-  user(id: ID!): User
-  "List all available roles"
-  roles: [Role!]!
+    "Search for users by filter"
+    searchUsers(filter: UserFilter!, pagination: PaginationInput): UserConnection!
+    "Get a specific user by ID"
+    user(id: ID!): User
+    "List all available roles"
+    roles: [Role!]!
 }
 
 type Mutation {
-  createUser(input: CreateUserInput!): User!
-  updateUser(id: ID!, input: UpdateUserInput!): User!
-  deleteUser(id: ID!): Boolean!
+    createUser(input: CreateUserInput!): User!
+    updateUser(id: ID!, input: UpdateUserInput!): User!
+    deleteUser(id: ID!): Boolean!
 }
 
 type User {
-  id: ID!
-  name: String!
-  email: String!
-  role: Role!
-  posts: [Post!]!
-  createdAt: DateTime
+    id: ID!
+    name: String!
+    email: String!
+    role: Role!
+    posts: [Post!]!
+    createdAt: DateTime
 }
 
 type Post {
-  id: ID!
-  title: String!
-  body: String!
-  author: User!
-  tags: [String!]!
+    id: ID!
+    title: String!
+    body: String!
+    author: User!
+    tags: [String!]!
 }
 
 type UserConnection {
-  nodes: [User!]!
-  totalCount: Int!
-  pageInfo: PageInfo!
+    nodes: [User!]!
+    totalCount: Int!
+    pageInfo: PageInfo!
 }
 
 type PageInfo {
-  hasNextPage: Boolean!
-  endCursor: String
+    hasNextPage: Boolean!
+    endCursor: String
 }
 
 input UserFilter {
-  nameContains: String
-  role: Role
-  createdAfter: DateTime
+    nameContains: String
+    role: Role
+    createdAfter: DateTime
 }
 
 input PaginationInput {
-  first: Int
-  after: String
+    first: Int
+    after: String
 }
 
 input CreateUserInput {
-  name: String!
-  email: String!
-  role: Role!
+    name: String!
+    email: String!
+    role: Role!
 }
 
 input UpdateUserInput {
-  name: String
-  email: String
-  role: Role
+    name: String
+    email: String
+    role: Role
 }
 
 enum Role {
-  ADMIN
-  USER
-  MODERATOR
+    ADMIN
+    USER
+    MODERATOR
 }
 
 scalar DateTime

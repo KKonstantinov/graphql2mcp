@@ -24,6 +24,7 @@
         "dev": "tsdown --watch",
         "test": "vitest run",
         "test:watch": "vitest",
+        "test:integration": "vitest run test/integration",
         "typecheck": "tsc --noEmit",
         "release:jsr": "npx jsr publish --allow-dirty"
     },
