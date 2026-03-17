@@ -1,11 +1,17 @@
 {
     "name": "@graphql2mcp/proxy",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "license": "MIT",
     "exports": {
         ".": "./src/index.ts"
     },
     "publish": {
         "include": ["src/", "LICENSE", "README.md", "jsr.json"]
+    },
+    "imports": {
+        "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.27.1",
+        "commander": "npm:commander@^14.0.3",
+        "graphql": "npm:graphql@^16.13.1",
+        "zod": "npm:zod@^4.3.6"
     }
 }
