@@ -48,10 +48,10 @@ The `<source>` argument can be:
 
 ### Basic URL introspection
 
-Introspect a public GraphQL API and expose all queries as MCP tools:
+Introspect a public GraphQL API and expose all queries as MCP tools over Streamable HTTP:
 
 ```bash
-graphql2mcp https://countries.trevorblades.com/graphql
+graphql2mcp https://countries.trevorblades.com/graphql -t http
 ```
 
 ### SDL file with execution endpoint
@@ -113,16 +113,6 @@ graphql2mcp https://api.example.com/graphql \
   --exclude internalMetrics debugQuery
 ```
 
-### HTTP transport
-
-Start the MCP server as an HTTP server instead of stdio:
-
-```bash
-graphql2mcp https://api.example.com/graphql -t http -p 8080
-```
-
-This starts a Streamable HTTP MCP server on port 8080.
-
 ### Glob pattern
 
 Merge multiple schema files into a single MCP server:
@@ -141,9 +131,17 @@ graphql2mcp ./introspection.json -e https://api.example.com/graphql
 
 ## Transport Options
 
-### stdio (default)
+### http (Streamable HTTP)
 
-The server communicates over stdin/stdout using the MCP stdio transport. This is the standard transport for MCP clients like Claude Desktop and Cursor.
+The server starts an HTTP server using the MCP Streamable HTTP transport. This is the recommended transport for most use cases — remote clients, web-based agents, debugging, and production deployments.
+
+```bash
+graphql2mcp https://api.example.com/graphql -t http -p 3000
+```
+
+### stdio
+
+The server communicates over stdin/stdout using the MCP stdio transport. Use this for desktop MCP clients like Claude Desktop and Cursor that launch the server as a subprocess.
 
 Example Claude Desktop configuration (`claude_desktop_config.json`):
 
@@ -156,14 +154,6 @@ Example Claude Desktop configuration (`claude_desktop_config.json`):
         }
     }
 }
-```
-
-### http
-
-The server starts an HTTP server using the MCP Streamable HTTP transport. Useful for remote MCP clients or debugging.
-
-```bash
-graphql2mcp https://api.example.com/graphql -t http -p 3000
 ```
 
 ## Execution Endpoint

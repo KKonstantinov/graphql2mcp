@@ -46,10 +46,16 @@ tool, the tool executes the GraphQL query, and the result comes back as structur
 One command. No code.
 
 ```bash
-npx graphql2mcp https://countries.trevorblades.com/graphql
+npx graphql2mcp https://countries.trevorblades.com/graphql -t http
 ```
 
-This introspects the endpoint, generates MCP tools for every query, and starts a server over stdio. An AI agent connected to this server can now call tools like `query_countries` and `query_country`.
+This introspects the endpoint, generates MCP tools for every query, and starts a Streamable HTTP server on port 3000. An AI agent connected to this server can now call tools like `query_countries` and `query_country`.
+
+Use stdio transport instead for desktop MCP clients like Claude Desktop or Cursor:
+
+```bash
+npx graphql2mcp https://countries.trevorblades.com/graphql
+```
 
 ## Library Mode
 
@@ -115,7 +121,7 @@ Tools are named `github_query_viewer`, `stripe_query_customers`, etc. — no col
 ## How It Works
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph Source["GraphQL SDL"]
         S["type Query {\n  users\n  user(id)\n}"]
     end

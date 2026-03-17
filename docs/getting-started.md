@@ -31,10 +31,16 @@ npm install @graphql2mcp/lib
 The simplest way to get started is to point at a GraphQL endpoint. The CLI will introspect the schema and start an MCP server:
 
 ```bash
-npx graphql2mcp https://countries.trevorblades.com/graphql
+npx graphql2mcp https://countries.trevorblades.com/graphql -t http
 ```
 
-This creates MCP tools for every query in the schema. The server communicates over stdio, ready for use with Claude Desktop, Cursor, or any MCP client.
+This creates MCP tools for every query in the schema and starts a Streamable HTTP server on port 3000, ready for any MCP client.
+
+For desktop MCP clients like Claude Desktop or Cursor that expect stdio transport:
+
+```bash
+npx graphql2mcp https://countries.trevorblades.com/graphql
+```
 
 ### From an SDL File
 
@@ -76,7 +82,7 @@ If you have an existing MCP server and want to add GraphQL tools alongside your 
 
 ```typescript
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 const server = new McpServer({ name: 'my-server', version: '1.0.0' });
@@ -89,7 +95,7 @@ const result = registerGraphQLTools(server, {
 
 console.error(`Registered ${result.count} tools`);
 
-const transport = new StdioServerTransport();
+const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
 await server.connect(transport);
 ```
 

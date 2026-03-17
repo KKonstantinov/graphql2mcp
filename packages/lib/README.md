@@ -22,7 +22,7 @@ npm install @modelcontextprotocol/sdk
 
 ```typescript
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 const server = new McpServer({ name: 'my-server', version: '1.0.0' });
@@ -35,7 +35,7 @@ const result = registerGraphQLTools(server, {
 console.log(`Registered ${result.count} tools`);
 // result.tools contains metadata about each registered tool
 
-const transport = new StdioServerTransport();
+const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
 await server.connect(transport);
 ```
 
@@ -43,7 +43,7 @@ await server.connect(transport);
 
 ```typescript
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
 import { registerGraphQLTools } from '@graphql2mcp/lib';
 
@@ -79,7 +79,7 @@ registerGraphQLTools(server, {
     endpoint: 'https://api.example.com/graphql'
 });
 
-const transport = new StdioServerTransport();
+const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
 await server.connect(transport);
 ```
 

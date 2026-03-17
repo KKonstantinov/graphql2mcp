@@ -23,13 +23,19 @@ Convert GraphQL schemas and endpoints into [Model Context Protocol](https://mode
 Run against a live GraphQL endpoint (introspects the schema automatically):
 
 ```bash
+npx graphql2mcp https://api.example.com/graphql -t http
+```
+
+This starts a Streamable HTTP MCP server on port 3000. For stdio transport (used by Claude Desktop, Cursor), omit the `-t http` flag:
+
+```bash
 npx graphql2mcp https://api.example.com/graphql
 ```
 
 Or from a local SDL file:
 
 ```bash
-npx graphql2mcp schema.graphql -e https://api.example.com/graphql
+npx graphql2mcp schema.graphql -e https://api.example.com/graphql -t http
 ```
 
 ### Library Mode
@@ -38,7 +44,7 @@ Add GraphQL tools to an existing MCP server:
 
 ```typescript
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 const server = new McpServer({ name: 'my-server', version: '1.0.0' });
@@ -49,7 +55,7 @@ registerGraphQLTools(server, {
     endpoint: 'https://api.example.com/graphql'
 });
 
-const transport = new StdioServerTransport();
+const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
 await server.connect(transport);
 ```
 
@@ -66,7 +72,7 @@ This is a monorepo managed with [pnpm workspaces](https://pnpm.io/workspaces):
 ## How It Works
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph Input
         A[SDL File] --> L
         B[URL Introspection] --> L

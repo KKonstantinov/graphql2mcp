@@ -66,7 +66,7 @@ graphql2mcp schema.graphql -e https://api.example.com/graphql \
     --exclude internalMetrics debugInfo
 ```
 
-### HTTP transport
+### Streamable HTTP transport (recommended)
 
 ```bash
 graphql2mcp https://api.example.com/graphql -t http -p 8080
@@ -96,7 +96,7 @@ The package also exports functions for creating proxy servers programmatically.
 
 ```typescript
 import { createProxyServerFromUrl } from 'graphql2mcp';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 
 const server = await createProxyServerFromUrl({
     url: 'https://api.example.com/graphql',
@@ -104,7 +104,7 @@ const server = await createProxyServerFromUrl({
     mutations: 'all'
 });
 
-const transport = new StdioServerTransport();
+const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
 await server.connect(transport);
 ```
 
@@ -112,7 +112,7 @@ await server.connect(transport);
 
 ```typescript
 import { createProxyServer } from 'graphql2mcp';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 
 const server = createProxyServer({
     endpoints: [
@@ -124,7 +124,7 @@ const server = createProxyServer({
     ]
 });
 
-const transport = new StdioServerTransport();
+const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
 await server.connect(transport);
 ```
 
@@ -134,7 +134,7 @@ Combine multiple GraphQL APIs into a single MCP server. Use the `prefix` option 
 
 ```typescript
 import { createProxyServer } from 'graphql2mcp';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 
 const server = createProxyServer({
     endpoints: [
@@ -154,7 +154,7 @@ const server = createProxyServer({
 });
 
 // Tools are named: users_query_getUser, products_query_listProducts, products_mutation_createProduct, etc.
-const transport = new StdioServerTransport();
+const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
 await server.connect(transport);
 ```
 
