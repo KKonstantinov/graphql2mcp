@@ -115,6 +115,7 @@ async function executeGraphQL(
     }
 }
 
+/** Registers a single MCP tool that proxies a GraphQL operation. */
 function registerSingleTool(
     server: McpServerLike,
     tool: ToolDefinition,

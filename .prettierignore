@@ -1,3 +1,9 @@
+# Test fixtures (expected output must not be reformatted)
+packages/*/test/fixtures/
+
+# Symlinked/included docs (follow symlinks causes issues)
+docs/packages/
+
 # Build output
 **/dist/
 

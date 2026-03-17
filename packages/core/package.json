@@ -28,7 +28,7 @@
         "test:integration:bun": "bun test test/integration/bun.test.ts",
         "test:integration:deno": "deno test --no-check --allow-read --allow-env test/integration/deno.test.ts",
         "test:integration": "pnpm run build && pnpm run test:integration:node",
-        "typecheck": "tsc --noEmit",
+        "typecheck": "tsgo --noEmit",
         "release:jsr": "npx jsr publish --allow-dirty"
     },
     "dependencies": {

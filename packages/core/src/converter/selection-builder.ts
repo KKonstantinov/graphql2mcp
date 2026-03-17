@@ -39,6 +39,7 @@ export function buildSelectionSet(type: GraphQLOutputType, schema: GraphQLSchema
     return '';
 }
 
+/** Builds field selection for an object type, recursing into nested objects up to maxDepth. */
 function buildObjectSelection(
     type: ReturnType<typeof isObjectType extends (t: unknown) => t is infer R ? () => R : never>,
     schema: GraphQLSchema,
@@ -67,6 +68,7 @@ function buildObjectSelection(
     return `{ ${selections.join(' ')} }`;
 }
 
+/** Builds inline fragment selection for a union type, including __typename. */
 function buildUnionSelection(
     type: ReturnType<typeof isUnionType extends (t: unknown) => t is infer R ? () => R : never>,
     schema: GraphQLSchema,
@@ -87,6 +89,7 @@ function buildUnionSelection(
     return `{ ${fragments.join(' ')} }`;
 }
 
+/** Builds selection for an interface type with shared scalar fields and inline fragments per implementation. */
 function buildInterfaceSelection(
     type: ReturnType<typeof isInterfaceType extends (t: unknown) => t is infer R ? () => R : never>,
     schema: GraphQLSchema,

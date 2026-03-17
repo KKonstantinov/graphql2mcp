@@ -5,10 +5,12 @@ import type { MutationMode } from '@graphql-to-mcp/core';
 
 const VERSION = '0.0.0';
 
+/** Checks if a source string is an HTTP(S) URL. */
 function isUrl(source: string): boolean {
     return source.startsWith('http://') || source.startsWith('https://');
 }
 
+/** Parses CLI header flags (e.g. "Authorization: Bearer x") into a headers record. */
 function parseHeaders(headerValues: string[]): Record<string, string> {
     const headers: Record<string, string> = {};
     for (const h of headerValues) {
@@ -22,6 +24,7 @@ function parseHeaders(headerValues: string[]): Record<string, string> {
     return headers;
 }
 
+/** Parses a CLI mutation mode string into a MutationMode value. */
 function parseMutationMode(mode: string, whitelist: string[]): MutationMode {
     if (mode === 'all') return 'all';
     if (mode === 'whitelist') return { whitelist };

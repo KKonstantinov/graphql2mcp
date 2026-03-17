@@ -42,10 +42,16 @@ export default tseslint.config(
             'unicorn/prevent-abbreviations': 'off',
             // We use null returns
             'unicorn/no-null': 'off',
+            // forEach is fine for side-effectful iteration
+            'unicorn/no-array-for-each': 'off',
+            // Nested ternaries are sometimes the clearest expression
+            'unicorn/no-nested-ternary': 'off',
             // We use process.exit
             'unicorn/no-process-exit': 'off',
             // Our files use camelCase
             'unicorn/filename-case': 'off',
+            // Lonely if in else is fine
+            'unicorn/no-lonely-if': 'off',
             // Enforce `import type` for type-only imports
             '@typescript-eslint/consistent-type-imports': ['error', { disallowTypeAnnotations: false }],
             // Prefer `import type` over `import { type ... }`
@@ -74,6 +80,15 @@ export default tseslint.config(
             '@typescript-eslint/require-await': 'off',
             // mockResolvedValue(undefined) is idiomatic in vitest
             'unicorn/no-useless-undefined': 'off'
+        }
+    },
+    // VitePress theme files use Vue APIs that don't resolve cleanly
+    {
+        files: ['docs/.vitepress/**/*.ts'],
+        rules: {
+            '@typescript-eslint/no-unsafe-call': 'off',
+            '@typescript-eslint/no-unsafe-return': 'off',
+            '@typescript-eslint/no-unsafe-assignment': 'off'
         }
     },
     // Prettier must be last to override all formatting rules

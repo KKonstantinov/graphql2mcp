@@ -3,3 +3,7 @@
     --vp-c-brand-2: #d42e9b;
     --vp-c-brand-3: #c3278b;
 }
+
+.mermaid-container .diagram-wrapper {
+    text-align: center;
+}
