@@ -2,7 +2,8 @@
 
 [![npm version](https://img.shields.io/npm/v/@graphql2mcp/core)](https://www.npmjs.com/package/@graphql2mcp/core)
 
-Shared conversion engine that transforms GraphQL schemas into MCP (Model Context Protocol) tool definitions. Used internally by [`graphql2mcp`](../proxy/) and [`@graphql2mcp/lib`](../lib/), but can also be used directly for advanced use cases.
+Shared conversion engine that transforms GraphQL schemas into MCP (Model Context Protocol) tool definitions. Used internally by [`graphql2mcp`](https://www.npmjs.com/package/graphql2mcp) and [`@graphql2mcp/lib`](https://www.npmjs.com/package/@graphql2mcp/lib), but can also be
+used directly for advanced use cases.
 
 ## Install
 
