@@ -157,6 +157,6 @@ flowchart LR
 
 | Runtime | Version | Status                          |
 | ------- | ------- | ------------------------------- |
-| Node.js | >= 24   | Full support (proxy, lib, core) |
+| Node.js | >= 22   | Full support (proxy, lib, core) |
 | Bun     | >= 1.2  | Core package tested             |
 | Deno    | >= 2.0  | Core package tested             |

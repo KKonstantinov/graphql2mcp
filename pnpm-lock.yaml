@@ -141,9 +141,6 @@ importers:
 
   packages/lib:
     dependencies:
-      '@graphql2mcp/core':
-        specifier: workspace:*
-        version: link:../core
       graphql:
         specifier: ^16.13.1
         version: 16.13.1
@@ -151,15 +148,15 @@ importers:
         specifier: ^4.3.6
         version: 4.3.6
     devDependencies:
+      '@graphql2mcp/core':
+        specifier: workspace:*
+        version: link:../core
       '@modelcontextprotocol/sdk':
         specifier: ^1.27.1
         version: 1.27.1(zod@4.3.6)
 
   packages/proxy:
     dependencies:
-      '@graphql2mcp/core':
-        specifier: workspace:*
-        version: link:../core
       '@modelcontextprotocol/sdk':
         specifier: ^1.27.1
         version: 1.27.1(zod@4.3.6)
@@ -172,6 +169,10 @@ importers:
       zod:
         specifier: ^4.3.6
         version: 4.3.6
+    devDependencies:
+      '@graphql2mcp/core':
+        specifier: workspace:*
+        version: link:../core
 
 packages:
 

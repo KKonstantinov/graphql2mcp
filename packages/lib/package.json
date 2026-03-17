@@ -5,7 +5,7 @@
     "type": "module",
     "sideEffects": false,
     "engines": {
-        "node": ">=24"
+        "node": ">=22"
     },
     "files": [
         "dist",
@@ -29,9 +29,12 @@
         "release:jsr": "npx jsr publish --allow-dirty"
     },
     "dependencies": {
-        "@graphql2mcp/core": "workspace:*",
         "graphql": "^16.13.1",
         "zod": "^4.3.6"
+    },
+    "devDependencies": {
+        "@graphql2mcp/core": "workspace:*",
+        "@modelcontextprotocol/sdk": "^1.27.1"
     },
     "keywords": [
         "graphql",
@@ -56,9 +59,6 @@
         "provenance": true
     },
     "license": "MIT",
-    "devDependencies": {
-        "@modelcontextprotocol/sdk": "^1.27.1"
-    },
     "peerDependencies": {
         "@modelcontextprotocol/sdk": "^1.27.1"
     }

@@ -328,7 +328,7 @@ The proxy package also exports a programmatic API for non-CLI usage.
 
 ### REQ-NFR-1: Compatibility
 
-- AC1: Node.js >= 24 (as specified in package.json `engines`).
+- AC1: Node.js >= 22 (as specified in package.json `engines`).
 - AC2: TypeScript >= 5.0.
 - AC3: ESM only (`"type": "module"`).
 - AC4: MCP SDK v1.x (`@modelcontextprotocol/sdk` ^1.0.0).

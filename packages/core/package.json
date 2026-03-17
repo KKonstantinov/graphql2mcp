@@ -1,16 +1,13 @@
 {
     "name": "@graphql2mcp/core",
     "version": "0.0.0",
+    "private": true,
     "description": "Shared conversion engine: GraphQL schemas to MCP tool definitions",
     "type": "module",
     "sideEffects": false,
     "engines": {
-        "node": ">=24"
+        "node": ">=22"
     },
-    "files": [
-        "dist",
-        "LICENSE"
-    ],
     "exports": {
         ".": {
             "types": "./dist/index.d.mts",
@@ -28,8 +25,7 @@
         "test:integration:bun": "bun test test/integration/bun.test.ts",
         "test:integration:deno": "deno test --no-check --allow-read --allow-env test/integration/deno.test.ts",
         "test:integration": "pnpm run build && pnpm run test:integration:node",
-        "typecheck": "tsgo --noEmit",
-        "release:jsr": "npx jsr publish --allow-dirty"
+        "typecheck": "tsgo --noEmit"
     },
     "dependencies": {
         "graphql": "^16.13.1",
@@ -52,10 +48,6 @@
     "homepage": "https://github.com/KKonstantinov/graphql2mcp/tree/main/packages/core#readme",
     "bugs": {
         "url": "https://github.com/KKonstantinov/graphql2mcp/issues"
-    },
-    "publishConfig": {
-        "access": "public",
-        "provenance": true
     },
     "license": "MIT"
 }

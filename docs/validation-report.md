@@ -324,7 +324,7 @@ behavior.
 
 | AC  | Description       | Status | Evidence                                          |
 | --- | ----------------- | ------ | ------------------------------------------------- |
-| AC1 | Node.js >= 24     | PASS   | All `package.json` files specify `"node": ">=24"` |
+| AC1 | Node.js >= 22     | PASS   | All `package.json` files specify `"node": ">=22"` |
 | AC2 | TypeScript >= 5.0 | PASS   | `typescript: ^5.9.3` in devDependencies           |
 | AC3 | ESM only          | PASS   | `"type": "module"` in all packages                |
 | AC4 | MCP SDK v1.x      | PASS   | `@modelcontextprotocol/sdk: ^1.27.1`              |

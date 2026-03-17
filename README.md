@@ -99,7 +99,7 @@ flowchart LR
 
 | Runtime | Version | Status |
 | ------- | ------- | ------ |
-| Node.js | >= 24   | Tested |
+| Node.js | >= 22   | Tested |
 | Bun     | >= 1.2  | Tested |
 | Deno    | >= 2.0  | Tested |
 
