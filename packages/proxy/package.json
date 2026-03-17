@@ -1,6 +1,6 @@
 {
     "name": "graphql2mcp",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Standalone proxy that converts GraphQL endpoints into MCP servers",
     "type": "module",
     "sideEffects": false,
