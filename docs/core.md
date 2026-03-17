@@ -1,13 +1,13 @@
 # Core API Reference
 
-The `@graphql-to-mcp/core` package is the shared conversion engine used by both the CLI proxy and the library. It parses GraphQL schemas and generates MCP tool definitions.
+The `@graphql2mcp/core` package is the shared conversion engine used by both the CLI proxy and the library. It parses GraphQL schemas and generates MCP tool definitions.
 
-You typically do not need to use this package directly -- the [CLI](cli.md) and [library](library.md) packages provide higher-level APIs. Use `@graphql-to-mcp/core` when you need fine-grained control over schema loading or tool generation.
+You typically do not need to use this package directly -- the [CLI](cli.md) and [library](library.md) packages provide higher-level APIs. Use `@graphql2mcp/core` when you need fine-grained control over schema loading or tool generation.
 
 ## Installation
 
 ```bash
-npm install @graphql-to-mcp/core
+npm install @graphql2mcp/core
 ```
 
 ## Schema Loading
@@ -19,7 +19,7 @@ All schema loading functions return a `GraphQLSchema` object from `graphql-js`.
 Auto-detects the source type and loads accordingly.
 
 ```typescript
-import { loadSchema } from '@graphql-to-mcp/core';
+import { loadSchema } from '@graphql2mcp/core';
 
 // SDL string (detected by newlines or type definitions)
 const schema1 = loadSchema('type Query { hello: String }');
@@ -47,7 +47,7 @@ Detection rules:
 Loads a schema from an SDL string.
 
 ```typescript
-import { loadSchemaFromString } from '@graphql-to-mcp/core';
+import { loadSchemaFromString } from '@graphql2mcp/core';
 
 const schema = loadSchemaFromString(`
     type Query {
@@ -67,7 +67,7 @@ Throws if the string is empty or contains invalid SDL.
 Loads a schema from a `.graphql` or `.gql` file.
 
 ```typescript
-import { loadSchemaFromFile } from '@graphql-to-mcp/core';
+import { loadSchemaFromFile } from '@graphql2mcp/core';
 
 const schema = loadSchemaFromFile('./schema.graphql');
 ```
@@ -79,7 +79,7 @@ The path is resolved relative to the current working directory. Throws if the fi
 Loads and merges schemas from files matching a glob pattern.
 
 ```typescript
-import { loadSchemaFromGlob } from '@graphql-to-mcp/core';
+import { loadSchemaFromGlob } from '@graphql2mcp/core';
 
 const schema = loadSchemaFromGlob('./schemas/**/*.graphql');
 ```
@@ -91,7 +91,7 @@ All matching files are concatenated into a single SDL string and parsed together
 Loads a schema from a JSON file containing an introspection result.
 
 ```typescript
-import { loadSchemaFromIntrospectionFile } from '@graphql-to-mcp/core';
+import { loadSchemaFromIntrospectionFile } from '@graphql2mcp/core';
 
 const schema = loadSchemaFromIntrospectionFile('./introspection.json');
 ```
@@ -103,7 +103,7 @@ Accepts both raw introspection results and wrapped results (with a `data` proper
 Loads a schema from an introspection result object.
 
 ```typescript
-import { loadSchemaFromIntrospectionResult } from '@graphql-to-mcp/core';
+import { loadSchemaFromIntrospectionResult } from '@graphql2mcp/core';
 
 const response = await fetch('https://api.example.com/graphql', {
     method: 'POST',
@@ -122,7 +122,7 @@ const schema = loadSchemaFromIntrospectionResult(json);
 Converts a GraphQL schema into MCP tool definitions.
 
 ```typescript
-import { generateTools, loadSchema } from '@graphql-to-mcp/core';
+import { generateTools, loadSchema } from '@graphql2mcp/core';
 
 const schema = loadSchema('./schema.graphql');
 
@@ -262,7 +262,7 @@ These are exported for advanced use cases. Most users will not need them.
 Converts a GraphQL input type to a Zod schema. Handles non-null wrappers, lists, scalars, enums, and input objects recursively.
 
 ```typescript
-import { graphqlTypeToZod } from '@graphql-to-mcp/core';
+import { graphqlTypeToZod } from '@graphql2mcp/core';
 ```
 
 ### `argumentsToZodShape(args, options?)`
@@ -270,7 +270,7 @@ import { graphqlTypeToZod } from '@graphql-to-mcp/core';
 Converts GraphQL arguments to a Zod raw shape (`Record<string, ZodType>`). This is the format expected by the MCP SDK's `registerTool` input schema.
 
 ```typescript
-import { argumentsToZodShape } from '@graphql-to-mcp/core';
+import { argumentsToZodShape } from '@graphql2mcp/core';
 ```
 
 ### `generateToolName(fieldName, prefix, usedNames)`
@@ -278,7 +278,7 @@ import { argumentsToZodShape } from '@graphql-to-mcp/core';
 Generates a unique tool name with a prefix, resolving collisions by appending a numeric suffix.
 
 ```typescript
-import { generateToolName } from '@graphql-to-mcp/core';
+import { generateToolName } from '@graphql2mcp/core';
 ```
 
 ### `sanitizeName(name)`
@@ -286,7 +286,7 @@ import { generateToolName } from '@graphql-to-mcp/core';
 Sanitizes a name to contain only alphanumeric characters and underscores.
 
 ```typescript
-import { sanitizeName } from '@graphql-to-mcp/core';
+import { sanitizeName } from '@graphql2mcp/core';
 ```
 
 ### `buildSelectionSet(type, schema, maxDepth, currentDepth?)`
@@ -294,5 +294,5 @@ import { sanitizeName } from '@graphql-to-mcp/core';
 Builds a field selection string for a return type, recursing into nested object types up to `maxDepth`.
 
 ```typescript
-import { buildSelectionSet } from '@graphql-to-mcp/core';
+import { buildSelectionSet } from '@graphql2mcp/core';
 ```

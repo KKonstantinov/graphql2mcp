@@ -1,22 +1,22 @@
-# Requirements: graphql-to-mcp
+# Requirements: graphql2mcp
 
 ## 1. Overview
 
-`graphql-to-mcp` is a monorepo that converts GraphQL schemas and endpoints into MCP (Model Context Protocol) servers. Each GraphQL query and mutation is mapped to a discrete MCP tool with validated parameters, tool annotations, and configurable mutation exposure.
+`graphql2mcp` is a monorepo that converts GraphQL schemas and endpoints into MCP (Model Context Protocol) servers. Each GraphQL query and mutation is mapped to a discrete MCP tool with validated parameters, tool annotations, and configurable mutation exposure.
 
 ### 1.1 Packages
 
-| Package           | npm Name               | Purpose                                                                    |
-| ----------------- | ---------------------- | -------------------------------------------------------------------------- |
-| `packages/core/`  | `@graphql-to-mcp/core` | Shared conversion engine: GraphQL schema → MCP tool definitions            |
-| `packages/proxy/` | `graphql-to-mcp`       | Standalone proxy with CLI: point at GraphQL endpoint(s), get an MCP server |
-| `packages/lib/`   | `@graphql-to-mcp/lib`  | Library for integrating into existing TypeScript MCP SDK servers           |
+| Package           | npm Name            | Purpose                                                                    |
+| ----------------- | ------------------- | -------------------------------------------------------------------------- |
+| `packages/core/`  | `@graphql2mcp/core` | Shared conversion engine: GraphQL schema → MCP tool definitions            |
+| `packages/proxy/` | `graphql2mcp`       | Standalone proxy with CLI: point at GraphQL endpoint(s), get an MCP server |
+| `packages/lib/`   | `@graphql2mcp/lib`  | Library for integrating into existing TypeScript MCP SDK servers           |
 
 Both `proxy` and `lib` depend on `core` via `workspace:*`.
 
 ---
 
-## 2. Core Conversion Engine (`@graphql-to-mcp/core`)
+## 2. Core Conversion Engine (`@graphql2mcp/core`)
 
 ### REQ-CORE-1: Schema Loading from SDL
 
@@ -146,7 +146,7 @@ When generating the GraphQL query document for runtime execution, the tool must 
 
 ---
 
-## 3. Standalone Proxy (`graphql-to-mcp`)
+## 3. Standalone Proxy (`graphql2mcp`)
 
 ### REQ-PROXY-1: CLI Interface
 
@@ -168,7 +168,7 @@ When generating the GraphQL query document for runtime execution, the tool must 
 | `--version`            | `-V`  |                            |                         | Show version                                                                      | AC12 |
 | `--help`               | `-h`  |                            |                         | Show help                                                                         | AC13 |
 
-- AC14: `graphql-to-mcp` with no arguments shows help and exits with code 1.
+- AC14: `graphql2mcp` with no arguments shows help and exits with code 1.
 - AC15: Invalid source (non-existent file, unreachable URL) prints error to stderr and exits with code 1.
 
 ### REQ-PROXY-2: Multi-Endpoint Support
@@ -215,7 +215,7 @@ The proxy package also exports a programmatic API for non-CLI usage.
 
 ---
 
-## 4. Library (`@graphql-to-mcp/lib`)
+## 4. Library (`@graphql2mcp/lib`)
 
 ### REQ-LIB-1: Register GraphQL Tools on Existing McpServer
 
@@ -366,7 +366,7 @@ The proxy package also exports a programmatic API for non-CLI usage.
 
 | Dependency                       | Purpose                      |
 | -------------------------------- | ---------------------------- |
-| `@graphql-to-mcp/core`           | Shared conversion engine     |
+| `@graphql2mcp/core`              | Shared conversion engine     |
 | `@modelcontextprotocol/sdk` ^1.x | MCP server + transports      |
 | `@gql.tada/cli-utils`            | Schema introspection via URL |
 | `commander`                      | CLI framework                |
@@ -375,5 +375,5 @@ The proxy package also exports a programmatic API for non-CLI usage.
 
 | Dependency                                 | Purpose                  |
 | ------------------------------------------ | ------------------------ |
-| `@graphql-to-mcp/core`                     | Shared conversion engine |
+| `@graphql2mcp/core`                        | Shared conversion engine |
 | **Peer**: `@modelcontextprotocol/sdk` ^1.x | User provides McpServer  |

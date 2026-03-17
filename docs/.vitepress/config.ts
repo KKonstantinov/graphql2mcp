@@ -1,19 +1,19 @@
 import { defineConfig } from 'vitepress';
 
-const title = 'graphql-to-mcp';
+const title = 'graphql2mcp';
 const description = 'Convert GraphQL schemas and endpoints into MCP servers';
-const siteUrl = 'https://kkonstantinov.github.io/graphql-to-mcp/';
+const siteUrl = 'https://kkonstantinov.github.io/graphql2mcp/';
 
 export default defineConfig({
     title,
     description,
 
-    base: '/graphql-to-mcp/',
+    base: '/graphql2mcp/',
     cleanUrls: true,
     lastUpdated: true,
 
     head: [
-        ['link', { rel: 'icon', type: 'image/svg+xml', href: '/graphql-to-mcp/favicon.svg' }],
+        ['link', { rel: 'icon', type: 'image/svg+xml', href: '/graphql2mcp/favicon.svg' }],
         ['meta', { property: 'og:type', content: 'website' }],
         ['meta', { property: 'og:title', content: title }],
         ['meta', { property: 'og:description', content: description }],
@@ -32,14 +32,14 @@ export default defineConfig({
             {
                 text: 'Packages',
                 items: [
-                    { text: 'CLI Proxy (graphql-to-mcp)', link: '/cli' },
-                    { text: 'Library (@graphql-to-mcp/lib)', link: '/library' },
-                    { text: 'Core (@graphql-to-mcp/core)', link: '/core' }
+                    { text: 'CLI Proxy (graphql2mcp)', link: '/cli' },
+                    { text: 'Library (@graphql2mcp/lib)', link: '/library' },
+                    { text: 'Core (@graphql2mcp/core)', link: '/core' }
                 ]
             },
             {
                 text: 'GitHub',
-                link: 'https://github.com/KKonstantinov/graphql-to-mcp'
+                link: 'https://github.com/KKonstantinov/graphql2mcp'
             }
         ],
 
@@ -73,11 +73,11 @@ export default defineConfig({
         outline: [2, 3],
 
         editLink: {
-            pattern: 'https://github.com/KKonstantinov/graphql-to-mcp/edit/main/docs/:path'
+            pattern: 'https://github.com/KKonstantinov/graphql2mcp/edit/main/docs/:path'
         },
 
         footer: {
-            message: 'Released under the <a href="https://github.com/KKonstantinov/graphql-to-mcp/blob/main/LICENSE">MIT License</a>.',
+            message: 'Released under the <a href="https://github.com/KKonstantinov/graphql2mcp/blob/main/LICENSE">MIT License</a>.',
             copyright: 'Copyright &copy; 2025-present'
         },
 
@@ -86,8 +86,8 @@ export default defineConfig({
         },
 
         socialLinks: [
-            { icon: 'github', link: 'https://github.com/KKonstantinov/graphql-to-mcp' },
-            { icon: 'npm', link: 'https://www.npmjs.com/package/graphql-to-mcp' }
+            { icon: 'github', link: 'https://github.com/KKonstantinov/graphql2mcp' },
+            { icon: 'npm', link: 'https://www.npmjs.com/package/graphql2mcp' }
         ]
     }
 });

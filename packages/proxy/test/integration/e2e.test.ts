@@ -76,7 +76,7 @@ describe('Proxy E2E Integration', () => {
 
         beforeAll(async () => {
             mockServer = await createMockGraphQLServer(SIMPLE_SDL, SIMPLE_RESOLVERS);
-            tempDir = path.join(tmpdir(), `graphql-to-mcp-e2e-${Date.now()}`);
+            tempDir = path.join(tmpdir(), `graphql2mcp-e2e-${Date.now()}`);
             mkdirSync(tempDir, { recursive: true });
             schemaFile = path.join(tempDir, 'schema.graphql');
             writeFileSync(schemaFile, SIMPLE_SDL);

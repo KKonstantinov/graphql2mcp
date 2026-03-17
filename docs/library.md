@@ -1,11 +1,11 @@
 # Library Mode
 
-The `@graphql-to-mcp/lib` package lets you register GraphQL tools on an existing MCP server instance. This is useful when you want to combine GraphQL tools with your own custom tools in a single server.
+The `@graphql2mcp/lib` package lets you register GraphQL tools on an existing MCP server instance. This is useful when you want to combine GraphQL tools with your own custom tools in a single server.
 
 ## Installation
 
 ```bash
-npm install @graphql-to-mcp/lib
+npm install @graphql2mcp/lib
 ```
 
 ## Basic Usage
@@ -13,7 +13,7 @@ npm install @graphql-to-mcp/lib
 ```typescript
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { registerGraphQLTools } from '@graphql-to-mcp/lib';
+import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 const server = new McpServer({ name: 'my-server', version: '1.0.0' });
 
@@ -84,7 +84,7 @@ A common pattern is to register your own tools alongside GraphQL tools:
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
-import { registerGraphQLTools } from '@graphql-to-mcp/lib';
+import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 const server = new McpServer({ name: 'my-hybrid-server', version: '1.0.0' });
 
@@ -140,7 +140,7 @@ If you already have a `GraphQLSchema` object (e.g., from `graphql-js` or a code-
 
 ```typescript
 import { buildSchema } from 'graphql';
-import { registerGraphQLTools } from '@graphql-to-mcp/lib';
+import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 const schema = buildSchema(`
     type Query {
@@ -160,7 +160,7 @@ Map custom GraphQL scalars to Zod schemas for proper input validation:
 
 ```typescript
 import { z } from 'zod';
-import { registerGraphQLTools } from '@graphql-to-mcp/lib';
+import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 registerGraphQLTools(server, {
     source: './schema.graphql',

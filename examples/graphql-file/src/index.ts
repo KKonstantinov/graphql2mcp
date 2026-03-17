@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { createProxyServer } from 'graphql-to-mcp';
+import { createProxyServer } from 'graphql2mcp';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 const schemaPath = path.join(import.meta.dirname, '../schema.graphql');

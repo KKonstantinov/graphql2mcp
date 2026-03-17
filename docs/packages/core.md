@@ -1,5 +1,5 @@
 ---
-title: '@graphql-to-mcp/core'
+title: '@graphql2mcp/core'
 description: Shared conversion engine — GraphQL schemas to MCP tool definitions
 ---
 

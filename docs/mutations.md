@@ -13,9 +13,9 @@ Only queries are converted to tools. Mutations are ignored entirely.
 CLI:
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql
+graphql2mcp https://api.example.com/graphql
 # or explicitly:
-graphql-to-mcp https://api.example.com/graphql -m none
+graphql2mcp https://api.example.com/graphql -m none
 ```
 
 Library:
@@ -44,7 +44,7 @@ All queries and all mutations are converted to tools.
 CLI:
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql -m all
+graphql2mcp https://api.example.com/graphql -m all
 ```
 
 Library:
@@ -73,7 +73,7 @@ Only the named mutations are converted to tools. All queries are still included.
 CLI:
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql \
+graphql2mcp https://api.example.com/graphql \
   -m whitelist \
   --mutation-whitelist createUser updateUser
 ```
@@ -101,7 +101,7 @@ Whitelisted names that do not match any mutation in the schema are silently igno
 
 ## Tool Annotations
 
-MCP tool annotations communicate the nature of each tool to AI agents and clients. `graphql-to-mcp` sets these automatically based on the operation type.
+MCP tool annotations communicate the nature of each tool to AI agents and clients. `graphql2mcp` sets these automatically based on the operation type.
 
 ### Query annotations
 
@@ -144,7 +144,7 @@ registerGraphQLTools(server, {
 
 ```bash
 # Expose all mutations except deleteUser and dropDatabase
-graphql-to-mcp https://api.example.com/graphql \
+graphql2mcp https://api.example.com/graphql \
   -m all \
   --exclude deleteUser dropDatabase
 ```

@@ -1,23 +1,23 @@
 # CLI Reference
 
-The `graphql-to-mcp` CLI converts a GraphQL endpoint or schema file into a standalone MCP server.
+The `graphql2mcp` CLI converts a GraphQL endpoint or schema file into a standalone MCP server.
 
 ## Installation
 
 ```bash
-npm install -g graphql-to-mcp
+npm install -g graphql2mcp
 ```
 
 Or run without installing:
 
 ```bash
-npx graphql-to-mcp <source>
+npx graphql2mcp <source>
 ```
 
 ## Usage
 
 ```bash
-graphql-to-mcp <source> [options]
+graphql2mcp <source> [options]
 ```
 
 The `<source>` argument can be:
@@ -51,7 +51,7 @@ The `<source>` argument can be:
 Introspect a public GraphQL API and expose all queries as MCP tools:
 
 ```bash
-graphql-to-mcp https://countries.trevorblades.com/graphql
+graphql2mcp https://countries.trevorblades.com/graphql
 ```
 
 ### SDL file with execution endpoint
@@ -59,7 +59,7 @@ graphql-to-mcp https://countries.trevorblades.com/graphql
 Load the schema from a local file and execute queries against a different endpoint:
 
 ```bash
-graphql-to-mcp ./schema.graphql -e https://api.example.com/graphql
+graphql2mcp ./schema.graphql -e https://api.example.com/graphql
 ```
 
 ### With authentication headers
@@ -67,14 +67,14 @@ graphql-to-mcp ./schema.graphql -e https://api.example.com/graphql
 Pass an authorization header for both introspection and runtime execution:
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql \
+graphql2mcp https://api.example.com/graphql \
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIs..."
 ```
 
 Multiple headers are supported:
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql \
+graphql2mcp https://api.example.com/graphql \
   -H "Authorization: Bearer token123" \
   -H "X-API-Key: key456"
 ```
@@ -84,13 +84,13 @@ graphql-to-mcp https://api.example.com/graphql \
 Expose all mutations:
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql -m all
+graphql2mcp https://api.example.com/graphql -m all
 ```
 
 Expose specific mutations by name:
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql \
+graphql2mcp https://api.example.com/graphql \
   -m whitelist \
   --mutation-whitelist createUser updateUser
 ```
@@ -102,14 +102,14 @@ See the [Mutations guide](mutations.md) for details on mutation modes and tool a
 Only include specific operations:
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql \
+graphql2mcp https://api.example.com/graphql \
   --include users user searchUsers
 ```
 
 Exclude specific operations:
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql \
+graphql2mcp https://api.example.com/graphql \
   --exclude internalMetrics debugQuery
 ```
 
@@ -118,7 +118,7 @@ graphql-to-mcp https://api.example.com/graphql \
 Start the MCP server as an HTTP server instead of stdio:
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql -t http -p 8080
+graphql2mcp https://api.example.com/graphql -t http -p 8080
 ```
 
 This starts a Streamable HTTP MCP server on port 8080.
@@ -128,7 +128,7 @@ This starts a Streamable HTTP MCP server on port 8080.
 Merge multiple schema files into a single MCP server:
 
 ```bash
-graphql-to-mcp './schemas/*.graphql' -e https://api.example.com/graphql
+graphql2mcp './schemas/*.graphql' -e https://api.example.com/graphql
 ```
 
 ### Introspection JSON file
@@ -136,7 +136,7 @@ graphql-to-mcp './schemas/*.graphql' -e https://api.example.com/graphql
 Load a schema from a saved introspection result:
 
 ```bash
-graphql-to-mcp ./introspection.json -e https://api.example.com/graphql
+graphql2mcp ./introspection.json -e https://api.example.com/graphql
 ```
 
 ## Transport Options
@@ -152,7 +152,7 @@ Example Claude Desktop configuration (`claude_desktop_config.json`):
     "mcpServers": {
         "my-graphql-api": {
             "command": "npx",
-            "args": ["graphql-to-mcp", "https://api.example.com/graphql", "-H", "Authorization: Bearer token123"]
+            "args": ["graphql2mcp", "https://api.example.com/graphql", "-H", "Authorization: Bearer token123"]
         }
     }
 }
@@ -163,7 +163,7 @@ Example Claude Desktop configuration (`claude_desktop_config.json`):
 The server starts an HTTP server using the MCP Streamable HTTP transport. Useful for remote MCP clients or debugging.
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql -t http -p 3000
+graphql2mcp https://api.example.com/graphql -t http -p 3000
 ```
 
 ## Execution Endpoint
@@ -175,6 +175,6 @@ When the source is a file, glob, or SDL string, you must specify the execution e
 You can also use `--endpoint` to override the execution URL when the introspection and execution endpoints differ:
 
 ```bash
-graphql-to-mcp https://admin.example.com/graphql \
+graphql2mcp https://admin.example.com/graphql \
   -e https://api.example.com/graphql
 ```

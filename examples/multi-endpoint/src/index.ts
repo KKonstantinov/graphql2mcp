@@ -1,4 +1,4 @@
-import { createProxyServer } from 'graphql-to-mcp';
+import { createProxyServer } from 'graphql2mcp';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 // Combine two GraphQL APIs into a single MCP server.

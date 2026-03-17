@@ -3,7 +3,7 @@ import { loadSchemaFromString, generateTools } from '../../dist/index.mjs';
 
 const SIMPLE_SDL = 'type Query { hello: String, user(id: ID!): User }\ntype User { id: ID!, name: String!, email: String }';
 
-describe('@graphql-to-mcp/core (Bun)', () => {
+describe('@graphql2mcp/core (Bun)', () => {
     it('loads schema from SDL string', () => {
         const schema = loadSchemaFromString(SIMPLE_SDL);
         expect(schema).toBeDefined();

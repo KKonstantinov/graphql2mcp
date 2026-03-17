@@ -1,4 +1,4 @@
-// Public API for @graphql-to-mcp/core
+// Public API for @graphql2mcp/core
 
 // Schema loading
 export {

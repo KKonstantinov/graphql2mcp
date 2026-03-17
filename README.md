@@ -1,7 +1,7 @@
-# graphql-to-mcp
+# graphql2mcp
 
-[![npm version](https://img.shields.io/npm/v/graphql-to-mcp.svg)](https://www.npmjs.com/package/graphql-to-mcp) [![npm downloads](https://img.shields.io/npm/dm/graphql-to-mcp.svg)](https://www.npmjs.com/package/graphql-to-mcp)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/) [![license](https://img.shields.io/npm/l/graphql-to-mcp)](https://github.com/KKonstantinov/graphql-to-mcp/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/graphql2mcp.svg)](https://www.npmjs.com/package/graphql2mcp) [![npm downloads](https://img.shields.io/npm/dm/graphql2mcp.svg)](https://www.npmjs.com/package/graphql2mcp)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/) [![license](https://img.shields.io/npm/l/graphql2mcp)](https://github.com/KKonstantinov/graphql2mcp/blob/main/LICENSE)
 
 Convert GraphQL schemas and endpoints into [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) servers. Point at any GraphQL API and get an MCP server with tools mapped from queries and mutations.
 
@@ -23,13 +23,13 @@ Convert GraphQL schemas and endpoints into [Model Context Protocol](https://mode
 Run against a live GraphQL endpoint (introspects the schema automatically):
 
 ```bash
-npx graphql-to-mcp https://api.example.com/graphql
+npx graphql2mcp https://api.example.com/graphql
 ```
 
 Or from a local SDL file:
 
 ```bash
-npx graphql-to-mcp schema.graphql -e https://api.example.com/graphql
+npx graphql2mcp schema.graphql -e https://api.example.com/graphql
 ```
 
 ### Library Mode
@@ -39,7 +39,7 @@ Add GraphQL tools to an existing MCP server:
 ```typescript
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { registerGraphQLTools } from '@graphql-to-mcp/lib';
+import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 const server = new McpServer({ name: 'my-server', version: '1.0.0' });
 
@@ -57,11 +57,11 @@ await server.connect(transport);
 
 This is a monorepo managed with [pnpm workspaces](https://pnpm.io/workspaces):
 
-| Package                                  | Description                                                           |
-| ---------------------------------------- | --------------------------------------------------------------------- |
-| [`graphql-to-mcp`](packages/proxy/)      | Standalone CLI proxy — point at a GraphQL endpoint, get an MCP server |
-| [`@graphql-to-mcp/core`](packages/core/) | Shared conversion engine (GraphQL schema to MCP tool definitions)     |
-| [`@graphql-to-mcp/lib`](packages/lib/)   | Library for integrating into existing TypeScript MCP servers          |
+| Package                               | Description                                                           |
+| ------------------------------------- | --------------------------------------------------------------------- |
+| [`graphql2mcp`](packages/proxy/)      | Standalone CLI proxy — point at a GraphQL endpoint, get an MCP server |
+| [`@graphql2mcp/core`](packages/core/) | Shared conversion engine (GraphQL schema to MCP tool definitions)     |
+| [`@graphql2mcp/lib`](packages/lib/)   | Library for integrating into existing TypeScript MCP servers          |
 
 ## How It Works
 
@@ -76,7 +76,7 @@ flowchart LR
 
     L[loadSchema] --> S[GraphQLSchema]
 
-    subgraph "@graphql-to-mcp/core"
+    subgraph "@graphql2mcp/core"
         S --> G[generateTools]
         G --> T[ToolDefinition]
     end

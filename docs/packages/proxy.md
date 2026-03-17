@@ -1,5 +1,5 @@
 ---
-title: graphql-to-mcp
+title: graphql2mcp
 description: Standalone CLI proxy — run any GraphQL endpoint as an MCP server
 ---
 

@@ -1,12 +1,12 @@
 {
-    "name": "@graphql-to-mcp/example-library-mode",
+    "name": "@graphql2mcp/example-library-mode",
     "private": true,
     "type": "module",
     "scripts": {
         "start": "tsx src/index.ts"
     },
     "dependencies": {
-        "@graphql-to-mcp/lib": "workspace:*",
+        "@graphql2mcp/lib": "workspace:*",
         "@modelcontextprotocol/sdk": "^1.27.1",
         "zod": "^4.0.0"
     },

@@ -1,4 +1,4 @@
-# Validation Report: graphql-to-mcp
+# Validation Report: graphql2mcp
 
 **Date**: 2026-03-14 (updated) **Validator**: Gimli (gimli-runner) **Status**: PASS
 
@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-The `graphql-to-mcp` monorepo has been validated against the updated `docs/requirements.md`. All three packages build, typecheck, and all 146 tests pass across 12 test files. Two minor deviations from the spec are documented below but are functionally acceptable.
+The `graphql2mcp` monorepo has been validated against the updated `docs/requirements.md`. All three packages build, typecheck, and all 146 tests pass across 12 test files. Two minor deviations from the spec are documented below but are functionally acceptable.
 
 **Build**: PASS (all 3 packages) **Typecheck**: PASS (all 3 packages) **Tests**: 146 passed, 0 failed (12 test files)
 
@@ -18,11 +18,11 @@ The `graphql-to-mcp` monorepo has been validated against the updated `docs/requi
 
 All three packages build successfully via `pnpm build`:
 
-| Package                  | Output Size        | Status |
-| ------------------------ | ------------------ | ------ |
-| `@graphql-to-mcp/core`   | 50.60 kB (4 files) | PASS   |
-| `@graphql-to-mcp/lib`    | 15.83 kB (4 files) | PASS   |
-| `graphql-to-mcp` (proxy) | 33.87 kB (8 files) | PASS   |
+| Package               | Output Size        | Status |
+| --------------------- | ------------------ | ------ |
+| `@graphql2mcp/core`   | 50.60 kB (4 files) | PASS   |
+| `@graphql2mcp/lib`    | 15.83 kB (4 files) | PASS   |
+| `graphql2mcp` (proxy) | 33.87 kB (8 files) | PASS   |
 
 ### 1.2 Typecheck
 
@@ -40,7 +40,7 @@ All tests pass, including the previously failing CLI no-args exit code test.
 
 ## 2. Requirement-by-Requirement Validation
 
-### 2.1 Core Conversion Engine (`@graphql-to-mcp/core`)
+### 2.1 Core Conversion Engine (`@graphql2mcp/core`)
 
 #### REQ-CORE-1: Schema Loading from SDL
 
@@ -155,7 +155,7 @@ behavior.
 | AC3 | Collision resolution: `_2`, `_3`, etc.       | PASS   | `naming.ts:15-18`                       |
 | AC4 | Names sanitized to alphanumeric + underscore | PASS   | `sanitizeName()` in `naming.ts:4`       |
 
-### 2.2 Standalone Proxy (`graphql-to-mcp`)
+### 2.2 Standalone Proxy (`graphql2mcp`)
 
 #### REQ-PROXY-1: CLI Interface
 
@@ -215,7 +215,7 @@ behavior.
 | AC1 | `createProxyServer(options)` returns McpServer | PASS   | `server.ts:156`                           |
 | AC2 | Full options support                           | PASS   | `ProxyServerOptions` interface covers all |
 
-### 2.3 Library (`@graphql-to-mcp/lib`)
+### 2.3 Library (`@graphql2mcp/lib`)
 
 #### REQ-LIB-1: Register GraphQL Tools on Existing McpServer
 
@@ -370,10 +370,10 @@ No bugs found. The previously identified CLI exit code issue (REQ-PROXY-1 AC14) 
 
 ### Observations (2)
 
-| #   | Description                                                                                                                                                                                                |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 4   | REQ-LIB-2 AC2 says "user provides their own zod instances" but `zod` is a direct dependency of `@graphql-to-mcp/lib`, not a peer dependency. This is needed because core generates Zod schemas internally. |
-| 5   | Multi-endpoint support (REQ-PROXY-2) is only available via programmatic API, not CLI. The CLI accepts a single `[source]` positional. This is fine for v1 but could be noted.                              |
+| #   | Description                                                                                                                                                                                             |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 4   | REQ-LIB-2 AC2 says "user provides their own zod instances" but `zod` is a direct dependency of `@graphql2mcp/lib`, not a peer dependency. This is needed because core generates Zod schemas internally. |
+| 5   | Multi-endpoint support (REQ-PROXY-2) is only available via programmatic API, not CLI. The CLI accepts a single `[source]` positional. This is fine for v1 but could be noted.                           |
 
 ---
 

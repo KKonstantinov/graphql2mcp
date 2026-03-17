@@ -1,6 +1,6 @@
 # Architecture
 
-This document describes how `graphql-to-mcp` converts GraphQL schemas into MCP tool definitions and how the packages relate to each other.
+This document describes how `graphql2mcp` converts GraphQL schemas into MCP tool definitions and how the packages relate to each other.
 
 ## Pipeline
 
@@ -41,23 +41,23 @@ flowchart TD
 
 ```mermaid
 flowchart BT
-    Core["@graphql-to-mcp/core\n(schema loading, tool generation)"]
-    Proxy["graphql-to-mcp\n(CLI proxy)"]
-    Lib["@graphql-to-mcp/lib\n(library)"]
+    Core["@graphql2mcp/core\n(schema loading, tool generation)"]
+    Proxy["graphql2mcp\n(CLI proxy)"]
+    Lib["@graphql2mcp/lib\n(library)"]
 
     Proxy -->|depends on| Core
     Lib -->|depends on| Core
 ```
 
-Both `graphql-to-mcp` (proxy) and `@graphql-to-mcp/lib` depend on `@graphql-to-mcp/core` via `workspace:*`. The core package has no dependency on either consumer.
+Both `graphql2mcp` (proxy) and `@graphql2mcp/lib` depend on `@graphql2mcp/core` via `workspace:*`. The core package has no dependency on either consumer.
 
 ### What each package owns
 
-- **`@graphql-to-mcp/core`** -- schema loading (SDL, files, globs, introspection JSON), GraphQL-to-Zod type mapping, tool name generation, selection set building, and the `generateTools` orchestrator.
+- **`@graphql2mcp/core`** -- schema loading (SDL, files, globs, introspection JSON), GraphQL-to-Zod type mapping, tool name generation, selection set building, and the `generateTools` orchestrator.
 
-- **`graphql-to-mcp`** (proxy) -- CLI argument parsing (Commander), MCP server creation, transport setup (stdio and HTTP), URL introspection via `fetch`, runtime GraphQL execution, and multi-endpoint support.
+- **`graphql2mcp`** (proxy) -- CLI argument parsing (Commander), MCP server creation, transport setup (stdio and HTTP), URL introspection via `fetch`, runtime GraphQL execution, and multi-endpoint support.
 
-- **`@graphql-to-mcp/lib`** -- the `registerGraphQLTools` function that takes an existing `McpServer` and registers tool handlers on it. Handles runtime GraphQL execution internally.
+- **`@graphql2mcp/lib`** -- the `registerGraphQLTools` function that takes an existing `McpServer` and registers tool handlers on it. Handles runtime GraphQL execution internally.
 
 ## Type Mapping
 

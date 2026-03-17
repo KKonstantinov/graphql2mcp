@@ -9,7 +9,7 @@ In this example, both endpoints happen to be the same API (countries.trevorblade
 ```bash
 # From the monorepo root
 pnpm build
-pnpm --filter @graphql-to-mcp/example-multi-endpoint start
+pnpm --filter @graphql2mcp/example-multi-endpoint start
 ```
 
 ## Generated tools

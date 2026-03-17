@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 
 const PKG_ROOT = path.join(import.meta.dirname, '../..');
-const BIN_PATH = path.join(PKG_ROOT, 'bin/graphql-to-mcp.mjs');
+const BIN_PATH = path.join(PKG_ROOT, 'bin/graphql2mcp.mjs');
 
 function runCli(args: string[]): { stdout: string; stderr: string; exitCode: number } {
     try {
@@ -36,7 +36,7 @@ describe('CLI', () => {
         const { exitCode, stdout } = runCli(['--help']);
         expect(exitCode).toBe(0);
         expect(stdout).toContain('Usage:');
-        expect(stdout).toContain('graphql-to-mcp');
+        expect(stdout).toContain('graphql2mcp');
     });
 
     // ─── 5.10 --version ───

@@ -11,5 +11,5 @@ export default defineConfig({
     target: 'es2022',
     clean: true,
     outDir: 'dist',
-    deps: { neverBundle: ['@graphql-to-mcp/core'] }
+    deps: { neverBundle: ['@graphql2mcp/core'] }
 });

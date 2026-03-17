@@ -1,25 +1,25 @@
-# graphql-to-mcp
+# graphql2mcp
 
-[![npm version](https://img.shields.io/npm/v/graphql-to-mcp)](https://www.npmjs.com/package/graphql-to-mcp)
+[![npm version](https://img.shields.io/npm/v/graphql2mcp)](https://www.npmjs.com/package/graphql2mcp)
 
 Standalone CLI proxy that converts GraphQL endpoints into MCP (Model Context Protocol) servers. Point it at a GraphQL endpoint and get an MCP server with tools mapped from queries and mutations.
 
 ## Install
 
 ```bash
-npm install -g graphql-to-mcp
+npm install -g graphql2mcp
 ```
 
 Or run directly with `npx`:
 
 ```bash
-npx graphql-to-mcp https://api.example.com/graphql
+npx graphql2mcp https://api.example.com/graphql
 ```
 
 ## CLI Usage
 
 ```bash
-graphql-to-mcp <source> [options]
+graphql2mcp <source> [options]
 ```
 
 The `source` argument can be a GraphQL endpoint URL, an SDL file path, a glob pattern, or an introspection JSON file.
@@ -27,19 +27,19 @@ The `source` argument can be a GraphQL endpoint URL, an SDL file path, a glob pa
 ### From a live endpoint (introspects automatically)
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql
+graphql2mcp https://api.example.com/graphql
 ```
 
 ### From a GraphQL File
 
 ```bash
-graphql-to-mcp schema.graphql -e https://api.example.com/graphql
+graphql2mcp schema.graphql -e https://api.example.com/graphql
 ```
 
 ### With authentication headers
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql \
+graphql2mcp https://api.example.com/graphql \
     -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
@@ -47,10 +47,10 @@ graphql-to-mcp https://api.example.com/graphql \
 
 ```bash
 # All mutations
-graphql-to-mcp schema.graphql -e https://api.example.com/graphql -m all
+graphql2mcp schema.graphql -e https://api.example.com/graphql -m all
 
 # Specific mutations only
-graphql-to-mcp schema.graphql -e https://api.example.com/graphql \
+graphql2mcp schema.graphql -e https://api.example.com/graphql \
     -m whitelist --mutation-whitelist createUser updateUser
 ```
 
@@ -58,18 +58,18 @@ graphql-to-mcp schema.graphql -e https://api.example.com/graphql \
 
 ```bash
 # Only include specific queries
-graphql-to-mcp schema.graphql -e https://api.example.com/graphql \
+graphql2mcp schema.graphql -e https://api.example.com/graphql \
     --include users user
 
 # Exclude specific queries
-graphql-to-mcp schema.graphql -e https://api.example.com/graphql \
+graphql2mcp schema.graphql -e https://api.example.com/graphql \
     --exclude internalMetrics debugInfo
 ```
 
 ### HTTP transport
 
 ```bash
-graphql-to-mcp https://api.example.com/graphql -t http -p 8080
+graphql2mcp https://api.example.com/graphql -t http -p 8080
 ```
 
 ### CLI Flags
@@ -95,7 +95,7 @@ The package also exports functions for creating proxy servers programmatically.
 ### From a live URL (with introspection)
 
 ```typescript
-import { createProxyServerFromUrl } from 'graphql-to-mcp';
+import { createProxyServerFromUrl } from 'graphql2mcp';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 const server = await createProxyServerFromUrl({
@@ -111,7 +111,7 @@ await server.connect(transport);
 ### From a GraphQL File
 
 ```typescript
-import { createProxyServer } from 'graphql-to-mcp';
+import { createProxyServer } from 'graphql2mcp';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 const server = createProxyServer({
@@ -133,7 +133,7 @@ await server.connect(transport);
 Combine multiple GraphQL APIs into a single MCP server. Use the `prefix` option to namespace tools and avoid collisions:
 
 ```typescript
-import { createProxyServer } from 'graphql-to-mcp';
+import { createProxyServer } from 'graphql2mcp';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 const server = createProxyServer({

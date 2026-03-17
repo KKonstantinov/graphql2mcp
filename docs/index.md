@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-    name: graphql-to-mcp
+    name: graphql2mcp
     tagline: Convert GraphQL schemas and endpoints into Model Context Protocol servers. Let AI agents talk to any GraphQL API.
     actions:
         - theme: brand
@@ -13,7 +13,7 @@ hero:
           link: /core
         - theme: alt
           text: GitHub
-          link: https://github.com/KKonstantinov/graphql-to-mcp
+          link: https://github.com/KKonstantinov/graphql2mcp
 
 features:
     - title: CLI Proxy
@@ -38,7 +38,7 @@ features:
 
 AI agents using MCP can call tools, but most APIs speak GraphQL — not MCP. Manually writing MCP tool definitions for every GraphQL query is tedious, error-prone, and falls out of sync as schemas evolve.
 
-**graphql-to-mcp** reads your GraphQL schema (from a file, URL, or inline SDL) and automatically generates MCP tools with proper input validation, descriptions, and annotations. Each query becomes a callable tool. Each argument becomes a validated Zod input. The agent calls the
+**graphql2mcp** reads your GraphQL schema (from a file, URL, or inline SDL) and automatically generates MCP tools with proper input validation, descriptions, and annotations. Each query becomes a callable tool. Each argument becomes a validated Zod input. The agent calls the
 tool, the tool executes the GraphQL query, and the result comes back as structured JSON.
 
 ## Quick Start
@@ -46,7 +46,7 @@ tool, the tool executes the GraphQL query, and the result comes back as structur
 One command. No code.
 
 ```bash
-npx graphql-to-mcp https://countries.trevorblades.com/graphql
+npx graphql2mcp https://countries.trevorblades.com/graphql
 ```
 
 This introspects the endpoint, generates MCP tools for every query, and starts a server over stdio. An AI agent connected to this server can now call tools like `query_countries` and `query_country`.
@@ -57,7 +57,7 @@ Already have an MCP server? Add GraphQL tools alongside your existing tools:
 
 ```typescript
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { registerGraphQLTools } from '@graphql-to-mcp/lib';
+import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 const server = new McpServer({ name: 'my-server', version: '1.0.0' });
 
@@ -90,7 +90,7 @@ Mutation tools are automatically annotated with `destructiveHint: true` and `rea
 Combine multiple GraphQL APIs into one MCP server with prefixed tool names:
 
 ```typescript
-import { createProxyServer } from 'graphql-to-mcp';
+import { createProxyServer } from 'graphql2mcp';
 
 const server = createProxyServer({
     endpoints: [
@@ -120,7 +120,7 @@ flowchart LR
         S["type Query {\n  users\n  user(id)\n}"]
     end
 
-    subgraph Core["@graphql-to-mcp/core"]
+    subgraph Core["@graphql2mcp/core"]
         P[Parse schema]
         M[Map types to Zod]
         B[Build selections]
@@ -147,11 +147,11 @@ flowchart LR
 
 ## Packages
 
-| Package                           | Description                                                              |
-| --------------------------------- | ------------------------------------------------------------------------ |
-| [`graphql-to-mcp`](/cli)          | Standalone CLI proxy — run any GraphQL endpoint as an MCP server         |
-| [`@graphql-to-mcp/lib`](/library) | Library for adding GraphQL tools to an existing MCP server               |
-| [`@graphql-to-mcp/core`](/core)   | Shared conversion engine — schema parsing, type mapping, tool generation |
+| Package                        | Description                                                              |
+| ------------------------------ | ------------------------------------------------------------------------ |
+| [`graphql2mcp`](/cli)          | Standalone CLI proxy — run any GraphQL endpoint as an MCP server         |
+| [`@graphql2mcp/lib`](/library) | Library for adding GraphQL tools to an existing MCP server               |
+| [`@graphql2mcp/core`](/core)   | Shared conversion engine — schema parsing, type mapping, tool generation |
 
 ## Runtime Compatibility
 

@@ -1,5 +1,5 @@
 {
-    "name": "@graphql-to-mcp/monorepo",
+    "name": "@graphql2mcp/monorepo",
     "private": true,
     "type": "module",
     "packageManager": "pnpm@10.29.3",

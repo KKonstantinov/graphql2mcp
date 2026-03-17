@@ -1,6 +1,6 @@
 # Getting Started
 
-This guide walks you through installing `graphql-to-mcp` and converting your first GraphQL schema into an MCP server.
+This guide walks you through installing `graphql2mcp` and converting your first GraphQL schema into an MCP server.
 
 ## Installation
 
@@ -9,19 +9,19 @@ This guide walks you through installing `graphql-to-mcp` and converting your fir
 Run directly with `npx` (no install needed):
 
 ```bash
-npx graphql-to-mcp https://api.example.com/graphql
+npx graphql2mcp https://api.example.com/graphql
 ```
 
 Or install globally:
 
 ```bash
-npm install -g graphql-to-mcp
+npm install -g graphql2mcp
 ```
 
 ### Library (integrate into existing MCP server)
 
 ```bash
-npm install @graphql-to-mcp/lib
+npm install @graphql2mcp/lib
 ```
 
 ## Your First MCP Server
@@ -31,7 +31,7 @@ npm install @graphql-to-mcp/lib
 The simplest way to get started is to point at a GraphQL endpoint. The CLI will introspect the schema and start an MCP server:
 
 ```bash
-npx graphql-to-mcp https://countries.trevorblades.com/graphql
+npx graphql2mcp https://countries.trevorblades.com/graphql
 ```
 
 This creates MCP tools for every query in the schema. The server communicates over stdio, ready for use with Claude Desktop, Cursor, or any MCP client.
@@ -41,7 +41,7 @@ This creates MCP tools for every query in the schema. The server communicates ov
 If you have a local `.graphql` schema file, provide a file path and an execution endpoint:
 
 ```bash
-npx graphql-to-mcp ./schema.graphql -e https://api.example.com/graphql
+npx graphql2mcp ./schema.graphql -e https://api.example.com/graphql
 ```
 
 Here is an example `schema.graphql`:
@@ -77,7 +77,7 @@ If you have an existing MCP server and want to add GraphQL tools alongside your 
 ```typescript
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { registerGraphQLTools } from '@graphql-to-mcp/lib';
+import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 const server = new McpServer({ name: 'my-server', version: '1.0.0' });
 

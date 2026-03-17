@@ -72,7 +72,7 @@ jobs:
                   deno-version: v2.x
             - run: pnpm install --frozen-lockfile
             - run: pnpm build
-            - run: pnpm --filter @graphql-to-mcp/core test:integration:${{ matrix.runtime }}
+            - run: pnpm --filter @graphql2mcp/core test:integration:${{ matrix.runtime }}
             - name: Proxy & Lib integration tests
               if: matrix.runtime == 'node'
-              run: pnpm --filter graphql-to-mcp --filter @graphql-to-mcp/lib run test:integration
+              run: pnpm --filter graphql2mcp --filter @graphql2mcp/lib run test:integration

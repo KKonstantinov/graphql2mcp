@@ -1,5 +1,5 @@
-import { generateTools, loadSchema } from '@graphql-to-mcp/core';
-import type { ConvertOptions, MutationMode, ToolDefinition } from '@graphql-to-mcp/core';
+import { generateTools, loadSchema } from '@graphql2mcp/core';
+import type { ConvertOptions, MutationMode, ToolDefinition } from '@graphql2mcp/core';
 import type { GraphQLSchema } from 'graphql';
 import type { z } from 'zod';
 

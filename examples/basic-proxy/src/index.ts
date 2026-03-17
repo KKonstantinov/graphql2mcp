@@ -1,4 +1,4 @@
-import { createProxyServerFromUrl } from 'graphql-to-mcp';
+import { createProxyServerFromUrl } from 'graphql2mcp';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 const server = await createProxyServerFromUrl({

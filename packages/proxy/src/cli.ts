@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { createProxyServer, createProxyServerFromUrl } from './server.js';
-import type { MutationMode } from '@graphql-to-mcp/core';
+import type { MutationMode } from '@graphql2mcp/core';
 
 const VERSION = '0.0.0';
 
@@ -32,7 +32,7 @@ function parseMutationMode(mode: string, whitelist: string[]): MutationMode {
 }
 
 const program = new Command()
-    .name('graphql-to-mcp')
+    .name('graphql2mcp')
     .description('Convert GraphQL endpoints into MCP servers')
     .version(VERSION, '-V, --version')
     .argument('[source]', 'SDL file path, glob, or URL')

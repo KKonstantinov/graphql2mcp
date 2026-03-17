@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in contributing to `graphql-to-mcp`. This document covers the development workflow, coding standards, and how to submit changes.
+Thanks for your interest in contributing to `graphql2mcp`. This document covers the development workflow, coding standards, and how to submit changes.
 
 ## Development Setup
 
@@ -13,8 +13,8 @@ Thanks for your interest in contributing to `graphql-to-mcp`. This document cove
 
 ```bash
 # Clone the repository
-git clone https://github.com/KKonstantinov/graphql-to-mcp.git
-cd graphql-to-mcp
+git clone https://github.com/KKonstantinov/graphql2mcp.git
+cd graphql2mcp
 
 # Install dependencies
 pnpm install
@@ -32,18 +32,18 @@ This is a monorepo managed with [pnpm workspaces](https://pnpm.io/workspaces):
 
 ```
 packages/
-  core/                     # @graphql-to-mcp/core
+  core/                     # @graphql2mcp/core
     src/                    # Shared conversion engine
     test/
       unit/                 # Vitest unit tests
       integration/          # Integration tests
-  proxy/                    # graphql-to-mcp
+  proxy/                    # graphql2mcp
     src/                    # Standalone proxy + CLI
     bin/                    # CLI entry point
     test/
       unit/
       integration/
-  lib/                      # @graphql-to-mcp/lib
+  lib/                      # @graphql2mcp/lib
     src/                    # Library for existing MCP servers
     test/
       unit/
@@ -70,8 +70,8 @@ All scripts can be run from the root of the monorepo:
 You can also run scripts for a specific package:
 
 ```bash
-pnpm --filter graphql-to-mcp test
-pnpm --filter @graphql-to-mcp/core test
+pnpm --filter graphql2mcp test
+pnpm --filter @graphql2mcp/core test
 ```
 
 ## Testing

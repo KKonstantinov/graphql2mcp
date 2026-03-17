@@ -1,7 +1,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
-import { registerGraphQLTools } from '@graphql-to-mcp/lib';
+import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 // Create your own MCP server with custom tools
 const server = new McpServer({

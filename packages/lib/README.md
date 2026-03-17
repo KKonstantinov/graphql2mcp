@@ -1,13 +1,13 @@
-# @graphql-to-mcp/lib
+# @graphql2mcp/lib
 
-[![npm version](https://img.shields.io/npm/v/@graphql-to-mcp/lib)](https://www.npmjs.com/package/@graphql-to-mcp/lib)
+[![npm version](https://img.shields.io/npm/v/@graphql2mcp/lib)](https://www.npmjs.com/package/@graphql2mcp/lib)
 
 Library for integrating GraphQL-to-MCP conversion into existing TypeScript MCP servers. Register GraphQL-backed tools on your own `McpServer` instance alongside your custom tools.
 
 ## Install
 
 ```bash
-npm install @graphql-to-mcp/lib
+npm install @graphql2mcp/lib
 ```
 
 Peer dependency: [`@modelcontextprotocol/sdk`](https://www.npmjs.com/package/@modelcontextprotocol/sdk) (>= 1.27.1).
@@ -23,7 +23,7 @@ npm install @modelcontextprotocol/sdk
 ```typescript
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { registerGraphQLTools } from '@graphql-to-mcp/lib';
+import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 const server = new McpServer({ name: 'my-server', version: '1.0.0' });
 
@@ -45,7 +45,7 @@ await server.connect(transport);
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
-import { registerGraphQLTools } from '@graphql-to-mcp/lib';
+import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 const server = new McpServer({ name: 'hybrid-server', version: '1.0.0' });
 
@@ -102,7 +102,7 @@ If you already have a `GraphQLSchema` object, pass it directly instead of a sour
 
 ```typescript
 import { buildSchema } from 'graphql';
-import { registerGraphQLTools } from '@graphql-to-mcp/lib';
+import { registerGraphQLTools } from '@graphql2mcp/lib';
 
 const schema = buildSchema(`
     type Query {

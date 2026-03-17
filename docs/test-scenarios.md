@@ -1,4 +1,4 @@
-# Test Scenarios: graphql-to-mcp
+# Test Scenarios: graphql2mcp
 
 ## Overview
 
@@ -184,19 +184,19 @@ Test scenarios organized by package and module. Each references requirement IDs 
 
 ## 5. Proxy: CLI (REQ-PROXY-1)
 
-| #    | Scenario            | Command                                                       | Expected                        | Req               |
-| ---- | ------------------- | ------------------------------------------------------------- | ------------------------------- | ----------------- |
-| 5.1  | File source         | `graphql-to-mcp schema.graphql -e http://...`                 | Loads file, starts stdio server | PROXY-1 AC1       |
-| 5.2  | URL source          | `graphql-to-mcp https://api.example.com/graphql`              | Introspects URL, starts server  | PROXY-1 AC1       |
-| 5.3  | HTTP transport      | `graphql-to-mcp schema.graphql -t http -p 8080 -e http://...` | HTTP server on 8080             | PROXY-1 AC2,AC3   |
-| 5.4  | Headers             | `... -H "Auth: Bearer x" -H "X-Key: y"`                       | Both headers passed             | PROXY-1 AC6       |
-| 5.5  | Mutations all       | `... --mutations all`                                         | Includes all mutation tools     | PROXY-1 AC4       |
-| 5.6  | Mutations whitelist | `... --mutations whitelist --mutation-whitelist createUser`   | Only whitelisted                | PROXY-1 AC4,AC5   |
-| 5.7  | Include/exclude     | `... --include users --exclude admin`                         | Filters tools                   | PROXY-1 AC10,AC11 |
-| 5.8  | No arguments        | `graphql-to-mcp`                                              | Shows help, exits code 1        | PROXY-1 AC14      |
-| 5.9  | --help              | `graphql-to-mcp --help`                                       | Shows help, exits code 0        | PROXY-1 AC13      |
-| 5.10 | --version           | `graphql-to-mcp --version`                                    | Shows version                   | PROXY-1 AC12      |
-| 5.11 | Invalid file        | `graphql-to-mcp nonexistent.graphql`                          | Error to stderr, exits code 1   | PROXY-1 AC15      |
+| #    | Scenario            | Command                                                     | Expected                        | Req               |
+| ---- | ------------------- | ----------------------------------------------------------- | ------------------------------- | ----------------- |
+| 5.1  | File source         | `graphql2mcp schema.graphql -e http://...`                  | Loads file, starts stdio server | PROXY-1 AC1       |
+| 5.2  | URL source          | `graphql2mcp https://api.example.com/graphql`               | Introspects URL, starts server  | PROXY-1 AC1       |
+| 5.3  | HTTP transport      | `graphql2mcp schema.graphql -t http -p 8080 -e http://...`  | HTTP server on 8080             | PROXY-1 AC2,AC3   |
+| 5.4  | Headers             | `... -H "Auth: Bearer x" -H "X-Key: y"`                     | Both headers passed             | PROXY-1 AC6       |
+| 5.5  | Mutations all       | `... --mutations all`                                       | Includes all mutation tools     | PROXY-1 AC4       |
+| 5.6  | Mutations whitelist | `... --mutations whitelist --mutation-whitelist createUser` | Only whitelisted                | PROXY-1 AC4,AC5   |
+| 5.7  | Include/exclude     | `... --include users --exclude admin`                       | Filters tools                   | PROXY-1 AC10,AC11 |
+| 5.8  | No arguments        | `graphql2mcp`                                               | Shows help, exits code 1        | PROXY-1 AC14      |
+| 5.9  | --help              | `graphql2mcp --help`                                        | Shows help, exits code 0        | PROXY-1 AC13      |
+| 5.10 | --version           | `graphql2mcp --version`                                     | Shows version                   | PROXY-1 AC12      |
+| 5.11 | Invalid file        | `graphql2mcp nonexistent.graphql`                           | Error to stderr, exits code 1   | PROXY-1 AC15      |
 
 ---
 

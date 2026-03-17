@@ -1,5 +1,5 @@
 {
-    "name": "graphql-to-mcp",
+    "name": "graphql2mcp",
     "version": "0.0.0",
     "description": "Standalone proxy that converts GraphQL endpoints into MCP servers",
     "type": "module",
@@ -21,7 +21,7 @@
     "main": "./dist/index.mjs",
     "types": "./dist/index.d.mts",
     "bin": {
-        "graphql-to-mcp": "./bin/graphql-to-mcp.mjs"
+        "graphql2mcp": "./bin/graphql2mcp.mjs"
     },
     "scripts": {
         "build": "tsdown",
@@ -33,7 +33,7 @@
         "release:jsr": "npx jsr publish --allow-dirty"
     },
     "dependencies": {
-        "@graphql-to-mcp/core": "workspace:*",
+        "@graphql2mcp/core": "workspace:*",
         "@modelcontextprotocol/sdk": "^1.27.1",
         "commander": "^14.0.3",
         "graphql": "^16.13.1",
@@ -50,12 +50,12 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/KKonstantinov/graphql-to-mcp.git",
+        "url": "git+https://github.com/KKonstantinov/graphql2mcp.git",
         "directory": "packages/proxy"
     },
-    "homepage": "https://kkonstantinov.github.io/graphql-to-mcp/",
+    "homepage": "https://kkonstantinov.github.io/graphql2mcp/",
     "bugs": {
-        "url": "https://github.com/KKonstantinov/graphql-to-mcp/issues"
+        "url": "https://github.com/KKonstantinov/graphql2mcp/issues"
     },
     "publishConfig": {
         "access": "public",

@@ -1,13 +1,13 @@
-# @graphql-to-mcp/core
+# @graphql2mcp/core
 
-[![npm version](https://img.shields.io/npm/v/@graphql-to-mcp/core)](https://www.npmjs.com/package/@graphql-to-mcp/core)
+[![npm version](https://img.shields.io/npm/v/@graphql2mcp/core)](https://www.npmjs.com/package/@graphql2mcp/core)
 
-Shared conversion engine that transforms GraphQL schemas into MCP (Model Context Protocol) tool definitions. Used internally by [`graphql-to-mcp`](../proxy/) and [`@graphql-to-mcp/lib`](../lib/), but can also be used directly for advanced use cases.
+Shared conversion engine that transforms GraphQL schemas into MCP (Model Context Protocol) tool definitions. Used internally by [`graphql2mcp`](../proxy/) and [`@graphql2mcp/lib`](../lib/), but can also be used directly for advanced use cases.
 
 ## Install
 
 ```bash
-npm install @graphql-to-mcp/core
+npm install @graphql2mcp/core
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ npm install @graphql-to-mcp/core
 ### Load a schema and generate tools
 
 ```typescript
-import { loadSchemaFromFile, generateTools } from '@graphql-to-mcp/core';
+import { loadSchemaFromFile, generateTools } from '@graphql2mcp/core';
 
 const schema = loadSchemaFromFile('schema.graphql');
 const { tools } = generateTools({ schema });
@@ -29,7 +29,7 @@ for (const tool of tools) {
 ### Load from an SDL string
 
 ```typescript
-import { loadSchemaFromString, generateTools } from '@graphql-to-mcp/core';
+import { loadSchemaFromString, generateTools } from '@graphql2mcp/core';
 
 const schema = loadSchemaFromString(`
     type Query {
@@ -54,7 +54,7 @@ const { tools } = generateTools({ schema });
 The `loadSchema` function detects the source type automatically — SDL strings, `.graphql` files, `.json` introspection files, or glob patterns:
 
 ```typescript
-import { loadSchema, generateTools } from '@graphql-to-mcp/core';
+import { loadSchema, generateTools } from '@graphql2mcp/core';
 
 // SDL file
 const schema1 = loadSchema('schema.graphql');
@@ -72,7 +72,7 @@ const schema4 = loadSchema('type Query { hello: String }');
 ### Enable mutations
 
 ```typescript
-import { loadSchemaFromFile, generateTools } from '@graphql-to-mcp/core';
+import { loadSchemaFromFile, generateTools } from '@graphql2mcp/core';
 
 const schema = loadSchemaFromFile('schema.graphql');
 
@@ -89,7 +89,7 @@ const { tools: safeTools } = generateTools({
 ### Filter operations
 
 ```typescript
-import { loadSchemaFromFile, generateTools } from '@graphql-to-mcp/core';
+import { loadSchemaFromFile, generateTools } from '@graphql2mcp/core';
 
 const schema = loadSchemaFromFile('schema.graphql');
 

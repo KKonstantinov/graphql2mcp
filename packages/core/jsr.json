@@ -1,5 +1,5 @@
 {
-    "name": "@graphql-to-mcp/core",
+    "name": "@graphql2mcp/core",
     "version": "0.0.0",
     "license": "MIT",
     "exports": {

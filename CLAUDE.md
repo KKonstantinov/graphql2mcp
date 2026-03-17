@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**graphql-to-mcp** converts GraphQL schemas and endpoints into MCP (Model Context Protocol) servers. Monorepo with pnpm workspaces.
+**graphql2mcp** converts GraphQL schemas and endpoints into MCP (Model Context Protocol) servers. Monorepo with pnpm workspaces.
 
 ## Common Commands
 
@@ -22,9 +22,9 @@ pnpm typecheck            # TypeScript type checking
 Run for a specific package:
 
 ```bash
-pnpm --filter graphql-to-mcp test
-pnpm --filter @graphql-to-mcp/core test
-pnpm --filter @graphql-to-mcp/lib test
+pnpm --filter graphql2mcp test
+pnpm --filter @graphql2mcp/core test
+pnpm --filter @graphql2mcp/lib test
 ```
 
 Run a single test file:
@@ -37,9 +37,9 @@ pnpm vitest run packages/core/test/unit/example.test.ts
 
 ### Package Structure
 
-- `packages/core/` — Shared conversion engine (`@graphql-to-mcp/core`). GraphQL schema parsing → MCP tool definitions
-- `packages/proxy/` — Standalone proxy (`graphql-to-mcp`). CLI + server that proxies a GraphQL endpoint as an MCP server
-- `packages/lib/` — Library (`@graphql-to-mcp/lib`). For integrating into existing TypeScript MCP servers
+- `packages/core/` — Shared conversion engine (`@graphql2mcp/core`). GraphQL schema parsing → MCP tool definitions
+- `packages/proxy/` — Standalone proxy (`graphql2mcp`). CLI + server that proxies a GraphQL endpoint as an MCP server
+- `packages/lib/` — Library (`@graphql2mcp/lib`). For integrating into existing TypeScript MCP servers
 
 Both `proxy` and `lib` depend on `core` via `workspace:*`.
 

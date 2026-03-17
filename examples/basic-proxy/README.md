@@ -1,6 +1,6 @@
 # Basic Proxy Example
 
-The simplest usage of `graphql-to-mcp`: point at a public GraphQL API and get an MCP server via stdio.
+The simplest usage of `graphql2mcp`: point at a public GraphQL API and get an MCP server via stdio.
 
 This example connects to the [Countries GraphQL API](https://countries.trevorblades.com/graphql) (public, no auth required) and exposes its queries as MCP tools.
 
@@ -9,7 +9,7 @@ This example connects to the [Countries GraphQL API](https://countries.trevorbla
 ```bash
 # From the monorepo root
 pnpm build
-pnpm --filter @graphql-to-mcp/example-basic-proxy start
+pnpm --filter @graphql2mcp/example-basic-proxy start
 ```
 
 The server starts on stdio and is ready to accept MCP JSON-RPC messages on stdin/stdout.

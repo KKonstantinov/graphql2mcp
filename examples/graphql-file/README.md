@@ -9,7 +9,7 @@ This is useful when you have a schema file but the endpoint does not support int
 ```bash
 # From the monorepo root
 pnpm build
-pnpm --filter @graphql-to-mcp/example-sdl-file start
+pnpm --filter @graphql2mcp/example-sdl-file start
 ```
 
 Note: This example expects a GraphQL server running at `http://localhost:4000/graphql` that matches the schema in `schema.graphql`. You can change the endpoint URL in `src/index.ts`.

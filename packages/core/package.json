@@ -1,5 +1,5 @@
 {
-    "name": "@graphql-to-mcp/core",
+    "name": "@graphql2mcp/core",
     "version": "0.0.0",
     "description": "Shared conversion engine: GraphQL schemas to MCP tool definitions",
     "type": "module",
@@ -46,12 +46,12 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/KKonstantinov/graphql-to-mcp.git",
+        "url": "git+https://github.com/KKonstantinov/graphql2mcp.git",
         "directory": "packages/core"
     },
-    "homepage": "https://github.com/KKonstantinov/graphql-to-mcp/tree/main/packages/core#readme",
+    "homepage": "https://github.com/KKonstantinov/graphql2mcp/tree/main/packages/core#readme",
     "bugs": {
-        "url": "https://github.com/KKonstantinov/graphql-to-mcp/issues"
+        "url": "https://github.com/KKonstantinov/graphql2mcp/issues"
     },
     "publishConfig": {
         "access": "public",

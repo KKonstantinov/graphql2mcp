@@ -103,7 +103,7 @@ describe('Schema Loading', () => {
         let tempDir: string;
 
         function createIntrospectionFile(filename: string, content: string): string {
-            tempDir = path.join(tmpdir(), `graphql-to-mcp-test-${String(Date.now())}`);
+            tempDir = path.join(tmpdir(), `graphql2mcp-test-${String(Date.now())}`);
             mkdirSync(tempDir, { recursive: true });
             const filePath = path.join(tempDir, filename);
             writeFileSync(filePath, content);
@@ -175,7 +175,7 @@ describe('Schema Loading', () => {
         it('1.4.4 Detects JSON file path', () => {
             const sourceSchema = loadSchemaFromString('type Query { hello: String }');
             const introspection = introspectionFromSchema(sourceSchema);
-            const tempDir = path.join(tmpdir(), `graphql-to-mcp-autodetect-${String(Date.now())}`);
+            const tempDir = path.join(tmpdir(), `graphql2mcp-autodetect-${String(Date.now())}`);
             mkdirSync(tempDir, { recursive: true });
             const filePath = path.join(tempDir, 'schema.json');
             writeFileSync(filePath, JSON.stringify(introspection));

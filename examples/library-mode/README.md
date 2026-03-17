@@ -1,6 +1,6 @@
 # Library Mode Example
 
-Use `@graphql-to-mcp/lib` to add GraphQL tools to an existing MCP server that already has other custom tools.
+Use `@graphql2mcp/lib` to add GraphQL tools to an existing MCP server that already has other custom tools.
 
 This is the recommended approach when you have your own MCP server and want to augment it with GraphQL-backed tools without giving up control of the server lifecycle.
 
@@ -9,7 +9,7 @@ This is the recommended approach when you have your own MCP server and want to a
 ```bash
 # From the monorepo root
 pnpm build
-pnpm --filter @graphql-to-mcp/example-library-mode start
+pnpm --filter @graphql2mcp/example-library-mode start
 ```
 
 ## What it demonstrates

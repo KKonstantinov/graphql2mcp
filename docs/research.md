@@ -1,4 +1,4 @@
-# Package Research: graphql-to-mcp
+# Package Research: graphql2mcp
 
 ## 1. Existing Solutions (Competitive Landscape)
 
@@ -31,7 +31,7 @@
 
 ### Key Differentiators for Our Package
 
-1. **Three consumption modes** via a monorepo: core engine (`@graphql-to-mcp/core`), standalone proxy with CLI (`graphql-to-mcp`), and embeddable library for existing MCP servers (`@graphql-to-mcp/lib`).
+1. **Three consumption modes** via a monorepo: core engine (`@graphql2mcp/core`), standalone proxy with CLI (`graphql2mcp`), and embeddable library for existing MCP servers (`@graphql2mcp/lib`).
 2. **Multi-endpoint support** — target one or more GraphQL servers from a single MCP server.
 3. **Mutation configuration** — three modes: all, none, or explicit whitelist.
 4. **MCP tool annotations** — `readOnlyHint`, `destructiveHint`, etc. set automatically based on operation type.
@@ -316,26 +316,26 @@ schema.describe('description text');
 
 ## 3. Recommended Package Stack
 
-### `packages/core/` — `@graphql-to-mcp/core`
+### `packages/core/` — `@graphql2mcp/core`
 
 ```
 graphql                    — Schema parsing, type system traversal
 zod                        — Dynamic Zod schema construction for tool parameters
 ```
 
-### `packages/proxy/` — `graphql-to-mcp`
+### `packages/proxy/` — `graphql2mcp`
 
 ```
-@graphql-to-mcp/core       — workspace:* (shared conversion engine)
+@graphql2mcp/core       — workspace:* (shared conversion engine)
 @modelcontextprotocol/sdk   — MCP server creation (^1.27.0, v1.x)
 @gql.tada/cli-utils         — Schema introspection via URL
 commander                   — CLI framework
 ```
 
-### `packages/lib/` — `@graphql-to-mcp/lib`
+### `packages/lib/` — `@graphql2mcp/lib`
 
 ```
-@graphql-to-mcp/core       — workspace:* (shared conversion engine)
+@graphql2mcp/core       — workspace:* (shared conversion engine)
 ```
 
 **Peer dependency**: `@modelcontextprotocol/sdk` (^1.0.0) — user provides their own McpServer
@@ -352,7 +352,7 @@ typescript    @types/node    vitest    tsdown    prettier    eslint
 
 ```
 packages/
-├── core/                              @graphql-to-mcp/core
+├── core/                              @graphql2mcp/core
 │   └── src/
 │       ├── index.ts                   Public API exports
 │       ├── schema/
@@ -365,13 +365,13 @@ packages/
 │       │   └── naming.ts             Tool naming strategies
 │       └── types.ts                   Shared TypeScript types
 │
-├── proxy/                             graphql-to-mcp
+├── proxy/                             graphql2mcp
 │   └── src/
 │       ├── index.ts                   Programmatic proxy API
 │       ├── cli.ts                     CLI entry point (commander)
 │       └── server.ts                  McpServer setup, multi-endpoint, transport
 │
-└── lib/                               @graphql-to-mcp/lib
+└── lib/                               @graphql2mcp/lib
     └── src/
         ├── index.ts                   Public API: registerGraphQLTools(server, options)
         └── registration.ts           Tool registration on user's existing McpServer
