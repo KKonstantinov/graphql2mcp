@@ -19,12 +19,11 @@
     "scripts": {
         "build": "tsdown",
         "dev": "tsdown --watch",
-        "test": "vitest run",
-        "test:watch": "vitest",
-        "test:integration:node": "node --test test/integration/node.test.mts",
-        "test:integration:bun": "bun test test/integration/bun.test.ts",
-        "test:integration:deno": "deno test --no-check --allow-read --allow-env test/integration/deno.test.ts",
-        "test:integration": "pnpm run build && pnpm run test:integration:node",
+        "test": "vitest run test/unit",
+        "test:watch": "vitest test/unit",
+        "test:integration": "vitest run test/integration",
+        "test:integration:bun": "pnpm run build && bun test test/integration/bun.test.ts",
+        "test:integration:deno": "pnpm run build && deno test --no-check --allow-read --allow-env test/integration/deno.test.ts",
         "typecheck": "tsgo --noEmit"
     },
     "dependencies": {
@@ -49,5 +48,8 @@
     "bugs": {
         "url": "https://github.com/KKonstantinov/graphql2mcp/issues"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "devDependencies": {
+        "@modelcontextprotocol/sdk": "^1.27.1"
+    }
 }

@@ -138,6 +138,18 @@ describe('Core Integration: Schema to Tools E2E', () => {
         }
     });
 
+    // ─── Query documents ───
+
+    it('generates correct query documents', () => {
+        const schema = loadSchemaFromFile(path.join(FIXTURES_DIR, 'simple.graphql'));
+        const result = generateTools({ schema });
+        const userTool = result.tools.find(t => t.name === 'query_user')!;
+        expect(userTool).toBeDefined();
+        expect(userTool.queryDocument).toContain('query');
+        expect(userTool.queryDocument).toContain('user');
+        expect(userTool.queryDocument).toContain('$id');
+    });
+
     // ─── Titles are correct ───
 
     it('All tools have correct title format', () => {

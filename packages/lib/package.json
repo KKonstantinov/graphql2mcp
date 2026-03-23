@@ -22,8 +22,8 @@
     "scripts": {
         "build": "tsdown",
         "dev": "tsdown --watch",
-        "test": "vitest run",
-        "test:watch": "vitest",
+        "test": "vitest run test/unit",
+        "test:watch": "vitest test/unit",
         "test:integration": "vitest run test/integration",
         "typecheck": "tsgo --noEmit",
         "release:jsr": "npx jsr publish --allow-dirty"

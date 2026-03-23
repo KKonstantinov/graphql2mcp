@@ -10,5 +10,5 @@ export default defineConfig({
     target: 'es2022',
     clean: true,
     outDir: 'dist',
-    deps: { neverBundle: [] }
+    deps: { neverBundle: ['@modelcontextprotocol/sdk', 'graphql', 'zod'] }
 });
