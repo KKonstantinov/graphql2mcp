@@ -160,6 +160,61 @@ registerGraphQLTools(server, {
 
 Either `source` or `schema` must be provided. If both are given, `schema` takes precedence.
 
+## `getGraphQLTools(options)`
+
+Generate tools with bound handlers without registering them on a server. Useful when you need full control over registration or want to inspect tools before adding them.
+
+> Both `getGraphQLTools` and `registerGraphQLTools` are re-exported from `@graphql2mcp/core`. If you depend on both packages, the functions and types are interchangeable.
+
+```typescript
+import { getGraphQLTools } from '@graphql2mcp/lib';
+
+const { tools, count } = getGraphQLTools({
+    source: 'schema.graphql',
+    endpoint: 'https://api.example.com/graphql',
+    mutations: 'all'
+});
+
+for (const tool of tools) {
+    console.log(tool.name, tool.operationType);
+    // tool.handler(args) executes the GraphQL operation
+    // tool.inputSchema, tool.annotations, tool.queryDocument, etc.
+}
+```
+
+Each `GraphQLToolEntry` includes:
+
+| Property        | Type                                | Description                                                |
+| --------------- | ----------------------------------- | ---------------------------------------------------------- |
+| `name`          | `string`                            | Tool name (e.g. `"query_users"`)                           |
+| `title`         | `string`                            | Human-readable title (e.g. `"Query: users"`)               |
+| `description`   | `string`                            | Tool description                                           |
+| `inputSchema`   | `Record<string, z.ZodType>`         | Zod shape for input parameters                             |
+| `annotations`   | `ToolAnnotations`                   | MCP tool annotations (readOnlyHint, destructiveHint, etc.) |
+| `handler`       | `(args) => Promise<CallToolResult>` | Async handler that executes the GraphQL operation          |
+| `operationType` | `'query' \| 'mutation'`             | Whether this tool wraps a query or mutation                |
+| `fieldName`     | `string`                            | The original GraphQL field name                            |
+| `queryDocument` | `string`                            | The GraphQL query/mutation document string sent at runtime |
+
+## Loading a schema from a live endpoint
+
+Use `loadSchemaFromUrl` to introspect a live GraphQL endpoint:
+
+```typescript
+import { loadSchemaFromUrl, registerGraphQLTools } from '@graphql2mcp/lib';
+
+const schema = await loadSchemaFromUrl({
+    url: 'https://api.example.com/graphql',
+    headers: { Authorization: 'Bearer YOUR_TOKEN' }
+});
+
+registerGraphQLTools(server, {
+    schema,
+    endpoint: 'https://api.example.com/graphql',
+    headers: { Authorization: 'Bearer YOUR_TOKEN' }
+});
+```
+
 ## Return Value
 
 `registerGraphQLTools` returns a `RegisterGraphQLToolsResult`:

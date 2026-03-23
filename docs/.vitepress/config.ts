@@ -28,13 +28,11 @@ export default defineConfig({
 
         nav: [
             { text: 'Guide', link: '/getting-started' },
-            { text: 'API', link: '/core' },
             {
                 text: 'Packages',
                 items: [
                     { text: 'CLI Proxy (graphql2mcp)', link: '/cli' },
-                    { text: 'Library (@graphql2mcp/lib)', link: '/library' },
-                    { text: 'Core (@graphql2mcp/core)', link: '/core' }
+                    { text: 'Library (@graphql2mcp/lib)', link: '/library' }
                 ]
             },
             {
@@ -57,16 +55,12 @@ export default defineConfig({
                 text: 'Packages',
                 items: [
                     { text: 'CLI Proxy', link: '/packages/proxy' },
-                    { text: 'Library', link: '/packages/lib' },
-                    { text: 'Core', link: '/packages/core' }
+                    { text: 'Library', link: '/packages/lib' }
                 ]
             },
             {
                 text: 'Reference',
-                items: [
-                    { text: 'Core API', link: '/core' },
-                    { text: 'Architecture', link: '/architecture' }
-                ]
+                items: [{ text: 'Architecture', link: '/architecture' }]
             }
         ],
 

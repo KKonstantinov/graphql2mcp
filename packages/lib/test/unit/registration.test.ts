@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import path from 'node:path';
 import { buildSchema } from 'graphql';
-import { registerGraphQLTools } from '../../src/registration.js';
+import { registerGraphQLTools, getGraphQLTools } from '../../src/registration.js';
 import type { z } from 'zod';
 
 // Create a mock McpServer-like object
@@ -229,5 +229,130 @@ describe('Library: registerGraphQLTools', () => {
 
         expect(result.count).toBe(1);
         expect(result.tools[0].name).toBe('query_user');
+    });
+});
+
+describe('Library: getGraphQLTools', () => {
+    it('returns tools without registering on a server', () => {
+        const result = getGraphQLTools({
+            source: SIMPLE_SDL,
+            endpoint: 'http://localhost:4000/graphql'
+        });
+
+        expect(result.count).toBe(2);
+        expect(result.tools).toHaveLength(2);
+        expect(result.tools.map(t => t.name)).toContain('query_hello');
+        expect(result.tools.map(t => t.name)).toContain('query_user');
+    });
+
+    it('each tool has all required properties', () => {
+        const result = getGraphQLTools({
+            source: SIMPLE_SDL,
+            endpoint: 'http://localhost:4000/graphql'
+        });
+
+        for (const tool of result.tools) {
+            expect(tool).toHaveProperty('name');
+            expect(tool).toHaveProperty('title');
+            expect(tool).toHaveProperty('description');
+            expect(tool).toHaveProperty('inputSchema');
+            expect(tool).toHaveProperty('annotations');
+            expect(tool).toHaveProperty('handler');
+            expect(tool).toHaveProperty('operationType');
+            expect(tool).toHaveProperty('fieldName');
+            expect(tool).toHaveProperty('queryDocument');
+            expect(typeof tool.handler).toBe('function');
+        }
+    });
+
+    it('query tools have readOnlyHint annotation', () => {
+        const result = getGraphQLTools({
+            source: SIMPLE_SDL,
+            endpoint: 'http://localhost:4000/graphql'
+        });
+
+        for (const tool of result.tools) {
+            expect(tool.annotations.readOnlyHint).toBe(true);
+            expect(tool.annotations.destructiveHint).toBe(false);
+        }
+    });
+
+    it('mutation tools have destructiveHint annotation', () => {
+        const result = getGraphQLTools({
+            source: MUTATION_SDL,
+            endpoint: 'http://localhost:4000/graphql',
+            mutations: 'all'
+        });
+
+        const mutationTools = result.tools.filter(t => t.operationType === 'mutation');
+        expect(mutationTools).toHaveLength(2);
+        for (const tool of mutationTools) {
+            expect(tool.annotations.readOnlyHint).toBe(false);
+            expect(tool.annotations.destructiveHint).toBe(true);
+        }
+    });
+
+    it('respects include filter', () => {
+        const result = getGraphQLTools({
+            source: SIMPLE_SDL,
+            endpoint: 'http://localhost:4000/graphql',
+            include: ['hello']
+        });
+
+        expect(result.count).toBe(1);
+        expect(result.tools[0].name).toBe('query_hello');
+    });
+
+    it('respects exclude filter', () => {
+        const result = getGraphQLTools({
+            source: SIMPLE_SDL,
+            endpoint: 'http://localhost:4000/graphql',
+            exclude: ['hello']
+        });
+
+        expect(result.count).toBe(1);
+        expect(result.tools[0].name).toBe('query_user');
+    });
+
+    it('accepts a pre-built schema object', () => {
+        const schema = buildSchema(SIMPLE_SDL);
+        const result = getGraphQLTools({
+            schema,
+            endpoint: 'http://localhost:4000/graphql'
+        });
+
+        expect(result.count).toBe(2);
+    });
+
+    it('throws when neither source nor schema is provided', () => {
+        expect(() =>
+            getGraphQLTools({
+                endpoint: 'http://localhost:4000/graphql'
+            } as any)
+        ).toThrow(/source.*schema/i);
+    });
+
+    it('mutations whitelist returns only whitelisted', () => {
+        const result = getGraphQLTools({
+            source: MUTATION_SDL,
+            endpoint: 'http://localhost:4000/graphql',
+            mutations: { whitelist: ['createUser'] }
+        });
+
+        const mutationTools = result.tools.filter(t => t.operationType === 'mutation');
+        expect(mutationTools).toHaveLength(1);
+        expect(mutationTools[0].name).toBe('mutation_createUser');
+    });
+
+    it('includes queryDocument on each tool', () => {
+        const result = getGraphQLTools({
+            source: SIMPLE_SDL,
+            endpoint: 'http://localhost:4000/graphql'
+        });
+
+        const userTool = result.tools.find(t => t.fieldName === 'user');
+        expect(userTool).toBeDefined();
+        expect(userTool!.queryDocument).toContain('user');
+        expect(userTool!.queryDocument).toContain('$id');
     });
 });

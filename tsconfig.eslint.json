@@ -2,21 +2,22 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "rootDir": ".",
-        "noEmit": true
+        "noEmit": true,
+        "paths": {
+            "@graphql2mcp/core": ["./packages/core/src/index.ts"],
+            "graphql2mcp": ["./packages/proxy/src/index.ts"],
+            "@graphql2mcp/lib": ["./packages/lib/src/index.ts"]
+        }
     },
     "include": [
-        "packages/core/src",
-        "packages/core/test",
-        "packages/core/*.config.ts",
-        "packages/proxy/src",
-        "packages/proxy/test",
-        "packages/proxy/*.config.ts",
-        "packages/lib/src",
-        "packages/lib/test",
-        "packages/lib/*.config.ts",
+        "packages/*/src",
+        "packages/*/test",
+        "packages/*/*.config.ts",
+        "examples/*/src",
+        "examples/*/test",
+        "examples/*/*.config.ts",
         "*.config.ts",
-        "docs/.vitepress/**/*.ts",
-        "examples/*/src"
+        "docs/.vitepress/**/*.ts"
     ],
     "exclude": [
         "node_modules",

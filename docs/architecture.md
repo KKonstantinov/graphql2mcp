@@ -53,11 +53,12 @@ Both `graphql2mcp` (proxy) and `@graphql2mcp/lib` depend on `@graphql2mcp/core` 
 
 ### What each package owns
 
-- **`@graphql2mcp/core`** -- schema loading (SDL, files, globs, introspection JSON), GraphQL-to-Zod type mapping, tool name generation, selection set building, and the `generateTools` orchestrator.
+- **`@graphql2mcp/core`** -- schema loading (SDL, files, globs, introspection JSON, live URL introspection), GraphQL-to-Zod type mapping, tool name generation, selection set building, the `generateTools` orchestrator, runtime GraphQL execution (`executeGraphQL`), and the
+  high-level `getGraphQLTools` / `registerGraphQLTools` API.
 
-- **`graphql2mcp`** (proxy) -- CLI argument parsing (Commander), MCP server creation, transport setup (stdio and HTTP), URL introspection via `fetch`, runtime GraphQL execution, and multi-endpoint support.
+- **`graphql2mcp`** (proxy) -- CLI argument parsing (Commander), MCP server creation, transport setup (stdio and HTTP), and multi-endpoint support. Delegates schema loading, tool generation, and execution to core.
 
-- **`@graphql2mcp/lib`** -- the `registerGraphQLTools` function that takes an existing `McpServer` and registers tool handlers on it. Handles runtime GraphQL execution internally.
+- **`@graphql2mcp/lib`** -- re-exports `getGraphQLTools` and `registerGraphQLTools` from core as its primary API, along with convenience re-exports of core types and utilities (e.g. `loadSchemaFromUrl`).
 
 ## Type Mapping
 

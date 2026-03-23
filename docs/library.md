@@ -35,9 +35,63 @@ Registers GraphQL tools on an MCP server instance and returns metadata about the
 **Parameters:**
 
 - `server` -- an MCP server instance (or any object with a compatible `registerTool` method)
-- `options` -- a [RegisterGraphQLToolsOptions](#options-reference) object
+- `options` -- a [GraphQLToolsOptions](#options-reference) object
 
 **Returns:** [RegisterGraphQLToolsResult](#result-type)
+
+## `getGraphQLTools(options)`
+
+Generates tools with bound execution handlers without registering them on a server. Use this when you need full control over how tools are registered, or when integrating with a non-standard MCP server.
+
+```typescript
+import { getGraphQLTools } from '@graphql2mcp/lib';
+
+const { tools, count } = getGraphQLTools({
+    source: './schema.graphql',
+    endpoint: 'https://api.example.com/graphql',
+    mutations: 'all'
+});
+
+for (const tool of tools) {
+    // Each tool has: name, title, description, inputSchema, annotations,
+    // handler, operationType, fieldName, queryDocument
+    server.registerTool(
+        tool.name,
+        {
+            title: tool.title,
+            description: tool.description,
+            inputSchema: tool.inputSchema,
+            annotations: tool.annotations
+        },
+        tool.handler
+    );
+}
+```
+
+**Parameters:**
+
+- `options` -- a [GraphQLToolsOptions](#options-reference) object
+
+**Returns:** `GetGraphQLToolsResult` with `tools: GraphQLToolEntry[]` and `count: number`
+
+## `loadSchemaFromUrl(options)`
+
+Introspect a live GraphQL endpoint and return the schema. Re-exported from `@graphql2mcp/core` for convenience.
+
+```typescript
+import { loadSchemaFromUrl, registerGraphQLTools } from '@graphql2mcp/lib';
+
+const schema = await loadSchemaFromUrl({
+    url: 'https://api.example.com/graphql',
+    headers: { Authorization: 'Bearer YOUR_TOKEN' }
+});
+
+registerGraphQLTools(server, {
+    schema,
+    endpoint: 'https://api.example.com/graphql',
+    headers: { Authorization: 'Bearer YOUR_TOKEN' }
+});
+```
 
 ## Options Reference
 
@@ -185,4 +239,57 @@ registerGraphQLTools(server, {
     endpoint: 'https://api.example.com/graphql',
     mutations: { whitelist: ['createUser', 'updateUser'] }
 });
+```
+
+## Type Reference
+
+### `GraphQLToolEntry`
+
+Each tool returned by `getGraphQLTools`:
+
+```typescript
+interface GraphQLToolEntry {
+    name: string; // e.g. "query_users"
+    title: string; // e.g. "Query: users"
+    description: string;
+    inputSchema: Record<string, z.ZodType>;
+    annotations: ToolAnnotations;
+    handler: (args: Record<string, unknown>) => Promise<CallToolResult>;
+    operationType: 'query' | 'mutation';
+    fieldName: string; // original GraphQL field name
+    queryDocument: string; // the GraphQL document sent at runtime
+}
+```
+
+### `MutationMode`
+
+```typescript
+type MutationMode = 'none' | 'all' | { whitelist: string[] };
+```
+
+- `'none'` -- only queries are converted to tools (default)
+- `'all'` -- all queries and mutations are converted
+- `{ whitelist: ['name1', 'name2'] }` -- only the named mutations are converted
+
+### `ToolAnnotations`
+
+Re-exported from `@modelcontextprotocol/sdk`. Queries get `readOnlyHint: true, destructiveHint: false`. Mutations get `readOnlyHint: false, destructiveHint: true`.
+
+### `McpServerLike`
+
+Structural interface for the `server` parameter. Both `McpServer` from the MCP SDK and custom implementations satisfy this:
+
+```typescript
+interface McpServerLike {
+    registerTool(
+        name: string,
+        config: {
+            title?: string;
+            description?: string;
+            inputSchema?: Record<string, z.ZodType>;
+            annotations?: ToolAnnotations;
+        },
+        handler: (args: Record<string, unknown>) => Promise<CallToolResult>
+    ): unknown;
+}
 ```

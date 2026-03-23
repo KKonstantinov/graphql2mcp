@@ -59,15 +59,39 @@ const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefi
 await server.connect(transport);
 ```
 
+Or use `getGraphQLTools` for full control over registration:
+
+```typescript
+import { getGraphQLTools } from '@graphql2mcp/lib';
+
+const { tools } = getGraphQLTools({
+    source: 'schema.graphql',
+    endpoint: 'https://api.example.com/graphql'
+});
+
+for (const tool of tools) {
+    server.registerTool(
+        tool.name,
+        {
+            title: tool.title,
+            description: tool.description,
+            inputSchema: tool.inputSchema,
+            annotations: tool.annotations
+        },
+        tool.handler
+    );
+}
+```
+
 ## Packages
 
 This is a monorepo managed with [pnpm workspaces](https://pnpm.io/workspaces):
 
-| Package                               | Description                                                           |
-| ------------------------------------- | --------------------------------------------------------------------- |
-| [`graphql2mcp`](packages/proxy/)      | Standalone CLI proxy — point at a GraphQL endpoint, get an MCP server |
-| [`@graphql2mcp/core`](packages/core/) | Shared conversion engine (GraphQL schema to MCP tool definitions)     |
-| [`@graphql2mcp/lib`](packages/lib/)   | Library for integrating into existing TypeScript MCP servers          |
+| Package                               | Description                                                                             |
+| ------------------------------------- | --------------------------------------------------------------------------------------- |
+| [`graphql2mcp`](packages/proxy/)      | Standalone CLI proxy — point at a GraphQL endpoint, get an MCP server                   |
+| [`@graphql2mcp/core`](packages/core/) | Shared engine — schema loading, tool generation, execution, and MCP server registration |
+| [`@graphql2mcp/lib`](packages/lib/)   | Library for integrating into existing TypeScript MCP servers                            |
 
 ## How It Works
 
@@ -75,12 +99,14 @@ This is a monorepo managed with [pnpm workspaces](https://pnpm.io/workspaces):
 flowchart TD
     subgraph Input
         A[SDL File] --> L
-        B[URL Introspection] --> L
-        C[Inline SDL] --> L
-        D[Introspection JSON] --> L
+        B[Inline SDL] --> L
+        C[Introspection JSON] --> L
+        D[Glob Pattern] --> L
+        E[Live URL] --> U
     end
 
     L[loadSchema] --> S[GraphQLSchema]
+    U[loadSchemaFromUrl] --> S
 
     subgraph "@graphql2mcp/core"
         S --> G[generateTools]
@@ -92,11 +118,11 @@ flowchart TD
         R --> Q[Tool Called]
     end
 
-    Q -->|POST query + variables| E[GraphQL Endpoint]
-    E -->|JSON response| Q
+    Q -->|POST query + variables| EP[GraphQL Endpoint]
+    EP -->|JSON response| Q
 ```
 
-1. **Load** — read a GraphQL schema from an SDL file, introspection JSON, inline string, or live URL introspection
+1. **Load** — read a GraphQL schema from an SDL file (or glob of multiple files), introspection JSON, inline SDL string, or live URL introspection
 2. **Parse** — build a `GraphQLSchema` object using the `graphql` library
 3. **Generate** — walk every Query and Mutation field, mapping arguments to Zod schemas, building field selections, and producing `ToolDefinition` objects with names, descriptions, annotations, and pre-built query documents
 4. **Register** — add each tool to an `McpServer`. When an AI agent calls a tool, the server executes the corresponding GraphQL operation against the endpoint and returns the result as JSON

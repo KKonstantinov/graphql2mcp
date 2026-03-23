@@ -1,10 +1,15 @@
 import { readFileSync, globSync } from 'node:fs';
 import path from 'node:path';
-import { buildSchema, buildClientSchema } from 'graphql';
+import { buildSchema, buildClientSchema, getIntrospectionQuery } from 'graphql';
 import type { GraphQLSchema, IntrospectionQuery } from 'graphql';
+import { executeGraphQL, DEFAULT_TIMEOUT } from '../execution.js';
 
 /**
  * Load a GraphQL schema from an SDL string.
+ *
+ * @param sdl - A GraphQL Schema Definition Language string
+ * @returns The parsed GraphQL schema
+ * @throws If the SDL is empty or contains syntax errors
  */
 export function loadSchemaFromString(sdl: string): GraphQLSchema {
     const trimmed = sdl.trim();
@@ -20,7 +25,11 @@ export function loadSchemaFromString(sdl: string): GraphQLSchema {
 }
 
 /**
- * Load a GraphQL schema from a .graphql/.gql file path.
+ * Load a GraphQL schema from a `.graphql` or `.gql` file.
+ *
+ * @param filePath - Absolute or relative path to the schema file
+ * @returns The parsed GraphQL schema
+ * @throws If the file does not exist or contains invalid SDL
  */
 export function loadSchemaFromFile(filePath: string): GraphQLSchema {
     const resolved = path.resolve(filePath);
@@ -35,6 +44,12 @@ export function loadSchemaFromFile(filePath: string): GraphQLSchema {
 
 /**
  * Load and merge GraphQL schemas from a glob pattern.
+ *
+ * All matching files are concatenated and parsed as a single SDL document.
+ *
+ * @param pattern - A glob pattern (e.g. `"schemas/*.graphql"`)
+ * @returns The merged GraphQL schema
+ * @throws If no files match the pattern
  */
 export function loadSchemaFromGlob(pattern: string): GraphQLSchema {
     const files = globSync(pattern);
@@ -50,6 +65,12 @@ export function loadSchemaFromGlob(pattern: string): GraphQLSchema {
 
 /**
  * Load a GraphQL schema from an introspection result JSON file.
+ *
+ * Supports both raw `IntrospectionQuery` and wrapped `{ data: IntrospectionQuery }` formats.
+ *
+ * @param filePath - Path to the JSON file containing the introspection result
+ * @returns The built GraphQL schema
+ * @throws If the file does not exist, is not valid JSON, or is not a valid introspection result
  */
 export function loadSchemaFromIntrospectionFile(filePath: string): GraphQLSchema {
     const resolved = path.resolve(filePath);
@@ -70,6 +91,12 @@ export function loadSchemaFromIntrospectionFile(filePath: string): GraphQLSchema
 
 /**
  * Load a GraphQL schema from an introspection result object.
+ *
+ * Accepts both raw `IntrospectionQuery` and wrapped `{ data: IntrospectionQuery }` formats.
+ *
+ * @param json - The parsed introspection result
+ * @returns The built GraphQL schema
+ * @throws If the input is not a valid introspection result
  */
 export function loadSchemaFromIntrospectionResult(json: unknown): GraphQLSchema {
     try {
@@ -84,12 +111,57 @@ export function loadSchemaFromIntrospectionResult(json: unknown): GraphQLSchema 
     }
 }
 
+/** Options for {@link loadSchemaFromUrl}. */
+export interface LoadSchemaFromUrlOptions {
+    /** The GraphQL endpoint URL to introspect */
+    url: string;
+    /** HTTP headers (e.g. `Authorization`) */
+    headers?: Record<string, string>;
+    /** Request timeout in milliseconds. Default: `30000` */
+    timeout?: number;
+}
+
 /**
- * Detect the type of a schema source string and load accordingly.
- * - If it contains newlines or type definitions, treat as SDL string
- * - If it ends in .json, treat as introspection JSON file
- * - If it ends in .graphql or .gql, treat as SDL file
- * - If it contains glob characters (* or ?), treat as glob pattern
+ * Load a GraphQL schema by sending an introspection query to a live endpoint.
+ *
+ * @param options - URL, headers, and timeout configuration
+ * @returns The introspected GraphQL schema
+ * @throws If introspection is disabled, returns errors, or the request fails
+ */
+export async function loadSchemaFromUrl(options: LoadSchemaFromUrlOptions): Promise<GraphQLSchema> {
+    const headers = options.headers ?? {};
+    const timeout = options.timeout ?? DEFAULT_TIMEOUT;
+
+    const result = await executeGraphQL(options.url, getIntrospectionQuery(), {}, headers, timeout);
+
+    if (result.errors && result.errors.length > 0) {
+        const messages = result.errors.map(e => e.message).join(', ');
+        if (messages.toLowerCase().includes('introspection')) {
+            throw new Error(`Introspection is disabled on ${options.url}`);
+        }
+        throw new Error(`Failed to introspect ${options.url}: ${messages}`);
+    }
+
+    if (!result.data) {
+        throw new Error(`Failed to introspect ${options.url}: no data returned`);
+    }
+
+    return buildClientSchema(result.data as IntrospectionQuery);
+}
+
+/**
+ * Auto-detect the source type and load a GraphQL schema.
+ *
+ * Detection order:
+ * 1. Contains newlines or type keywords → SDL string
+ * 2. Ends with `.json` → introspection JSON file
+ * 3. Contains `*` or `?` → glob pattern
+ * 4. Ends with `.graphql` or `.gql` → SDL file
+ * 5. Fallback → SDL string
+ *
+ * @param source - SDL string, file path, glob pattern, or introspection JSON path
+ * @returns The loaded GraphQL schema
+ * @throws If the source cannot be parsed or the file does not exist
  */
 export function loadSchema(source: string): GraphQLSchema {
     const trimmed = source.trim();

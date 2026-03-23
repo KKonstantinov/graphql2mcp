@@ -104,5 +104,4 @@ await server.connect(transport);
 - [CLI Reference](cli.md) -- all flags, options, and usage patterns
 - [Library Mode](library.md) -- integrate into existing MCP servers
 - [Mutations](mutations.md) -- configure which mutations are exposed as tools
-- [Core API](core.md) -- use the conversion engine directly
 - [Architecture](architecture.md) -- how GraphQL schemas become MCP tools
