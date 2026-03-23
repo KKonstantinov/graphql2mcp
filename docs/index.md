@@ -9,8 +9,8 @@ hero:
           text: Get Started
           link: /getting-started
         - theme: alt
-          text: API Reference
-          link: /core
+          text: Architecture
+          link: /architecture
         - theme: alt
           text: GitHub
           link: https://github.com/KKonstantinov/graphql2mcp
@@ -153,11 +153,10 @@ flowchart TD
 
 ## Packages
 
-| Package                        | Description                                                              |
-| ------------------------------ | ------------------------------------------------------------------------ |
-| [`graphql2mcp`](/cli)          | Standalone CLI proxy — run any GraphQL endpoint as an MCP server         |
-| [`@graphql2mcp/lib`](/library) | Library for adding GraphQL tools to an existing MCP server               |
-| [`@graphql2mcp/core`](/core)   | Shared conversion engine — schema parsing, type mapping, tool generation |
+| Package                        | Description                                                      |
+| ------------------------------ | ---------------------------------------------------------------- |
+| [`graphql2mcp`](/cli)          | Standalone CLI proxy — run any GraphQL endpoint as an MCP server |
+| [`@graphql2mcp/lib`](/library) | Library for adding GraphQL tools to an existing MCP server       |
 
 ## Runtime Compatibility
 
