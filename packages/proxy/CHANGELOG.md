@@ -1,5 +1,12 @@
 # graphql2mcp
 
+## 0.2.0
+
+### Minor Changes
+
+- [#2](https://github.com/KKonstantinov/graphql2mcp/pull/2) [`6ef57c1`](https://github.com/KKonstantinov/graphql2mcp/commit/6ef57c159d8171e1d62764396e022ce11ab1d0db) Thanks [@KKonstantinov](https://github.com/KKonstantinov)! - tool execution and registration - consolidate into
+  core
+
 ## 0.1.1
 
 ### Patch Changes
