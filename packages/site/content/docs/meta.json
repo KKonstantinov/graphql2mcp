@@ -1,0 +1,15 @@
+{
+    "title": "Docs",
+    "pages": [
+        "---Guide---",
+        "getting-started",
+        "cli",
+        "library",
+        "mutations",
+        "---Packages---",
+        "packages/proxy",
+        "packages/lib",
+        "---Reference---",
+        "architecture"
+    ]
+}

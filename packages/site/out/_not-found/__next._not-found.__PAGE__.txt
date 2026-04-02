@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[7141,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"style":{"textAlign":"center","padding":"4rem 0"},"children":[["$","h1",null,{"children":"404"}],["$","p",null,{"children":"Page not found."}],["$","a",null,{"href":"/docs","children":"Take me home"}]]}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"kZR7FVU-xf4KtPoCkm2H_"}
+4:null

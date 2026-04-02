@@ -1,0 +1,1269 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="/graphql2mcp/_next/static/chunks/074o.o8eqqp_3.css" data-precedence="next" />
+        <link rel="preload" as="script" fetchpriority="low" href="/graphql2mcp/_next/static/chunks/0yc9o_nku2~t-.js" />
+        <script src="/graphql2mcp/_next/static/chunks/0e_dmityg3kt2.js" async=""></script>
+        <script src="/graphql2mcp/_next/static/chunks/0y008c2m.lbv0.js" async=""></script>
+        <script src="/graphql2mcp/_next/static/chunks/turbopack-0uzolw3bq2-4c.js" async=""></script>
+        <script src="/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js" async=""></script>
+        <script src="/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js" async=""></script>
+        <script src="/graphql2mcp/_next/static/chunks/0.t0fansog7g2.js" async=""></script>
+        <script src="/graphql2mcp/_next/static/chunks/0qy~g8woj8utk.js" async=""></script>
+        <script src="/graphql2mcp/_next/static/chunks/04vyzu629zsyz.js" async=""></script>
+        <script src="/graphql2mcp/_next/static/chunks/0bfrfjqh258ry.js" async=""></script>
+        <title>graphql2mcp</title>
+        <meta name="description" content="Convert GraphQL schemas and endpoints into MCP servers" />
+        <meta property="og:title" content="graphql2mcp" />
+        <meta property="og:description" content="Convert GraphQL schemas and endpoints into MCP servers" />
+        <meta property="og:url" content="https://kkonstantinov.github.io/graphql2mcp/" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="graphql2mcp" />
+        <meta name="twitter:description" content="Convert GraphQL schemas and endpoints into MCP servers" />
+        <link rel="icon" href="/graphql2mcp/favicon.svg" />
+        <script src="/graphql2mcp/_next/static/chunks/03~yq9q893hmn.js" nomodule=""></script>
+    </head>
+    <body class="flex min-h-screen flex-col">
+        <div hidden=""><!--$--><!--/$--></div>
+        <script>
+            ((a, b, c, d, e, f, g, h) => {
+                let i = document.documentElement,
+                    j = ['light', 'dark'];
+                function k(b) {
+                    var c;
+                    ((Array.isArray(a) ? a : [a]).forEach(a => {
+                        let c = 'class' === a,
+                            d = c && f ? e.map(a => f[a] || a) : e;
+                        c ? (i.classList.remove(...d), i.classList.add(f && f[b] ? f[b] : b)) : i.setAttribute(a, b);
+                    }),
+                        (c = b),
+                        h && j.includes(c) && (i.style.colorScheme = c));
+                }
+                if (d) k(d);
+                else
+                    try {
+                        let a = localStorage.getItem(b) || c,
+                            d = g && 'system' === a ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : a;
+                        k(d);
+                    } catch (a) {}
+            })('class', 'theme', 'system', null, ['light', 'dark'], null, true, true);
+        </script>
+        <!--$-->
+        <div class="bg-fd-secondary/50 p-3 empty:hidden"></div>
+        <!--/$-->
+        <div
+            id="nd-docs-layout"
+            data-sidebar-collapsed="false"
+            data-column-changed="false"
+            style="
+                grid-template:
+                    'sidebar sidebar header toc toc'
+                    'sidebar sidebar toc-popover toc toc'
+                    'sidebar sidebar main toc toc' 1fr / minmax(min-content, 1fr) var(--fd-sidebar-col) minmax(
+                        0,
+                        calc(var(--fd-layout-width, 97rem) - var(--fd-sidebar-width) - var(--fd-toc-width))
+                    ) var(--fd-toc-width) minmax(min-content, 1fr);
+                --fd-docs-row-1: var(--fd-banner-height, 0px);
+                --fd-docs-row-2: calc(var(--fd-docs-row-1) + var(--fd-header-height));
+                --fd-docs-row-3: calc(var(--fd-docs-row-2) + var(--fd-toc-popover-height));
+                --fd-sidebar-col: var(--fd-sidebar-width);
+            "
+            class="grid overflow-x-clip min-h-(--fd-docs-height) [--fd-docs-height:100dvh] [--fd-header-height:0px] [--fd-toc-popover-height:0px] [--fd-sidebar-width:0px] [--fd-toc-width:0px] data-[column-changed=true]:transition-[grid-template-columns]"
+        >
+            <header
+                id="nd-subnav"
+                data-transparent="false"
+                class="[grid-area:header] sticky top-(--fd-docs-row-1) z-30 flex items-center ps-4 pe-2.5 border-b transition-colors backdrop-blur-sm h-(--fd-header-height) md:hidden max-md:layout:[--fd-header-height:--spacing(14)] data-[transparent=false]:bg-fd-background/80"
+            >
+                <a class="inline-flex items-center gap-2.5 font-semibold" href="/graphql2mcp/docs">graphql2mcp</a>
+                <div class="flex-1"></div>
+                <button
+                    type="button"
+                    class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring hover:bg-fd-accent hover:text-fd-accent-foreground [&amp;_svg]:size-4.5 p-2"
+                    data-search=""
+                    aria-label="Open Search"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-search"
+                        aria-hidden="true"
+                    >
+                        <path d="m21 21-4.34-4.34"></path>
+                        <circle cx="11" cy="11" r="8"></circle>
+                    </svg></button
+                ><button
+                    aria-label="Open Sidebar"
+                    class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring hover:bg-fd-accent hover:text-fd-accent-foreground [&amp;_svg]:size-4.5 p-2"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-panel-left"
+                        aria-hidden="true"
+                    >
+                        <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                        <path d="M9 3v18"></path>
+                    </svg>
+                </button>
+            </header>
+            <div
+                data-sidebar-placeholder=""
+                class="sticky top-(--fd-docs-row-1) z-20 [grid-area:sidebar] pointer-events-none *:pointer-events-auto h-[calc(var(--fd-docs-height)-var(--fd-docs-row-1))] md:layout:[--fd-sidebar-width:268px] max-md:hidden"
+            >
+                <aside
+                    id="nd-sidebar"
+                    data-collapsed="false"
+                    data-hovered="false"
+                    class="absolute flex flex-col w-full start-0 inset-y-0 items-end bg-fd-card text-sm border-e duration-250 *:w-(--fd-sidebar-width)"
+                >
+                    <div class="flex flex-col gap-3 p-4 pb-2">
+                        <div class="flex">
+                            <a class="inline-flex text-[0.9375rem] items-center gap-2.5 font-medium me-auto" href="/graphql2mcp/docs"
+                                >graphql2mcp</a
+                            ><button
+                                type="button"
+                                aria-label="Collapse Sidebar"
+                                data-collapsed="false"
+                                class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring hover:bg-fd-accent hover:text-fd-accent-foreground p-1.5 [&amp;_svg]:size-4.5 mb-auto text-fd-muted-foreground"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-panel-left"
+                                    aria-hidden="true"
+                                >
+                                    <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                                    <path d="M9 3v18"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <button
+                            type="button"
+                            data-search-full=""
+                            class="inline-flex items-center gap-2 rounded-lg border bg-fd-secondary/50 p-1.5 ps-2 text-sm text-fd-muted-foreground transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-search size-4"
+                                aria-hidden="true"
+                            >
+                                <path d="m21 21-4.34-4.34"></path>
+                                <circle cx="11" cy="11" r="8"></circle></svg
+                            >Search
+                            <div class="ms-auto inline-flex gap-0.5">
+                                <kbd class="rounded-md border bg-fd-background px-1.5">⌘</kbd
+                                ><kbd class="rounded-md border bg-fd-background px-1.5">K</kbd>
+                            </div>
+                        </button>
+                    </div>
+                    <div
+                        dir="ltr"
+                        class="overflow-hidden min-h-0 flex-1"
+                        style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px"
+                    >
+                        <style>
+                            [data-radix-scroll-area-viewport] {
+                                scrollbar-width: none;
+                                -ms-overflow-style: none;
+                                -webkit-overflow-scrolling: touch;
+                            }
+                            [data-radix-scroll-area-viewport]::-webkit-scrollbar {
+                                display: none;
+                            }
+                        </style>
+                        <div
+                            data-radix-scroll-area-viewport=""
+                            class="size-full rounded-[inherit] *:flex! *:flex-col! *:gap-0.5! p-4 overscroll-contain mask-[linear-gradient(to_bottom,transparent,white_12px,white_calc(100%-12px),transparent)]"
+                            style="overflow-x: hidden; overflow-y: hidden"
+                        >
+                            <div style="min-width: 100%; display: table">
+                                <a
+                                    href="https://github.com/KKonstantinov/graphql2mcp"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                    data-active="false"
+                                    class="relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-fd-muted-foreground wrap-anywhere [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 transition-colors hover:bg-fd-accent/50 hover:text-fd-accent-foreground/80 hover:transition-none data-[active=true]:bg-fd-primary/10 data-[active=true]:text-fd-primary data-[active=true]:hover:transition-colors"
+                                    style="padding-inline-start: calc(2 * var(--spacing))"
+                                    ><svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="lucide lucide-external-link"
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M15 3h6v6"></path>
+                                        <path d="M10 14 21 3"></path>
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg
+                                    >GitHub</a
+                                ><a
+                                    href="https://www.npmjs.com/package/graphql2mcp"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                    data-active="false"
+                                    class="relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-fd-muted-foreground wrap-anywhere [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 transition-colors hover:bg-fd-accent/50 hover:text-fd-accent-foreground/80 hover:transition-none data-[active=true]:bg-fd-primary/10 data-[active=true]:text-fd-primary data-[active=true]:hover:transition-colors mb-4"
+                                    style="padding-inline-start: calc(2 * var(--spacing))"
+                                    ><svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="lucide lucide-external-link"
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M15 3h6v6"></path>
+                                        <path d="M10 14 21 3"></path>
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg
+                                    >npm</a
+                                >
+                                <p
+                                    class="inline-flex items-center gap-2 mb-1 px-2 mt-6 empty:mb-0 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 first:mt-0"
+                                    style="padding-inline-start: calc(2 * var(--spacing))"
+                                >
+                                    Guide
+                                </p>
+                                <a
+                                    data-active="true"
+                                    class="relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-fd-muted-foreground wrap-anywhere [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 transition-colors hover:bg-fd-accent/50 hover:text-fd-accent-foreground/80 hover:transition-none data-[active=true]:bg-fd-primary/10 data-[active=true]:text-fd-primary data-[active=true]:hover:transition-colors"
+                                    style="padding-inline-start: calc(2 * var(--spacing))"
+                                    href="/graphql2mcp/docs/getting-started"
+                                    >Getting Started</a
+                                ><a
+                                    data-active="false"
+                                    class="relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-fd-muted-foreground wrap-anywhere [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 transition-colors hover:bg-fd-accent/50 hover:text-fd-accent-foreground/80 hover:transition-none data-[active=true]:bg-fd-primary/10 data-[active=true]:text-fd-primary data-[active=true]:hover:transition-colors"
+                                    style="padding-inline-start: calc(2 * var(--spacing))"
+                                    href="/graphql2mcp/docs/cli"
+                                    >CLI Reference</a
+                                ><a
+                                    data-active="false"
+                                    class="relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-fd-muted-foreground wrap-anywhere [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 transition-colors hover:bg-fd-accent/50 hover:text-fd-accent-foreground/80 hover:transition-none data-[active=true]:bg-fd-primary/10 data-[active=true]:text-fd-primary data-[active=true]:hover:transition-colors"
+                                    style="padding-inline-start: calc(2 * var(--spacing))"
+                                    href="/graphql2mcp/docs/library"
+                                    >Library Mode</a
+                                ><a
+                                    data-active="false"
+                                    class="relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-fd-muted-foreground wrap-anywhere [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 transition-colors hover:bg-fd-accent/50 hover:text-fd-accent-foreground/80 hover:transition-none data-[active=true]:bg-fd-primary/10 data-[active=true]:text-fd-primary data-[active=true]:hover:transition-colors"
+                                    style="padding-inline-start: calc(2 * var(--spacing))"
+                                    href="/graphql2mcp/docs/mutations"
+                                    >Mutation Configuration</a
+                                >
+                                <p
+                                    class="inline-flex items-center gap-2 mb-1 px-2 mt-6 empty:mb-0 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 first:mt-0"
+                                    style="padding-inline-start: calc(2 * var(--spacing))"
+                                >
+                                    Packages
+                                </p>
+                                <a
+                                    data-active="false"
+                                    class="relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-fd-muted-foreground wrap-anywhere [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 transition-colors hover:bg-fd-accent/50 hover:text-fd-accent-foreground/80 hover:transition-none data-[active=true]:bg-fd-primary/10 data-[active=true]:text-fd-primary data-[active=true]:hover:transition-colors"
+                                    style="padding-inline-start: calc(2 * var(--spacing))"
+                                    href="/graphql2mcp/docs/packages/proxy"
+                                    >graphql2mcp</a
+                                ><a
+                                    data-active="false"
+                                    class="relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-fd-muted-foreground wrap-anywhere [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 transition-colors hover:bg-fd-accent/50 hover:text-fd-accent-foreground/80 hover:transition-none data-[active=true]:bg-fd-primary/10 data-[active=true]:text-fd-primary data-[active=true]:hover:transition-colors"
+                                    style="padding-inline-start: calc(2 * var(--spacing))"
+                                    href="/graphql2mcp/docs/packages/lib"
+                                    >@graphql2mcp/lib</a
+                                >
+                                <p
+                                    class="inline-flex items-center gap-2 mb-1 px-2 mt-6 empty:mb-0 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 first:mt-0"
+                                    style="padding-inline-start: calc(2 * var(--spacing))"
+                                >
+                                    Reference
+                                </p>
+                                <a
+                                    data-active="false"
+                                    class="relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-fd-muted-foreground wrap-anywhere [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 transition-colors hover:bg-fd-accent/50 hover:text-fd-accent-foreground/80 hover:transition-none data-[active=true]:bg-fd-primary/10 data-[active=true]:text-fd-primary data-[active=true]:hover:transition-colors"
+                                    style="padding-inline-start: calc(2 * var(--spacing))"
+                                    href="/graphql2mcp/docs/architecture"
+                                    >Architecture</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col border-t p-4 pt-2 empty:hidden">
+                        <div class="flex text-fd-muted-foreground items-center empty:hidden">
+                            <a
+                                href="https://github.com/KKonstantinov/graphql2mcp"
+                                rel="noreferrer noopener"
+                                target="_blank"
+                                class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring hover:bg-fd-accent hover:text-fd-accent-foreground p-1.5 [&amp;_svg]:size-4.5"
+                                aria-label="GitHub"
+                                data-active="false"
+                                ><svg viewBox="0 0 16 16" fill="currentColor" width="20" height="20">
+                                    <path
+                                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                                    ></path></svg></a
+                            ><a
+                                href="https://www.npmjs.com/package/graphql2mcp"
+                                rel="noreferrer noopener"
+                                target="_blank"
+                                class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring hover:bg-fd-accent hover:text-fd-accent-foreground p-1.5 [&amp;_svg]:size-4.5"
+                                aria-label="npm"
+                                data-active="false"
+                                ><svg viewBox="0 0 27.23 27.23" fill="currentColor" width="20" height="20">
+                                    <rect width="27.23" height="27.23" rx="2"></rect>
+                                    <polygon
+                                        fill="white"
+                                        points="5.8 21.75 13.66 21.75 13.66 9.98 17.59 9.98 17.59 21.75 21.51 21.75 21.51 5.8 5.8 5.8"
+                                    ></polygon></svg></a
+                            ><button
+                                class="inline-flex items-center rounded-full border *:rounded-full ms-auto p-0"
+                                aria-label="Toggle Theme"
+                                data-theme-toggle=""
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-sun size-6.5 p-1.5 text-fd-muted-foreground"
+                                    aria-hidden="true"
+                                >
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                    <path d="M12 2v2"></path>
+                                    <path d="M12 20v2"></path>
+                                    <path d="m4.93 4.93 1.41 1.41"></path>
+                                    <path d="m17.66 17.66 1.41 1.41"></path>
+                                    <path d="M2 12h2"></path>
+                                    <path d="M20 12h2"></path>
+                                    <path d="m6.34 17.66-1.41 1.41"></path>
+                                    <path d="m19.07 4.93-1.41 1.41"></path></svg
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-moon size-6.5 p-1.5 text-fd-muted-foreground"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"
+                                    ></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <div
+                data-sidebar-panel=""
+                class="fixed flex top-[calc(--spacing(4)+var(--fd-docs-row-3))] start-4 shadow-lg transition-opacity rounded-xl p-0.5 border bg-fd-muted text-fd-muted-foreground z-10 pointer-events-none opacity-0"
+            >
+                <button
+                    type="button"
+                    aria-label="Collapse Sidebar"
+                    data-collapsed="false"
+                    class="inline-flex items-center justify-center text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring hover:bg-fd-accent hover:text-fd-accent-foreground p-1.5 [&amp;_svg]:size-4.5 rounded-lg"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-panel-left"
+                        aria-hidden="true"
+                    >
+                        <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                        <path d="M9 3v18"></path>
+                    </svg></button
+                ><button
+                    type="button"
+                    class="inline-flex items-center justify-center text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring hover:bg-fd-accent hover:text-fd-accent-foreground p-1.5 [&amp;_svg]:size-4.5 rounded-lg"
+                    data-search=""
+                    aria-label="Open Search"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-search"
+                        aria-hidden="true"
+                    >
+                        <path d="m21 21-4.34-4.34"></path>
+                        <circle cx="11" cy="11" r="8"></circle>
+                    </svg>
+                </button>
+            </div>
+            <div
+                data-state="closed"
+                data-toc-popover=""
+                class="sticky top-(--fd-docs-row-2) z-10 [grid-area:toc-popover] h-(--fd-toc-popover-height) xl:hidden max-xl:layout:[--fd-toc-popover-height:--spacing(10)]"
+            >
+                <header class="border-b backdrop-blur-sm transition-colors bg-fd-background/80">
+                    <button
+                        type="button"
+                        aria-controls="radix-_R_1av5u9flb_"
+                        aria-expanded="false"
+                        data-state="closed"
+                        class="flex w-full h-10 items-center text-sm text-fd-muted-foreground gap-2.5 px-4 py-2.5 text-start focus-visible:outline-none [&amp;_svg]:size-4 md:px-6"
+                        data-toc-popover-trigger=""
+                    >
+                        <svg role="progressbar" viewBox="0 0 24 24" aria-valuenow="0" aria-valuemin="0" aria-valuemax="1" class="shrink-0">
+                            <circle cx="12" cy="12" r="11" fill="none" stroke-width="2" class="stroke-current/25"></circle>
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="11"
+                                fill="none"
+                                stroke-width="2"
+                                stroke="currentColor"
+                                stroke-dasharray="69.11503837897544"
+                                stroke-dashoffset="69.11503837897544"
+                                stroke-linecap="round"
+                                transform="rotate(-90 12 12)"
+                                class="transition-all"
+                            ></circle></svg
+                        ><span class="grid flex-1 *:my-auto *:row-start-1 *:col-start-1"
+                            ><span class="truncate transition-[opacity,translate,color]">Getting Started</span
+                            ><span
+                                class="truncate transition-[opacity,translate] opacity-0 translate-y-full pointer-events-none"
+                            ></span></span
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-chevron-down shrink-0 transition-transform mx-0.5"
+                            aria-hidden="true"
+                        >
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                    </button>
+                    <div data-state="closed" id="radix-_R_1av5u9flb_" hidden="" data-toc-popover-content="" class="overflow-hidden"></div>
+                </header>
+            </div>
+            <article
+                id="nd-page"
+                data-full="false"
+                class="flex flex-col w-full max-w-[900px] mx-auto [grid-area:main] px-4 py-6 gap-4 md:px-6 md:pt-8 xl:px-8 xl:pt-14 xl:layout:[--fd-toc-width:268px]"
+            >
+                <h1 class="text-[1.75em] font-semibold">Getting Started</h1>
+                <p class="mb-8 text-lg text-fd-muted-foreground">
+                    Install graphql2mcp and convert your first GraphQL schema into an MCP server.
+                </p>
+                <div class="prose flex-1">
+                    <p>
+                        This guide walks you through installing <code>graphql2mcp</code> and converting your first GraphQL schema into an
+                        MCP server.
+                    </p>
+                    <h2 class="flex scroll-m-28 flex-row items-center gap-2" id="installation">
+                        <a data-card="" href="#installation" class="peer">Installation</a
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100"
+                            aria-hidden="true"
+                        >
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </h2>
+                    <h3 class="flex scroll-m-28 flex-row items-center gap-2" id="cli-proxy-standalone-server">
+                        <a data-card="" href="#cli-proxy-standalone-server" class="peer">CLI Proxy (standalone server)</a
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100"
+                            aria-hidden="true"
+                        >
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </h3>
+                    <p>Run directly with <code>npx</code> (no install needed):</p>
+                    <figure
+                        dir="ltr"
+                        class="my-4 bg-fd-card rounded-xl shiki relative border shadow-sm not-prose overflow-hidden text-sm shiki shiki-themes github-light github-dark"
+                        style="--shiki-light: #24292e; --shiki-dark: #e1e4e8; --shiki-light-bg: #fff; --shiki-dark-bg: #24292e"
+                        tabindex="-1"
+                    >
+                        <div class="empty:hidden absolute top-3 right-2 z-2 backdrop-blur-lg rounded-lg text-fd-muted-foreground">
+                            <button
+                                type="button"
+                                class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring p-1 [&amp;_svg]:size-4 hover:text-fd-accent-foreground data-checked:text-fd-accent-foreground"
+                                aria-label="Copy Text"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-clipboard"
+                                    aria-hidden="true"
+                                >
+                                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div
+                            role="region"
+                            tabindex="0"
+                            class="text-[0.8125rem] py-3.5 overflow-auto max-h-[600px] fd-scroll-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring"
+                            style="--padding-right: calc(var(--spacing) * 8)"
+                        >
+                            <pre
+                                class="min-w-full w-max *:flex *:flex-col"
+                            ><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">npx</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> graphql2mcp</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://api.example.com/graphql</span></span></code></pre>
+                        </div>
+                    </figure>
+                    <p>Or install globally:</p>
+                    <figure
+                        dir="ltr"
+                        class="my-4 bg-fd-card rounded-xl shiki relative border shadow-sm not-prose overflow-hidden text-sm shiki shiki-themes github-light github-dark"
+                        style="--shiki-light: #24292e; --shiki-dark: #e1e4e8; --shiki-light-bg: #fff; --shiki-dark-bg: #24292e"
+                        tabindex="-1"
+                    >
+                        <div class="empty:hidden absolute top-3 right-2 z-2 backdrop-blur-lg rounded-lg text-fd-muted-foreground">
+                            <button
+                                type="button"
+                                class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring p-1 [&amp;_svg]:size-4 hover:text-fd-accent-foreground data-checked:text-fd-accent-foreground"
+                                aria-label="Copy Text"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-clipboard"
+                                    aria-hidden="true"
+                                >
+                                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div
+                            role="region"
+                            tabindex="0"
+                            class="text-[0.8125rem] py-3.5 overflow-auto max-h-[600px] fd-scroll-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring"
+                            style="--padding-right: calc(var(--spacing) * 8)"
+                        >
+                            <pre
+                                class="min-w-full w-max *:flex *:flex-col"
+                            ><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">npm</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -g</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> graphql2mcp</span></span></code></pre>
+                        </div>
+                    </figure>
+                    <h3 class="flex scroll-m-28 flex-row items-center gap-2" id="library-integrate-into-existing-mcp-server">
+                        <a data-card="" href="#library-integrate-into-existing-mcp-server" class="peer"
+                            >Library (integrate into existing MCP server)</a
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100"
+                            aria-hidden="true"
+                        >
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </h3>
+                    <figure
+                        dir="ltr"
+                        class="my-4 bg-fd-card rounded-xl shiki relative border shadow-sm not-prose overflow-hidden text-sm shiki shiki-themes github-light github-dark"
+                        style="--shiki-light: #24292e; --shiki-dark: #e1e4e8; --shiki-light-bg: #fff; --shiki-dark-bg: #24292e"
+                        tabindex="-1"
+                    >
+                        <div class="empty:hidden absolute top-3 right-2 z-2 backdrop-blur-lg rounded-lg text-fd-muted-foreground">
+                            <button
+                                type="button"
+                                class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring p-1 [&amp;_svg]:size-4 hover:text-fd-accent-foreground data-checked:text-fd-accent-foreground"
+                                aria-label="Copy Text"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-clipboard"
+                                    aria-hidden="true"
+                                >
+                                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div
+                            role="region"
+                            tabindex="0"
+                            class="text-[0.8125rem] py-3.5 overflow-auto max-h-[600px] fd-scroll-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring"
+                            style="--padding-right: calc(var(--spacing) * 8)"
+                        >
+                            <pre
+                                class="min-w-full w-max *:flex *:flex-col"
+                            ><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">npm</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> @graphql2mcp/lib</span></span></code></pre>
+                        </div>
+                    </figure>
+                    <h2 class="flex scroll-m-28 flex-row items-center gap-2" id="your-first-mcp-server">
+                        <a data-card="" href="#your-first-mcp-server" class="peer">Your First MCP Server</a
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100"
+                            aria-hidden="true"
+                        >
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </h2>
+                    <h3 class="flex scroll-m-28 flex-row items-center gap-2" id="from-a-url">
+                        <a data-card="" href="#from-a-url" class="peer">From a URL</a
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100"
+                            aria-hidden="true"
+                        >
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </h3>
+                    <p>
+                        The simplest way to get started is to point at a GraphQL endpoint. The CLI will introspect the schema and start an
+                        MCP server:
+                    </p>
+                    <figure
+                        dir="ltr"
+                        class="my-4 bg-fd-card rounded-xl shiki relative border shadow-sm not-prose overflow-hidden text-sm shiki shiki-themes github-light github-dark"
+                        style="--shiki-light: #24292e; --shiki-dark: #e1e4e8; --shiki-light-bg: #fff; --shiki-dark-bg: #24292e"
+                        tabindex="-1"
+                    >
+                        <div class="empty:hidden absolute top-3 right-2 z-2 backdrop-blur-lg rounded-lg text-fd-muted-foreground">
+                            <button
+                                type="button"
+                                class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring p-1 [&amp;_svg]:size-4 hover:text-fd-accent-foreground data-checked:text-fd-accent-foreground"
+                                aria-label="Copy Text"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-clipboard"
+                                    aria-hidden="true"
+                                >
+                                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div
+                            role="region"
+                            tabindex="0"
+                            class="text-[0.8125rem] py-3.5 overflow-auto max-h-[600px] fd-scroll-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring"
+                            style="--padding-right: calc(var(--spacing) * 8)"
+                        >
+                            <pre
+                                class="min-w-full w-max *:flex *:flex-col"
+                            ><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">npx</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> graphql2mcp</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://countries.trevorblades.com/graphql</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -t</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> http</span></span></code></pre>
+                        </div>
+                    </figure>
+                    <p>
+                        This creates MCP tools for every query in the schema and starts a Streamable HTTP server on port 3000, ready for any
+                        MCP client.
+                    </p>
+                    <p>For desktop MCP clients like Claude Desktop or Cursor that expect stdio transport:</p>
+                    <figure
+                        dir="ltr"
+                        class="my-4 bg-fd-card rounded-xl shiki relative border shadow-sm not-prose overflow-hidden text-sm shiki shiki-themes github-light github-dark"
+                        style="--shiki-light: #24292e; --shiki-dark: #e1e4e8; --shiki-light-bg: #fff; --shiki-dark-bg: #24292e"
+                        tabindex="-1"
+                    >
+                        <div class="empty:hidden absolute top-3 right-2 z-2 backdrop-blur-lg rounded-lg text-fd-muted-foreground">
+                            <button
+                                type="button"
+                                class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring p-1 [&amp;_svg]:size-4 hover:text-fd-accent-foreground data-checked:text-fd-accent-foreground"
+                                aria-label="Copy Text"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-clipboard"
+                                    aria-hidden="true"
+                                >
+                                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div
+                            role="region"
+                            tabindex="0"
+                            class="text-[0.8125rem] py-3.5 overflow-auto max-h-[600px] fd-scroll-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring"
+                            style="--padding-right: calc(var(--spacing) * 8)"
+                        >
+                            <pre
+                                class="min-w-full w-max *:flex *:flex-col"
+                            ><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">npx</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> graphql2mcp</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://countries.trevorblades.com/graphql</span></span></code></pre>
+                        </div>
+                    </figure>
+                    <h3 class="flex scroll-m-28 flex-row items-center gap-2" id="from-an-sdl-file">
+                        <a data-card="" href="#from-an-sdl-file" class="peer">From an SDL File</a
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100"
+                            aria-hidden="true"
+                        >
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </h3>
+                    <p>If you have a local <code>.graphql</code> schema file, provide a file path and an execution endpoint:</p>
+                    <figure
+                        dir="ltr"
+                        class="my-4 bg-fd-card rounded-xl shiki relative border shadow-sm not-prose overflow-hidden text-sm shiki shiki-themes github-light github-dark"
+                        style="--shiki-light: #24292e; --shiki-dark: #e1e4e8; --shiki-light-bg: #fff; --shiki-dark-bg: #24292e"
+                        tabindex="-1"
+                    >
+                        <div class="empty:hidden absolute top-3 right-2 z-2 backdrop-blur-lg rounded-lg text-fd-muted-foreground">
+                            <button
+                                type="button"
+                                class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring p-1 [&amp;_svg]:size-4 hover:text-fd-accent-foreground data-checked:text-fd-accent-foreground"
+                                aria-label="Copy Text"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-clipboard"
+                                    aria-hidden="true"
+                                >
+                                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div
+                            role="region"
+                            tabindex="0"
+                            class="text-[0.8125rem] py-3.5 overflow-auto max-h-[600px] fd-scroll-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring"
+                            style="--padding-right: calc(var(--spacing) * 8)"
+                        >
+                            <pre
+                                class="min-w-full w-max *:flex *:flex-col"
+                            ><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">npx</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> graphql2mcp</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./schema.graphql</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -e</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://api.example.com/graphql</span></span></code></pre>
+                        </div>
+                    </figure>
+                    <p>Here is an example <code>schema.graphql</code>:</p>
+                    <figure
+                        dir="ltr"
+                        class="my-4 bg-fd-card rounded-xl shiki relative border shadow-sm not-prose overflow-hidden text-sm shiki shiki-themes github-light github-dark"
+                        style="--shiki-light: #24292e; --shiki-dark: #e1e4e8; --shiki-light-bg: #fff; --shiki-dark-bg: #24292e"
+                        tabindex="-1"
+                    >
+                        <div class="empty:hidden absolute top-3 right-2 z-2 backdrop-blur-lg rounded-lg text-fd-muted-foreground">
+                            <button
+                                type="button"
+                                class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring p-1 [&amp;_svg]:size-4 hover:text-fd-accent-foreground data-checked:text-fd-accent-foreground"
+                                aria-label="Copy Text"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-clipboard"
+                                    aria-hidden="true"
+                                >
+                                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div
+                            role="region"
+                            tabindex="0"
+                            class="text-[0.8125rem] py-3.5 overflow-auto max-h-[600px] fd-scroll-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring"
+                            style="--padding-right: calc(var(--spacing) * 8)"
+                        >
+                            <pre
+                                class="min-w-full w-max *:flex *:flex-col"
+                            ><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">type</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> Query</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    &quot;Get a user by ID&quot;</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">    user</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">ID</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">): </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">User</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    &quot;List all users with optional pagination&quot;</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">    users</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">limit</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">offset</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">): [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">User</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">type</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> User</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">    id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">ID</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">    name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">String</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">    email</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">String</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">    role</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Role</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">enum</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> Role</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    ADMIN</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    USER</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    MODERATOR</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+                        </div>
+                    </figure>
+                    <p>
+                        The CLI generates MCP tools named <code>query_user</code> and <code>query_users</code>, each with a Zod input schema
+                        matching the GraphQL arguments.
+                    </p>
+                    <h3 class="flex scroll-m-28 flex-row items-center gap-2" id="from-code">
+                        <a data-card="" href="#from-code" class="peer">From Code</a
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100"
+                            aria-hidden="true"
+                        >
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </h3>
+                    <p>If you have an existing MCP server and want to add GraphQL tools alongside your own:</p>
+                    <figure
+                        dir="ltr"
+                        class="my-4 bg-fd-card rounded-xl shiki relative border shadow-sm not-prose overflow-hidden text-sm shiki shiki-themes github-light github-dark"
+                        style="--shiki-light: #24292e; --shiki-dark: #e1e4e8; --shiki-light-bg: #fff; --shiki-dark-bg: #24292e"
+                        tabindex="-1"
+                    >
+                        <div class="empty:hidden absolute top-3 right-2 z-2 backdrop-blur-lg rounded-lg text-fd-muted-foreground">
+                            <button
+                                type="button"
+                                class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring p-1 [&amp;_svg]:size-4 hover:text-fd-accent-foreground data-checked:text-fd-accent-foreground"
+                                aria-label="Copy Text"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-clipboard"
+                                    aria-hidden="true"
+                                >
+                                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div
+                            role="region"
+                            tabindex="0"
+                            class="text-[0.8125rem] py-3.5 overflow-auto max-h-[600px] fd-scroll-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring"
+                            style="--padding-right: calc(var(--spacing) * 8)"
+                        >
+                            <pre
+                                class="min-w-full w-max *:flex *:flex-col"
+                            ><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { McpServer } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x27;@modelcontextprotocol/sdk/server/mcp.js&#x27;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { StreamableHTTPServerTransport } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x27;@modelcontextprotocol/sdk/server/streamableHttp.js&#x27;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { registerGraphQLTools } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x27;@graphql2mcp/lib&#x27;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> server</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> McpServer</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({ name: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">&#x27;my-server&#x27;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, version: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">&#x27;1.0.0&#x27;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> });</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// Register GraphQL tools from a schema</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> result</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> registerGraphQLTools</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(server, {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    source: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">&#x27;./schema.graphql&#x27;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    endpoint: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">&#x27;https://api.example.com/graphql&#x27;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">error</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">`Registered ${</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">result</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">count</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">} tools`</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> transport</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> StreamableHTTPServerTransport</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({ sessionIdGenerator: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">undefined</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> });</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> server.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">connect</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(transport);</span></span></code></pre>
+                        </div>
+                    </figure>
+                    <h2 class="flex scroll-m-28 flex-row items-center gap-2" id="whats-next">
+                        <a data-card="" href="#whats-next" class="peer">What&#x27;s Next</a
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100"
+                            aria-hidden="true"
+                        >
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </h2>
+                    <ul>
+                        <li><a href="/graphql2mcp/docs/cli">CLI Reference</a> -- all flags, options, and usage patterns</li>
+                        <li><a href="/graphql2mcp/docs/library">Library Mode</a> -- integrate into existing MCP servers</li>
+                        <li><a href="/graphql2mcp/docs/mutations">Mutations</a> -- configure which mutations are exposed as tools</li>
+                        <li><a href="/graphql2mcp/docs/architecture">Architecture</a> -- how GraphQL schemas become MCP tools</li>
+                    </ul>
+                </div>
+                <div class="@container grid gap-4 grid-cols-1">
+                    <a
+                        class="flex flex-col gap-2 rounded-lg border p-4 text-sm transition-colors hover:bg-fd-accent/80 hover:text-fd-accent-foreground @max-lg:col-span-full text-end"
+                        href="/graphql2mcp/docs/cli"
+                        ><div class="inline-flex items-center gap-1.5 font-medium flex-row-reverse">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-chevron-right -mx-1 size-4 shrink-0 rtl:rotate-180"
+                                aria-hidden="true"
+                            >
+                                <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                            <p>CLI Reference</p>
+                        </div>
+                        <p class="text-fd-muted-foreground truncate">
+                            The graphql2mcp CLI converts a GraphQL endpoint or schema file into a standalone MCP server.
+                        </p></a
+                    >
+                </div>
+            </article>
+            <div
+                id="nd-toc"
+                class="sticky top-(--fd-docs-row-1) h-[calc(var(--fd-docs-height)-var(--fd-docs-row-1))] flex flex-col [grid-area:toc] w-(--fd-toc-width) pt-12 pe-4 pb-2 max-xl:hidden"
+            >
+                <h3 id="toc-title" class="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-text-align-start size-4"
+                        aria-hidden="true"
+                    >
+                        <path d="M21 5H3"></path>
+                        <path d="M15 12H3"></path>
+                        <path d="M17 19H3"></path></svg
+                    >On this page
+                </h3>
+                <div
+                    class="relative min-h-0 text-sm ms-px overflow-auto [scrollbar-width:none] mask-[linear-gradient(to_bottom,transparent,white_16px,white_calc(100%-16px),transparent)] py-3"
+                >
+                    <div class="relative">
+                        <div
+                            data-hidden="true"
+                            class="absolute inset-y-0 inset-s-0 bg-fd-primary w-px transition-[clip-path]"
+                            style="
+                                clip-path: polygon(
+                                    0 var(--fd-top),
+                                    100% var(--fd-top),
+                                    100% calc(var(--fd-top) + var(--fd-height)),
+                                    0 calc(var(--fd-top) + var(--fd-height))
+                                );
+                            "
+                        ></div>
+                        <div class="flex flex-col border-s border-fd-foreground/10">
+                            <a
+                                data-active="false"
+                                href="#installation"
+                                class="prose py-1.5 text-sm text-fd-muted-foreground scroll-m-4 transition-colors wrap-anywhere first:pt-0 last:pb-0 data-[active=true]:text-fd-primary hover:text-fd-accent-foreground ps-3"
+                                >Installation</a
+                            ><a
+                                data-active="false"
+                                href="#cli-proxy-standalone-server"
+                                class="prose py-1.5 text-sm text-fd-muted-foreground scroll-m-4 transition-colors wrap-anywhere first:pt-0 last:pb-0 data-[active=true]:text-fd-primary hover:text-fd-accent-foreground ps-6"
+                                >CLI Proxy (standalone server)</a
+                            ><a
+                                data-active="false"
+                                href="#library-integrate-into-existing-mcp-server"
+                                class="prose py-1.5 text-sm text-fd-muted-foreground scroll-m-4 transition-colors wrap-anywhere first:pt-0 last:pb-0 data-[active=true]:text-fd-primary hover:text-fd-accent-foreground ps-6"
+                                >Library (integrate into existing MCP server)</a
+                            ><a
+                                data-active="false"
+                                href="#your-first-mcp-server"
+                                class="prose py-1.5 text-sm text-fd-muted-foreground scroll-m-4 transition-colors wrap-anywhere first:pt-0 last:pb-0 data-[active=true]:text-fd-primary hover:text-fd-accent-foreground ps-3"
+                                >Your First MCP Server</a
+                            ><a
+                                data-active="false"
+                                href="#from-a-url"
+                                class="prose py-1.5 text-sm text-fd-muted-foreground scroll-m-4 transition-colors wrap-anywhere first:pt-0 last:pb-0 data-[active=true]:text-fd-primary hover:text-fd-accent-foreground ps-6"
+                                >From a URL</a
+                            ><a
+                                data-active="false"
+                                href="#from-an-sdl-file"
+                                class="prose py-1.5 text-sm text-fd-muted-foreground scroll-m-4 transition-colors wrap-anywhere first:pt-0 last:pb-0 data-[active=true]:text-fd-primary hover:text-fd-accent-foreground ps-6"
+                                >From an SDL File</a
+                            ><a
+                                data-active="false"
+                                href="#from-code"
+                                class="prose py-1.5 text-sm text-fd-muted-foreground scroll-m-4 transition-colors wrap-anywhere first:pt-0 last:pb-0 data-[active=true]:text-fd-primary hover:text-fd-accent-foreground ps-6"
+                                >From Code</a
+                            ><a
+                                data-active="false"
+                                href="#whats-next"
+                                class="prose py-1.5 text-sm text-fd-muted-foreground scroll-m-4 transition-colors wrap-anywhere first:pt-0 last:pb-0 data-[active=true]:text-fd-primary hover:text-fd-accent-foreground ps-3"
+                                >What&#x27;s Next</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--$--><!--/$-->
+        </div>
+        <script src="/graphql2mcp/_next/static/chunks/0yc9o_nku2~t-.js" id="_R_" async=""></script>
+        <script>
+            (self.__next_f = self.__next_f || []).push([0]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                '1:"$Sreact.fragment"\n2:I[33205,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js"],"RootProvider"]\n3:I[56099,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js"],"default"]\n4:I[58870,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js"],"default"]\n5:I[44675,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js","/graphql2mcp/_next/static/chunks/0.t0fansog7g2.js","/graphql2mcp/_next/static/chunks/0qy~g8woj8utk.js"],"LayoutBody"]\nc:I[99807,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js"],"default",1]\n:HL["/graphql2mcp/_next/static/chunks/074o.o8eqqp_3.css","style"]\n'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                '0:{"P":null,"c":["","docs","getting-started"],"q":"","i":false,"f":[[["",{"children":["docs",{"children":[["slug","getting-started","oc",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/graphql2mcp/_next/static/chunks/074o.o8eqqp_3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"flex min-h-screen flex-col","children":["$","$L2",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"style":{"textAlign":"center","padding":"4rem 0"},"children":[["$","h1",null,{"children":"404"}],["$","p",null,{"children":"Page not found."}],["$","a",null,{"href":"/docs","children":"Take me home"}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/graphql2mcp/_next/static/chunks/0.t0fansog7g2.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/graphql2mcp/_next/static/chunks/0qy~g8woj8utk.js","async":true,"nonce":"$undefined"}]],["$","$L5",null,{"tree":{"$id":"root","name":"Docs","children":[{"$id":"_0","type":"separator","icon":"$undefined","name":"Guide"},{"$id":"getting-started.mdx","type":"page","name":"Getting Started","description":"Install graphql2mcp and convert your first GraphQL schema into an MCP server.","icon":"$undefined","url":"/docs/getting-started","$ref":{"file":"getting-started.mdx"}},{"$id":"cli.mdx","type":"page","name":"CLI Reference","description":"The graphql2mcp CLI converts a GraphQL endpoint or schema file into a standalone MCP server.","icon":"$undefined","url":"/docs/cli","$ref":{"file":"cli.mdx"}},{"$id":"library.mdx","type":"page","name":"Library Mode","description":"Register GraphQL tools on an existing MCP server instance using @graphql2mcp/lib.","icon":"$undefined","url":"/docs/library","$ref":{"file":"library.mdx"}},{"$id":"mutations.mdx","type":"page","name":"Mutation Configuration","description":"Configure which GraphQL mutations are exposed as MCP tools with three mutation modes.","icon":"$undefined","url":"/docs/mutations","$ref":{"file":"mutations.mdx"}},{"$id":"_1","type":"separator","icon":"$undefined","name":"Packages"},{"$id":"packages/proxy.mdx","type":"page","name":"graphql2mcp","description":"Standalone CLI proxy — run any GraphQL endpoint as an MCP server.","icon":"$undefined","url":"/docs/packages/proxy","$ref":{"file":"packages/proxy.mdx"}},{"$id":"packages/lib.mdx","type":"page","name":"@graphql2mcp/lib","description":"Library for integrating GraphQL-to-MCP conversion into existing TypeScript MCP servers.","icon":"$undefined","url":"/docs/packages/lib","$ref":{"file":"packages/lib.mdx"}},{"$id":"_2","type":"separator","icon":"$undefined","name":"Reference"},{"$id":"architecture.mdx","type":"page","name":"Architecture","description":"How graphql2mcp converts GraphQL schemas into MCP tool definitions and how the packages relate.","icon":"$undefined","url":"/docs/architecture","$ref":{"file":"architecture.mdx"}}],"fallback":{"$id":"fallback:root","name":"Docs","children":[{"$id":"fallback:index.mdx","type":"page","name":"graphql2mcp","description":"Convert GraphQL schemas and endpoints into Model Context Protocol servers. Let AI agents talk to any GraphQL API.","icon":"$undefined","url":"/docs","$ref":{"file":"index.mdx"}}]}},"tabs":[],"tabMode":"$undefined","sidebar":{},"nav":{"title":"graphql2mcp","url":"/docs"},"links":[{"text":"GitHub","url":"https://github.com/KKonstantinov/graphql2mcp","external":true},{"text":"npm","url":"https://www.npmjs.com/package/graphql2mcp","external":true},{"type":"icon","url":"https://github.com/KKonstantinov/graphql2mcp","icon":["$","svg",null,{"viewBox":"0 0 16 16","fill":"currentColor","width":"20","height":"20","children":["$","path",null,{"d":"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"}]}],"text":"GitHub","label":"GitHub","external":true},{"type":"icon","url":"https://www.npmjs.com/package/graphql2mcp","icon":"$L6","text":"npm","label":"npm","external":true}],"children":"$L7"}]]}],{"children":["$L8",{"children":["$L9",{},null,false,null]},null,false,"$@a"]},null,false,null]},null,false,null],"$Lb",false]],"m":"$undefined","G":["$c",["$Ld"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"kZR7FVU-xf4KtPoCkm2H_"}\n'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                'f:I[7141,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js"],"OutletBoundary"]\n10:"$Sreact.suspense"\n13:I[7141,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js"],"ViewportBoundary"]\n15:I[7141,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js"],"MetadataBoundary"]\n6:["$","svg",null,{"viewBox":"0 0 27.23 27.23","fill":"currentColor","width":"20","height":"20","children":[["$","rect",null,{"width":"27.23","height":"27.23","rx":"2"}],["$","polygon",null,{"fill":"white","points":"5.8 21.75 13.66 21.75 13.66 9.98 17.59 9.98 17.59 21.75 21.51 21.75 21.51 5.8 5.8 5.8"}]]}]\n7:["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]\n8:["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]\n9:["$","$1","c",{"children":["$Le",[["$","script","script-0",{"src":"/graphql2mcp/_next/static/chunks/04vyzu629zsyz.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/graphql2mcp/_next/static/chunks/0bfrfjqh258ry.js","async":true,"nonce":"$undefined"}]],["$","$Lf",null,{"children":["$","$10",null,{"name":"Next.MetadataOutlet","children":"$@11"}]}]]}]\n12:[]\na:"$W12"\nb:["$","$1","h",{"children":[null,["$","$L13",null,{"children":"$L14"}],["$","div",null,{"hidden":true,"children":["$","$L15",null,{"children":["$","$10",null,{"name":"Next.Metadata","children":"$L16"}]}]}],null]}]\nd:["$","link","0",{"rel":"stylesheet","href":"/graphql2mcp/_next/static/chunks/074o.o8eqqp_3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]\n'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                '17:I[4869,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js","/graphql2mcp/_next/static/chunks/0.t0fansog7g2.js","/graphql2mcp/_next/static/chunks/0qy~g8woj8utk.js","/graphql2mcp/_next/static/chunks/04vyzu629zsyz.js","/graphql2mcp/_next/static/chunks/0bfrfjqh258ry.js"],"DocsPage"]\n18:I[4869,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js","/graphql2mcp/_next/static/chunks/0.t0fansog7g2.js","/graphql2mcp/_next/static/chunks/0qy~g8woj8utk.js","/graphql2mcp/_next/static/chunks/04vyzu629zsyz.js","/graphql2mcp/_next/static/chunks/0bfrfjqh258ry.js"],"DocsTitle"]\n19:I[4869,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js","/graphql2mcp/_next/static/chunks/0.t0fansog7g2.js","/graphql2mcp/_next/static/chunks/0qy~g8woj8utk.js","/graphql2mcp/_next/static/chunks/04vyzu629zsyz.js","/graphql2mcp/_next/static/chunks/0bfrfjqh258ry.js"],"DocsDescription"]\n1a:I[4869,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js","/graphql2mcp/_next/static/chunks/0.t0fansog7g2.js","/graphql2mcp/_next/static/chunks/0qy~g8woj8utk.js","/graphql2mcp/_next/static/chunks/04vyzu629zsyz.js","/graphql2mcp/_next/static/chunks/0bfrfjqh258ry.js"],"DocsBody"]\n1b:I[93739,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js","/graphql2mcp/_next/static/chunks/0.t0fansog7g2.js","/graphql2mcp/_next/static/chunks/0qy~g8woj8utk.js","/graphql2mcp/_next/static/chunks/04vyzu629zsyz.js","/graphql2mcp/_next/static/chunks/0bfrfjqh258ry.js"],"default"]\n1c:I[34764,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js","/graphql2mcp/_next/static/chunks/0.t0fansog7g2.js","/graphql2mcp/_next/static/chunks/0qy~g8woj8utk.js","/graphql2mcp/_next/static/chunks/04vyzu629zsyz.js","/graphql2mcp/_next/static/chunks/0bfrfjqh258ry.js"],"CodeBlock"]\n1d:I[34764,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js","/graphql2mcp/_next/static/chunks/0.t0fansog7g2.js","/graphql2mcp/_next/static/chunks/0qy~g8woj8utk.js","/graphql2mcp/_next/static/chunks/04vyzu629zsyz.js","/graphql2mcp/_next/static/chunks/0bfrfjqh258ry.js"],"Pre"]\n'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                'e:["$","$L17",null,{"toc":[{"depth":2,"url":"#installation","title":"Installation"},{"depth":3,"url":"#cli-proxy-standalone-server","title":"CLI Proxy (standalone server)"},{"depth":3,"url":"#library-integrate-into-existing-mcp-server","title":"Library (integrate into existing MCP server)"},{"depth":2,"url":"#your-first-mcp-server","title":"Your First MCP Server"},{"depth":3,"url":"#from-a-url","title":"From a URL"},{"depth":3,"url":"#from-an-sdl-file","title":"From an SDL File"},{"depth":3,"url":"#from-code","title":"From Code"},{"depth":2,"url":"#whats-next","title":"What\'s Next"}],"children":[["$","$L18",null,{"children":"Getting Started"}],["$","$L19",null,{"children":"Install graphql2mcp and convert your first GraphQL schema into an MCP server."}],["$","$L1a",null,{"children":[["$","p",null,{"children":["This guide walks you through installing ",["$","code",null,{"children":"graphql2mcp"}]," and converting your first GraphQL schema into an MCP server."]}],"\\n",["$","h2",null,{"className":"flex scroll-m-28 flex-row items-center gap-2","id":"installation","children":[["$","a",null,{"data-card":"","href":"#installation","className":"peer","children":"Installation"}],["$","$L1b",null,{"ref":"$undefined","iconNode":[["path",{"d":"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71","key":"1cjeqo"}],["path",{"d":"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71","key":"19qd67"}]],"className":"lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100","aria-hidden":true}]]}],"\\n",["$","h3",null,{"className":"flex scroll-m-28 flex-row items-center gap-2","id":"cli-proxy-standalone-server","children":[["$","a",null,{"data-card":"","href":"#cli-proxy-standalone-server","className":"peer","children":"CLI Proxy (standalone server)"}],["$","$L1b",null,{"ref":"$undefined","iconNode":"$e:props:children:2:props:children:2:props:children:1:props:iconNode","className":"lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100","aria-hidden":true}]]}],"\\n",["$","p",null,{"children":["Run directly with ",["$","code",null,{"children":"npx"}]," (no install needed):"]}],"\\n",["$","$L1c",null,{"className":"shiki shiki-themes github-light github-dark","style":{"--shiki-light":"#24292e","--shiki-dark":"#e1e4e8","--shiki-light-bg":"#fff","--shiki-dark-bg":"#24292e"},"tabIndex":"0","icon":"\u003csvg viewBox=\\"0 0 24 24\\"\u003e\u003cpath d=\\"m 4,4 a 1,1 0 0 0 -0.7070312,0.2929687 1,1 0 0 0 0,1.4140625 L 8.5859375,11 3.2929688,16.292969 a 1,1 0 0 0 0,1.414062 1,1 0 0 0 1.4140624,0 l 5.9999998,-6 a 1.0001,1.0001 0 0 0 0,-1.414062 L 4.7070312,4.2929687 A 1,1 0 0 0 4,4 Z m 8,14 a 1,1 0 0 0 -1,1 1,1 0 0 0 1,1 h 8 a 1,1 0 0 0 1,-1 1,1 0 0 0 -1,-1 z\\" fill=\\"currentColor\\" /\u003e\u003c/svg\u003e","children":["$","$L1d",null,{"children":["$","code",null,{"children":["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"npx"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" graphql2mcp"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://api.example.com/graphql"}]]}]}]}]}],"\\n",["$","p",null,{"children":"Or install globally:"}],"\\n",["$","$L1c",null,{"className":"shiki shiki-themes github-light github-dark","style":{"--shiki-light":"#24292e","--shiki-dark":"#e1e4e8","--shiki-light-bg":"#fff","--shiki-dark-bg":"#24292e"},"tabIndex":"0","icon":"\u003csvg viewBox=\\"0 0 24 24\\"\u003e\u003cpath d=\\"m 4,4 a 1,1 0 0 0 -0.7070312,0.2929687 1,1 0 0 0 0,1.4140625 L 8.5859375,11 3.2929688,16.292969 a 1,1 0 0 0 0,1.414062 1,1 0 0 0 1.4140624,0 l 5.9999998,-6 a 1.0001,1.0001 0 0 0 0,-1.414062 L 4.7070312,4.2929687 A 1,1 0 0 0 4,4 Z m 8,14 a 1,1 0 0 0 -1,1 1,1 0 0 0 1,1 h 8 a 1,1 0 0 0 1,-1 1,1 0 0 0 -1,-1 z\\" fill=\\"currentColor\\" /\u003e\u003c/svg\u003e","children":["$","$L1d",null,{"children":["$","code",null,{"children":["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"npm"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" install"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -g"}],"$L1e"]}]}]}]}],"\\n","$L1f","\\n","$L20","\\n","$L21","\\n","$L22","\\n","$L23","\\n","$L24","\\n","$L25","\\n","$L26","\\n","$L27","\\n","$L28","\\n","$L29","\\n","$L2a","\\n","$L2b","\\n","$L2c","\\n","$L2d","\\n","$L2e","\\n","$L2f","\\n","$L30","\\n","$L31","\\n","$L32"]}]]}]\n'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                '4e:I[539,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js","/graphql2mcp/_next/static/chunks/0.t0fansog7g2.js","/graphql2mcp/_next/static/chunks/0qy~g8woj8utk.js","/graphql2mcp/_next/static/chunks/04vyzu629zsyz.js","/graphql2mcp/_next/static/chunks/0bfrfjqh258ry.js"],"default"]\n1e:["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" graphql2mcp"}]\n1f:["$","h3",null,{"className":"flex scroll-m-28 flex-row items-center gap-2","id":"library-integrate-into-existing-mcp-server","children":[["$","a",null,{"data-card":"","href":"#library-integrate-into-existing-mcp-server","className":"peer","children":"Library (integrate into existing MCP server)"}],["$","$L1b",null,{"ref":"$undefined","iconNode":"$e:props:children:2:props:children:2:props:children:1:props:iconNode","className":"lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100","aria-hidden":true}]]}]\n20:["$","$L1c",null,{"className":"shiki shiki-themes github-light github-dark","style":{"--shiki-light":"#24292e","--shiki-dark":"#e1e4e8","--shiki-light-bg":"#fff","--shiki-dark-bg":"#24292e"},"tabIndex":"0","icon":"\u003csvg viewBox=\\"0 0 24 24\\"\u003e\u003cpath d=\\"m 4,4 a 1,1 0 0 0 -0.7070312,0.2929687 1,1 0 0 0 0,1.4140625 L 8.5859375,11 3.2929688,16.292969 a 1,1 0 0 0 0,1.414062 1,1 0 0 0 1.4140624,0 l 5.9999998,-6 a 1.0001,1.0001 0 0 0 0,-1.414062 L 4.7070312,4.2929687 A 1,1 0 0 0 4,4 Z m 8,14 a 1,1 0 0 0 -1,1 1,1 0 0 0 1,1 h 8 a 1,1 0 0 0 1,-1 1,1 0 0 0 -1,-1 z\\" fill=\\"currentColor\\" /\u003e\u003c/svg\u003e","children":["$","$L1d",null,{"children":["$","code",null,{"children":["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"npm"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" install"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" @graphql2mcp/lib"}]]}]}]}]}]\n21:["$","h2",null,{"className":"flex scroll-m-28 flex-row items-center gap-2","id":"your-first-mcp-server","children":[["$","a",null,{"data-card":"","href":"#your-first-mcp-server","className":"peer","children":"Your First MCP Server"}],["$","$L1b",null,{"ref":"$undefined","iconNode":"$e:props:children:2:props:children:2:props:children:1:props:iconNode","className":"lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100","aria-hidden":true}]]}]\n22:["$","h3",null,{"className":"flex scroll-m-28 flex-row items-center gap-2","id":"from-a-url","children":[["$","a",null,{"data-card":"","href":"#from-a-url","className":"peer","children":"From a URL"}],["$","$L1b",null,{"ref":"$undefined","iconNode":"$e:props:children:2:props:children:2:props:children:1:props:iconNode","className":"lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100","aria-hidden":true}]]}]\n23:["$","p",null,{"children":"The simplest way to get started is to point at a GraphQL endpoint. The CLI will introspect the schema and start an MCP server:"}]\n24:["$","$L1c",null,{"className":"shiki shiki-themes github-light github-dark","style":{"--shiki-light":"#24292e","--shiki-dark":"#e1e4e8","--shiki-light-bg":"#fff","--shiki-dark-bg":"#24292e"},"tabIndex":"0","icon":"\u003csvg viewBox=\\"0 0 24 24\\"\u003e\u003cpath d=\\"m 4,4 a 1,1 0 0 0 -0.7070312,0.2929687 1,1 0 0 0 0,1.4140625 L 8.5859375,11 3.2929688,16.292969 a 1,1 0 0 0 0,1.414062 1,1 0 0 0 1.4140624,0 l 5.9999998,-6 a 1.0001,1.0001 0 0 0 0,-1.414062 L 4.7070312,4.2929687 A 1,1 0 0 0 4,4 Z m 8,14 a 1,1 0 0 0 -1,1 1,1 0 0 0 1,1 h 8 a 1,1 0 0 0 1,-1 1,1 0 0 0 -1,-1 z\\" fill=\\"currentColor\\" /\u003e\u003c/svg\u003e","children":["$","$L1d",null,{"children":["$","code",null,{"children":["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"npx"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" graphql2mcp"}],["$"'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                ',"span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://countries.trevorblades.com/graphql"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -t"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" http"}]]}]}]}]}]\n25:["$","p",null,{"children":"This creates MCP tools for every query in the schema and starts a Streamable HTTP server on port 3000, ready for any MCP client."}]\n26:["$","p",null,{"children":"For desktop MCP clients like Claude Desktop or Cursor that expect stdio transport:"}]\n27:["$","$L1c",null,{"className":"shiki shiki-themes github-light github-dark","style":{"--shiki-light":"#24292e","--shiki-dark":"#e1e4e8","--shiki-light-bg":"#fff","--shiki-dark-bg":"#24292e"},"tabIndex":"0","icon":"\u003csvg viewBox=\\"0 0 24 24\\"\u003e\u003cpath d=\\"m 4,4 a 1,1 0 0 0 -0.7070312,0.2929687 1,1 0 0 0 0,1.4140625 L 8.5859375,11 3.2929688,16.292969 a 1,1 0 0 0 0,1.414062 1,1 0 0 0 1.4140624,0 l 5.9999998,-6 a 1.0001,1.0001 0 0 0 0,-1.414062 L 4.7070312,4.2929687 A 1,1 0 0 0 4,4 Z m 8,14 a 1,1 0 0 0 -1,1 1,1 0 0 0 1,1 h 8 a 1,1 0 0 0 1,-1 1,1 0 0 0 -1,-1 z\\" fill=\\"currentColor\\" /\u003e\u003c/svg\u003e","children":["$","$L1d",null,{"children":["$","code",null,{"children":["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"npx"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" graphql2mcp"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://countries.trevorblades.com/graphql"}]]}]}]}]}]\n28:["$","h3",null,{"className":"flex scroll-m-28 flex-row items-center gap-2","id":"from-an-sdl-file","children":[["$","a",null,{"data-card":"","href":"#from-an-sdl-file","className":"peer","children":"From an SDL File"}],["$","$L1b",null,{"ref":"$undefined","iconNode":"$e:props:children:2:props:children:2:props:children:1:props:iconNode","className":"lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100","aria-hidden":true}]]}]\n29:["$","p",null,{"children":["If you have a local ",["$","code",null,{"children":".graphql"}]," schema file, provide a file path and an execution endpoint:"]}]\n2a:["$","$L1c",null,{"className":"shiki shiki-themes github-light github-dark","style":{"--shiki-light":"#24292e","--shiki-dark":"#e1e4e8","--shiki-light-bg":"#fff","--shiki-dark-bg":"#24292e"},"tabIndex":"0","icon":"\u003csvg viewBox=\\"0 0 24 24\\"\u003e\u003cpath d=\\"m 4,4 a 1,1 0 0 0 -0.7070312,0.2929687 1,1 0 0 0 0,1.4140625 L 8.5859375,11 3.2929688,16.292969 a 1,1 0 0 0 0,1.414062 1,1 0 0 0 1.4140624,0 l 5.9999998,-6 a 1.0001,1.0001 0 0 0 0,-1.414062 L 4.7070312,4.2929687 A 1,1 0 0 0 4,4 Z m 8,14 a 1,1 0 0 0 -1,1 1,1 0 0 0 1,1 h 8 a 1,1 0 0 0 1,-1 1,1 0 0 0 -1,-1 z\\" fill=\\"currentColor\\" /\u003e\u003c/svg\u003e","children":["$","$L1d",null,{"children":["$","code",null,{"children":["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"npx"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" graphql2mcp"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" ./schema.graphql"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -e"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://api.example.com/graphql"}]]}]}]}]}]\n2b:["$","p",null,{"children":["Here is an example ",["$","code",null,{"children":"schema.graphql"}],":"]}]\n'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                '2c:["$","$L1c",null,{"className":"shiki shiki-themes github-light github-dark","style":{"--shiki-light":"#24292e","--shiki-dark":"#e1e4e8","--shiki-light-bg":"#fff","--shiki-dark-bg":"#24292e"},"tabIndex":"0","icon":"\u003csvg viewBox=\\"0 0 24 24\\"\u003e\u003cpath d=\\"M12.002 0a2.138 2.138 0 1 0 0 4.277 2.138 2.138 0 1 0 0-4.277zm8.54 4.931a2.138 2.138 0 1 0 0 4.277 2.138 2.138 0 1 0 0-4.277zm0 9.862a2.138 2.138 0 1 0 0 4.277 2.138 2.138 0 1 0 0-4.277zm-8.54 4.931a2.138 2.138 0 1 0 0 4.276 2.138 2.138 0 1 0 0-4.276zm-8.542-4.93a2.138 2.138 0 1 0 0 4.276 2.138 2.138 0 1 0 0-4.277zm0-9.863a2.138 2.138 0 1 0 0 4.277 2.138 2.138 0 1 0 0-4.277zm8.542-3.378L2.953 6.777v10.448l9.049 5.224 9.047-5.224V6.777zm0 1.601 7.66 13.27H4.34zm-1.387.371L3.97 15.037V7.363zm2.774 0 6.646 3.838v7.674zM5.355 17.44h13.293l-6.646 3.836z\\" fill=\\"currentColor\\" /\u003e\u003c/svg\u003e","children":["$","$L1d",null,{"children":["$","code",null,{"children":[["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"type"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" Query"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" {"}]]}],"\\n",["$","span",null,{"className":"line","children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"    \\"Get a user by ID\\""}]}],"\\n",["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#E36209","--shiki-dark":"#FFAB70"},"children":"    user"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"("}],["$","span",null,{"style":{"--shiki-light":"#E36209","--shiki-dark":"#FFAB70"},"children":"id"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"ID"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"!"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"): "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"User"}]]}],"\\n",["$","span",null,{"className":"line","children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"    \\"List all users with optional pagination\\""}]}],"\\n",["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#E36209","--shiki-dark":"#FFAB70"},"children":"    users"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"("}],["$","span",null,{"style":{"--shiki-light":"#E36209","--shiki-dark":"#FFAB70"},"children":"limit"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"Int"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":", "}],["$","span",null,{"style":{"--shiki-light":"#E36209","--shiki-dark":"#FFAB70"},"children":"offset"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"Int"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"): ["}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"User"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"!"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"]"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"!"}]]}],"\\n",["$","span",null,{"className":"line","children":["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"}"}]}],"\\n",["$","span",null,{"className":"line"}],"\\n",["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"type"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" User"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" {"}]]}],"\\n",["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#E36209","--shiki-dark":"#FFAB70"},"children":"    id"}],"$L33","$L34","$L35"]}],"\\n","$L36","\\n","$L37","\\n","$L38","\\n","$L39","\\n","$L3a","\\n","$L3b","\\n","$L3c","\\n","$L3d","\\n","$L3e","\\n","$L3f"]}]}]}]\n'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                '2d:["$","p",null,{"children":["The CLI generates MCP tools named ",["$","code",null,{"children":"query_user"}]," and ",["$","code",null,{"children":"query_users"}],", each with a Zod input schema matching the GraphQL arguments."]}]\n2e:["$","h3",null,{"className":"flex scroll-m-28 flex-row items-center gap-2","id":"from-code","children":[["$","a",null,{"data-card":"","href":"#from-code","className":"peer","children":"From Code"}],["$","$L1b",null,{"ref":"$undefined","iconNode":"$e:props:children:2:props:children:2:props:children:1:props:iconNode","className":"lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100","aria-hidden":true}]]}]\n2f:["$","p",null,{"children":"If you have an existing MCP server and want to add GraphQL tools alongside your own:"}]\n40:T4dc,\u003csvg viewBox="0 0 24 24"\u003e\u003cpath d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z" fill="currentColor" /\u003e\u003c/svg\u003e'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                '30:["$","$L1c",null,{"className":"shiki shiki-themes github-light github-dark","style":{"--shiki-light":"#24292e","--shiki-dark":"#e1e4e8","--shiki-light-bg":"#fff","--shiki-dark-bg":"#24292e"},"tabIndex":"0","icon":"$40","children":["$","$L1d",null,{"children":["$","code",null,{"children":[["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"import"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" { McpServer } "}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"from"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \'@modelcontextprotocol/sdk/server/mcp.js\'"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":";"}]]}],"\\n",["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"import"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" { StreamableHTTPServerTransport } "}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"from"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \'@modelcontextprotocol/sdk/server/streamableHttp.js\'"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":";"}]]}],"\\n",["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"import"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" { registerGraphQLTools } "}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"from"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \'@graphql2mcp/lib\'"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":";"}]]}],"\\n",["$","span",null,{"className":"line"}],"\\n",["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"const"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" server"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":" ="}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":" new"}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":" McpServer"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"({ name: "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\'my-server\'"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":", version: "}],"$L41","$L42"]}],"\\n","$L43","\\n","$L44","\\n","$L45","\\n","$L46","\\n","$L47","\\n","$L48","\\n","$L49","\\n","$L4a","\\n","$L4b","\\n","$L4c","\\n","$L4d"]}]}]}]\n'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                '31:["$","h2",null,{"className":"flex scroll-m-28 flex-row items-center gap-2","id":"whats-next","children":[["$","a",null,{"data-card":"","href":"#whats-next","className":"peer","children":"What\'s Next"}],["$","$L1b",null,{"ref":"$undefined","iconNode":"$e:props:children:2:props:children:2:props:children:1:props:iconNode","className":"lucide-link size-3.5 shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100","aria-hidden":true}]]}]\n32:["$","ul",null,{"children":["\\n",["$","li",null,{"children":[["$","$L4e",null,{"href":"/docs/cli","children":"CLI Reference"}]," -- all flags, options, and usage patterns"]}],"\\n",["$","li",null,{"children":[["$","$L4e",null,{"href":"/docs/library","children":"Library Mode"}]," -- integrate into existing MCP servers"]}],"\\n",["$","li",null,{"children":[["$","$L4e",null,{"href":"/docs/mutations","children":"Mutations"}]," -- configure which mutations are exposed as tools"]}],"\\n",["$","li",null,{"children":[["$","$L4e",null,{"href":"/docs/architecture","children":"Architecture"}]," -- how GraphQL schemas become MCP tools"]}],"\\n"]}]\n'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                '33:["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}]\n34:["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"ID"}]\n35:["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"!"}]\n36:["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#E36209","--shiki-dark":"#FFAB70"},"children":"    name"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"String"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"!"}]]}]\n37:["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#E36209","--shiki-dark":"#FFAB70"},"children":"    email"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"String"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"!"}]]}]\n38:["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#E36209","--shiki-dark":"#FFAB70"},"children":"    role"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"Role"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"!"}]]}]\n39:["$","span",null,{"className":"line","children":["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"}"}]}]\n3a:["$","span",null,{"className":"line"}]\n3b:["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"enum"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" Role"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" {"}]]}]\n3c:["$","span",null,{"className":"line","children":["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"    ADMIN"}]}]\n3d:["$","span",null,{"className":"line","children":["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"    USER"}]}]\n3e:["$","span",null,{"className":"line","children":["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"    MODERATOR"}]}]\n3f:["$","span",null,{"className":"line","children":["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"}"}]}]\n41:["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\'1.0.0\'"}]\n42:["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" });"}]\n43:["$","span",null,{"className":"line"}]\n44:["$","span",null,{"className":"line","children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"// Register GraphQL tools from a schema"}]}]\n45:["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"const"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" result"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":" ="}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":" registerGraphQLTools"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"(server, {"}]]}]\n46:["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"    source: "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\'./schema.graphq'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                'l\'"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":","}]]}]\n47:["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"    endpoint: "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\'https://api.example.com/graphql\'"}]]}]\n48:["$","span",null,{"className":"line","children":["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"});"}]}]\n49:["$","span",null,{"className":"line"}]\n4a:["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"console."}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"error"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"("}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"`Registered ${"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"result"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"."}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"count"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"} tools`"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":");"}]]}]\n4b:["$","span",null,{"className":"line"}]\n4c:["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"const"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" transport"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":" ="}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":" new"}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":" StreamableHTTPServerTransport"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"({ sessionIdGenerator: "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"undefined"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" });"}]]}]\n4d:["$","span",null,{"className":"line","children":[["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"await"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" server."}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"connect"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"(transport);"}]]}]\n'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                '14:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]\n'
+            ]);
+        </script>
+        <script>
+            self.__next_f.push([
+                1,
+                '4f:I[62317,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js"],"IconMark"]\n11:null\n16:[["$","title","0",{"children":"graphql2mcp"}],["$","meta","1",{"name":"description","content":"Convert GraphQL schemas and endpoints into MCP servers"}],["$","meta","2",{"property":"og:title","content":"graphql2mcp"}],["$","meta","3",{"property":"og:description","content":"Convert GraphQL schemas and endpoints into MCP servers"}],["$","meta","4",{"property":"og:url","content":"https://kkonstantinov.github.io/graphql2mcp/"}],["$","meta","5",{"property":"og:type","content":"website"}],["$","meta","6",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","7",{"name":"twitter:title","content":"graphql2mcp"}],["$","meta","8",{"name":"twitter:description","content":"Convert GraphQL schemas and endpoints into MCP servers"}],["$","link","9",{"rel":"icon","href":"/graphql2mcp/favicon.svg"}],["$","$L4f","10",{}]]\n'
+            ]);
+        </script>
+    </body>
+</html>

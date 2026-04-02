@@ -2,6 +2,7 @@ packages:
     - 'packages/core'
     - 'packages/proxy'
     - 'packages/lib'
+    - 'packages/site'
     - 'examples/*'
 
 overrides:
