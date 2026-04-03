@@ -2,6 +2,8 @@
 
 [![npm version](https://img.shields.io/npm/v/graphql2mcp)](https://www.npmjs.com/package/graphql2mcp)
 
+**[Documentation](https://graphql2mcp.vercel.app/docs/cli)**
+
 Standalone CLI proxy that converts GraphQL endpoints into MCP (Model Context Protocol) servers. Point it at a GraphQL endpoint and get an MCP server with tools mapped from queries and mutations.
 
 ## Install

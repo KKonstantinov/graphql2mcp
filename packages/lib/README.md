@@ -2,6 +2,8 @@
 
 [![npm version](https://img.shields.io/npm/v/@graphql2mcp/lib)](https://www.npmjs.com/package/@graphql2mcp/lib)
 
+**[Documentation](https://graphql2mcp.vercel.app/docs/library)**
+
 Library for integrating GraphQL-to-MCP conversion into existing TypeScript MCP servers. Register GraphQL-backed tools on your own `McpServer` instance alongside your custom tools.
 
 ## Install

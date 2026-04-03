@@ -3,12 +3,12 @@
     "pages": [
         "---Guide---",
         "getting-started",
-        "cli",
         "library",
+        "cli",
         "mutations",
         "---Packages---",
-        "packages/proxy",
         "packages/lib",
+        "packages/proxy",
         "---Reference---",
         "architecture"
     ]

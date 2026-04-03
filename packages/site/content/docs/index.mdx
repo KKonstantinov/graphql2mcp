@@ -14,22 +14,7 @@ the tool, the tool executes the GraphQL query, and the result comes back as stru
 
 ## Quick Start
 
-One command. No code.
-
-```bash
-npx graphql2mcp https://countries.trevorblades.com/graphql -t http
-```
-
-This introspects the endpoint, generates MCP tools for every query, and starts a Streamable HTTP server on port 3000. An AI agent connected
-to this server can now call tools like `query_countries` and `query_country`.
-
-Use stdio transport instead for desktop MCP clients like Claude Desktop or Cursor:
-
-```bash
-npx graphql2mcp https://countries.trevorblades.com/graphql
-```
-
-## Library Mode
+### Library Mode
 
 Already have an MCP server? Add GraphQL tools alongside your existing tools:
 
@@ -48,6 +33,23 @@ registerGraphQLTools(server, {
 
 Every query in the schema becomes a tool. The agent sends arguments, the tool builds and executes the GraphQL query, and the result is
 returned as JSON text.
+
+### CLI Proxy
+
+One command. No code.
+
+```bash
+npx graphql2mcp https://countries.trevorblades.com/graphql -t http
+```
+
+This introspects the endpoint, generates MCP tools for every query, and starts a Streamable HTTP server on port 3000. An AI agent connected
+to this server can now call tools like `query_countries` and `query_country`.
+
+Use stdio transport instead for desktop MCP clients like Claude Desktop or Cursor:
+
+```bash
+npx graphql2mcp https://countries.trevorblades.com/graphql
+```
 
 ## Mutation Control
 
@@ -129,8 +131,8 @@ flowchart TD
 
 | Package                             | Description                                                      |
 | ----------------------------------- | ---------------------------------------------------------------- |
-| [`graphql2mcp`](/docs/cli)          | Standalone CLI proxy — run any GraphQL endpoint as an MCP server |
 | [`@graphql2mcp/lib`](/docs/library) | Library for adding GraphQL tools to an existing MCP server       |
+| [`graphql2mcp`](/docs/cli)          | Standalone CLI proxy — run any GraphQL endpoint as an MCP server |
 
 ## Runtime Compatibility
 
