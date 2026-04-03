@@ -6,6 +6,11 @@ docs/packages/
 
 # Build output
 **/dist/
+packages/site/out/
+packages/site/.next/
+
+# Auto-generated
+packages/site/next-env.d.ts
 
 # Lock files
 pnpm-lock.yaml

@@ -1,6 +1,10 @@
-# Mutation Configuration
+---
+title: Mutation Configuration
+description: Configure which GraphQL mutations are exposed as MCP tools with three mutation modes.
+---
 
-By default, only GraphQL queries are exposed as MCP tools. Mutations are opt-in because they modify data and AI agents should not accidentally trigger destructive operations.
+By default, only GraphQL queries are exposed as MCP tools. Mutations are opt-in because they modify data and AI agents should not
+accidentally trigger destructive operations.
 
 ## Mutation Modes
 
@@ -97,11 +101,13 @@ const { tools } = generateTools({
 });
 ```
 
-Whitelisted names that do not match any mutation in the schema are silently ignored. This makes it safe to specify mutations that may not exist in all schema versions.
+Whitelisted names that do not match any mutation in the schema are silently ignored. This makes it safe to specify mutations that may not
+exist in all schema versions.
 
 ## Tool Annotations
 
-MCP tool annotations communicate the nature of each tool to AI agents and clients. `graphql2mcp` sets these automatically based on the operation type.
+MCP tool annotations communicate the nature of each tool to AI agents and clients. `graphql2mcp` sets these automatically based on the
+operation type.
 
 ### Query annotations
 
@@ -113,7 +119,8 @@ MCP tool annotations communicate the nature of each tool to AI agents and client
 }
 ```
 
-Queries are marked as read-only and non-destructive. This signals to AI agents that calling a query tool is safe and does not modify any data.
+Queries are marked as read-only and non-destructive. This signals to AI agents that calling a query tool is safe and does not modify any
+data.
 
 ### Mutation annotations
 
@@ -125,7 +132,8 @@ Queries are marked as read-only and non-destructive. This signals to AI agents t
 }
 ```
 
-Mutations are marked as non-read-only and potentially destructive. MCP clients may use this to require user confirmation before executing mutation tools.
+Mutations are marked as non-read-only and potentially destructive. MCP clients may use this to require user confirmation before executing
+mutation tools.
 
 ## Combining with Include/Exclude Filters
 

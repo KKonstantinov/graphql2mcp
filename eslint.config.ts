@@ -12,8 +12,7 @@ export default tseslint.config(
             '**/node_modules/',
             '**/bin/',
             '**/coverage/',
-            'docs/.vitepress/cache/',
-            'docs/.vitepress/dist/',
+            'packages/site/',
             'scripts/',
             '**/test/integration/bun.test.ts',
             '**/test/integration/deno.test.ts',
@@ -80,15 +79,6 @@ export default tseslint.config(
             '@typescript-eslint/require-await': 'off',
             // mockResolvedValue(undefined) is idiomatic in vitest
             'unicorn/no-useless-undefined': 'off'
-        }
-    },
-    // VitePress theme files use Vue APIs that don't resolve cleanly
-    {
-        files: ['docs/.vitepress/**/*.ts'],
-        rules: {
-            '@typescript-eslint/no-unsafe-call': 'off',
-            '@typescript-eslint/no-unsafe-return': 'off',
-            '@typescript-eslint/no-unsafe-assignment': 'off'
         }
     },
     // Prettier must be last to override all formatting rules

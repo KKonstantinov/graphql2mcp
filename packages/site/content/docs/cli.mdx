@@ -1,4 +1,7 @@
-# CLI Reference
+---
+title: CLI Reference
+description: The graphql2mcp CLI converts a GraphQL endpoint or schema file into a standalone MCP server.
+---
 
 The `graphql2mcp` CLI converts a GraphQL endpoint or schema file into a standalone MCP server.
 
@@ -95,7 +98,7 @@ graphql2mcp https://api.example.com/graphql \
   --mutation-whitelist createUser updateUser
 ```
 
-See the [Mutations guide](mutations.md) for details on mutation modes and tool annotations.
+See the [Mutations guide](/docs/mutations) for details on mutation modes and tool annotations.
 
 ### Filtering operations
 
@@ -133,7 +136,8 @@ graphql2mcp ./introspection.json -e https://api.example.com/graphql
 
 ### http (Streamable HTTP)
 
-The server starts an HTTP server using the MCP Streamable HTTP transport. This is the recommended transport for most use cases — remote clients, web-based agents, debugging, and production deployments.
+The server starts an HTTP server using the MCP Streamable HTTP transport. This is the recommended transport for most use cases — remote
+clients, web-based agents, debugging, and production deployments.
 
 ```bash
 graphql2mcp https://api.example.com/graphql -t http -p 3000
@@ -141,7 +145,8 @@ graphql2mcp https://api.example.com/graphql -t http -p 3000
 
 ### stdio
 
-The server communicates over stdin/stdout using the MCP stdio transport. Use this for desktop MCP clients like Claude Desktop and Cursor that launch the server as a subprocess.
+The server communicates over stdin/stdout using the MCP stdio transport. Use this for desktop MCP clients like Claude Desktop and Cursor
+that launch the server as a subprocess.
 
 Example Claude Desktop configuration (`claude_desktop_config.json`):
 
@@ -160,7 +165,8 @@ Example Claude Desktop configuration (`claude_desktop_config.json`):
 
 When the source is a URL, the same URL is used for both schema introspection and runtime query execution by default.
 
-When the source is a file, glob, or SDL string, you must specify the execution endpoint with `--endpoint` (`-e`). This is the URL where GraphQL queries will be sent at runtime.
+When the source is a file, glob, or SDL string, you must specify the execution endpoint with `--endpoint` (`-e`). This is the URL where
+GraphQL queries will be sent at runtime.
 
 You can also use `--endpoint` to override the execution URL when the introspection and execution endpoints differ:
 
