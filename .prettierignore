@@ -6,6 +6,8 @@ docs/packages/
 
 # Build output
 **/dist/
+packages/site/out/
+packages/site/.next/
 
 # Lock files
 pnpm-lock.yaml

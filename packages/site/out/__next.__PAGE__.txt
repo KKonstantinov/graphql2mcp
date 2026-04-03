@@ -1,6 +1,0 @@
-1:"$Sreact.fragment"
-3:I[7141,["/graphql2mcp/_next/static/chunks/1263-k~4_~ki3.js","/graphql2mcp/_next/static/chunks/0wo0zz4rhjzv8.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":["$L2",null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"kZR7FVU-xf4KtPoCkm2H_"}
-5:null
-2:E{"digest":"NEXT_REDIRECT;replace;/docs;307;"}

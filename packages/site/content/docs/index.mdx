@@ -5,9 +5,12 @@ description: Convert GraphQL schemas and endpoints into Model Context Protocol s
 
 ## Why?
 
-AI agents using MCP can call tools, but most APIs speak GraphQL — not MCP. Manually writing MCP tool definitions for every GraphQL query is tedious, error-prone, and falls out of sync as schemas evolve.
+AI agents using MCP can call tools, but most APIs speak GraphQL — not MCP. Manually writing MCP tool definitions for every GraphQL query is
+tedious, error-prone, and falls out of sync as schemas evolve.
 
-**graphql2mcp** reads your GraphQL schema (from a file, URL, or inline SDL) and automatically generates MCP tools with proper input validation, descriptions, and annotations. Each query becomes a callable tool. Each argument becomes a validated Zod input. The agent calls the tool, the tool executes the GraphQL query, and the result comes back as structured JSON.
+**graphql2mcp** reads your GraphQL schema (from a file, URL, or inline SDL) and automatically generates MCP tools with proper input
+validation, descriptions, and annotations. Each query becomes a callable tool. Each argument becomes a validated Zod input. The agent calls
+the tool, the tool executes the GraphQL query, and the result comes back as structured JSON.
 
 ## Quick Start
 
@@ -17,7 +20,8 @@ One command. No code.
 npx graphql2mcp https://countries.trevorblades.com/graphql -t http
 ```
 
-This introspects the endpoint, generates MCP tools for every query, and starts a Streamable HTTP server on port 3000. An AI agent connected to this server can now call tools like `query_countries` and `query_country`.
+This introspects the endpoint, generates MCP tools for every query, and starts a Streamable HTTP server on port 3000. An AI agent connected
+to this server can now call tools like `query_countries` and `query_country`.
 
 Use stdio transport instead for desktop MCP clients like Claude Desktop or Cursor:
 
@@ -42,7 +46,8 @@ registerGraphQLTools(server, {
 });
 ```
 
-Every query in the schema becomes a tool. The agent sends arguments, the tool builds and executes the GraphQL query, and the result is returned as JSON text.
+Every query in the schema becomes a tool. The agent sends arguments, the tool builds and executes the GraphQL query, and the result is
+returned as JSON text.
 
 ## Mutation Control
 
@@ -115,21 +120,22 @@ flowchart TD
 ```
 
 1. **Parse** — SDL string, `.graphql` file, or introspection result is loaded into a `GraphQLSchema`
-2. **Map** — Each argument type is converted to a Zod schema (String to `z.string()`, Int to `z.number().int()`, enums to `z.enum()`, input objects to `z.object()`)
+2. **Map** — Each argument type is converted to a Zod schema (String to `z.string()`, Int to `z.number().int()`, enums to `z.enum()`, input
+   objects to `z.object()`)
 3. **Select** — Return types are traversed to build field selection sets with configurable depth
 4. **Register** — Each query/mutation becomes an MCP tool with validated inputs, a description, and annotations
 
 ## Packages
 
-| Package | Description |
-| --- | --- |
-| [`graphql2mcp`](/docs/cli) | Standalone CLI proxy — run any GraphQL endpoint as an MCP server |
-| [`@graphql2mcp/lib`](/docs/library) | Library for adding GraphQL tools to an existing MCP server |
+| Package                             | Description                                                      |
+| ----------------------------------- | ---------------------------------------------------------------- |
+| [`graphql2mcp`](/docs/cli)          | Standalone CLI proxy — run any GraphQL endpoint as an MCP server |
+| [`@graphql2mcp/lib`](/docs/library) | Library for adding GraphQL tools to an existing MCP server       |
 
 ## Runtime Compatibility
 
-| Runtime | Version | Status |
-| --- | --- | --- |
-| Node.js | >= 22 | Full support (proxy, lib, core) |
-| Bun | >= 1.2 | Core package tested |
-| Deno | >= 2.0 | Core package tested |
+| Runtime | Version | Status                          |
+| ------- | ------- | ------------------------------- |
+| Node.js | >= 22   | Full support (proxy, lib, core) |
+| Bun     | >= 1.2  | Core package tested             |
+| Deno    | >= 2.0  | Core package tested             |

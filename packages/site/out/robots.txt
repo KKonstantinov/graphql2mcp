@@ -1,4 +1,0 @@
-User-Agent: *
-Allow: /
-
-Sitemap: https://kkonstantinov.github.io/graphql2mcp/sitemap.xml
