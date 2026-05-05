@@ -2,13 +2,14 @@
 
 [![npm version](https://img.shields.io/npm/v/graphql2mcp.svg)](https://www.npmjs.com/package/graphql2mcp) [![npm downloads](https://img.shields.io/npm/dm/graphql2mcp.svg)](https://www.npmjs.com/package/graphql2mcp)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/) [![license](https://img.shields.io/npm/l/graphql2mcp)](https://github.com/KKonstantinov/graphql2mcp/blob/main/LICENSE)
+[![docs](https://img.shields.io/badge/docs-graphql2mcp.vercel.app-blue)](https://graphql2mcp.vercel.app/docs)
 
 Convert GraphQL schemas and endpoints into [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) servers. Point at any GraphQL API and get an MCP server with tools mapped from queries and mutations.
 
 ## Features
 
-- **Zero config proxy** — pass a GraphQL endpoint URL and get an MCP server with every query as a tool
 - **Library mode** — add GraphQL-backed tools to your existing TypeScript MCP server with one function call
+- **Zero config proxy** — pass a GraphQL endpoint URL and get an MCP server with every query as a tool
 - **Mutation control** — expose all mutations, none, or an explicit whitelist
 - **MCP tool annotations** — queries get `readOnlyHint: true`, mutations get `destructiveHint: true`
 - **Multiple schema sources** — SDL files, globs, introspection JSON, inline SDL strings, or live URL introspection
@@ -17,26 +18,6 @@ Convert GraphQL schemas and endpoints into [Model Context Protocol](https://mode
 - **ESM only** — modern, tree-shakeable, with complete TypeScript types
 
 ## Quick Start
-
-### Proxy Mode
-
-Run against a live GraphQL endpoint (introspects the schema automatically):
-
-```bash
-npx graphql2mcp https://api.example.com/graphql -t http
-```
-
-This starts a Streamable HTTP MCP server on port 3000. For stdio transport (used by Claude Desktop, Cursor), omit the `-t http` flag:
-
-```bash
-npx graphql2mcp https://api.example.com/graphql
-```
-
-Or from a local SDL file:
-
-```bash
-npx graphql2mcp schema.graphql -e https://api.example.com/graphql -t http
-```
 
 ### Library Mode
 
@@ -83,15 +64,35 @@ for (const tool of tools) {
 }
 ```
 
+### Proxy Mode
+
+Run against a live GraphQL endpoint (introspects the schema automatically):
+
+```bash
+npx graphql2mcp https://api.example.com/graphql -t http
+```
+
+This starts a Streamable HTTP MCP server on port 3000. For stdio transport (used by Claude Desktop, Cursor), omit the `-t http` flag:
+
+```bash
+npx graphql2mcp https://api.example.com/graphql
+```
+
+Or from a local SDL file:
+
+```bash
+npx graphql2mcp schema.graphql -e https://api.example.com/graphql -t http
+```
+
 ## Packages
 
 This is a monorepo managed with [pnpm workspaces](https://pnpm.io/workspaces):
 
 | Package                               | Description                                                                             |
 | ------------------------------------- | --------------------------------------------------------------------------------------- |
-| [`graphql2mcp`](packages/proxy/)      | Standalone CLI proxy — point at a GraphQL endpoint, get an MCP server                   |
-| [`@graphql2mcp/core`](packages/core/) | Shared engine — schema loading, tool generation, execution, and MCP server registration |
 | [`@graphql2mcp/lib`](packages/lib/)   | Library for integrating into existing TypeScript MCP servers                            |
+| [`@graphql2mcp/core`](packages/core/) | Shared engine — schema loading, tool generation, execution, and MCP server registration |
+| [`graphql2mcp`](packages/proxy/)      | Standalone CLI proxy — point at a GraphQL endpoint, get an MCP server                   |
 
 ## How It Works
 

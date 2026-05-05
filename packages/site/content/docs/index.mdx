@@ -1,37 +1,6 @@
 ---
-layout: home
-
-hero:
-    name: graphql2mcp
-    tagline: Convert GraphQL schemas and endpoints into Model Context Protocol servers. Let AI agents talk to any GraphQL API.
-    actions:
-        - theme: brand
-          text: Get Started
-          link: /getting-started
-        - theme: alt
-          text: Architecture
-          link: /architecture
-        - theme: alt
-          text: GitHub
-          link: https://github.com/KKonstantinov/graphql2mcp
-
-features:
-    - title: CLI Proxy
-      details: Point at a GraphQL endpoint URL or SDL file and get a fully functional MCP server in one command. Zero code required.
-    - title: Library Mode
-      details: Import into your existing TypeScript MCP server and register GraphQL tools alongside your own custom tools.
-    - title: Mutation Control
-      details: Expose all mutations, none, or an explicit whitelist. Each mode sets appropriate MCP tool annotations automatically.
-    - title: Multi-endpoint
-      details: Combine multiple GraphQL APIs into a single MCP server with per-endpoint prefixes to avoid tool name collisions.
-    - title: Auth Headers
-      details: Pass Authorization headers, API keys, or any custom headers for both schema introspection and runtime execution.
-    - title: Automatic Type Mapping
-      details: GraphQL scalars, enums, input objects, lists, and non-null wrappers are mapped to Zod schemas for validated tool inputs.
-    - title: Smart Selection Sets
-      details: Return types are traversed to generate field selections with configurable depth, including inline fragments for unions and interfaces.
-    - title: Node.js, Bun, Deno
-      details: ESM-only, fully typed, works in any JavaScript runtime that supports ES2022. Core package tested on all three runtimes.
+title: graphql2mcp
+description: Convert GraphQL schemas and endpoints into Model Context Protocol servers. Let AI agents talk to any GraphQL API.
 ---
 
 ## Why?
@@ -43,21 +12,7 @@ tool, the tool executes the GraphQL query, and the result comes back as structur
 
 ## Quick Start
 
-One command. No code.
-
-```bash
-npx graphql2mcp https://countries.trevorblades.com/graphql -t http
-```
-
-This introspects the endpoint, generates MCP tools for every query, and starts a Streamable HTTP server on port 3000. An AI agent connected to this server can now call tools like `query_countries` and `query_country`.
-
-Use stdio transport instead for desktop MCP clients like Claude Desktop or Cursor:
-
-```bash
-npx graphql2mcp https://countries.trevorblades.com/graphql
-```
-
-## Library Mode
+### Library Mode
 
 Already have an MCP server? Add GraphQL tools alongside your existing tools:
 
@@ -75,6 +30,22 @@ registerGraphQLTools(server, {
 ```
 
 Every query in the schema becomes a tool. The agent sends arguments, the tool builds and executes the GraphQL query, and the result is returned as JSON text.
+
+### CLI Proxy
+
+One command. No code.
+
+```bash
+npx graphql2mcp https://countries.trevorblades.com/graphql -t http
+```
+
+This introspects the endpoint, generates MCP tools for every query, and starts a Streamable HTTP server on port 3000. An AI agent connected to this server can now call tools like `query_countries` and `query_country`.
+
+Use stdio transport instead for desktop MCP clients like Claude Desktop or Cursor:
+
+```bash
+npx graphql2mcp https://countries.trevorblades.com/graphql
+```
 
 ## Mutation Control
 
@@ -153,10 +124,10 @@ flowchart TD
 
 ## Packages
 
-| Package                        | Description                                                      |
-| ------------------------------ | ---------------------------------------------------------------- |
-| [`graphql2mcp`](/cli)          | Standalone CLI proxy — run any GraphQL endpoint as an MCP server |
-| [`@graphql2mcp/lib`](/library) | Library for adding GraphQL tools to an existing MCP server       |
+| Package                             | Description                                                      |
+| ----------------------------------- | ---------------------------------------------------------------- |
+| [`@graphql2mcp/lib`](/docs/library) | Library for adding GraphQL tools to an existing MCP server       |
+| [`graphql2mcp`](/docs/cli)          | Standalone CLI proxy — run any GraphQL endpoint as an MCP server |
 
 ## Runtime Compatibility
 

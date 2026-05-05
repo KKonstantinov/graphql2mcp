@@ -17,7 +17,9 @@
         "examples/*/test",
         "examples/*/*.config.ts",
         "*.config.ts",
-        "docs/.vitepress/**/*.ts"
+        "packages/site/src/**/*.ts",
+        "packages/site/src/**/*.tsx",
+        "packages/site/*.config.ts"
     ],
     "exclude": [
         "node_modules",
@@ -26,6 +28,9 @@
         "**/coverage",
         "**/test/integration/bun.test.ts",
         "**/test/integration/deno.test.ts",
-        "**/test/integration/node.test.mts"
+        "**/test/integration/node.test.mts",
+        "packages/site/.next",
+        "packages/site/out",
+        "packages/site/.source"
     ]
 }
