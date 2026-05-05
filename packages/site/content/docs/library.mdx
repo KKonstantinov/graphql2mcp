@@ -3,8 +3,7 @@ title: Library Mode
 description: Register GraphQL tools on an existing MCP server instance using @graphql2mcp/lib.
 ---
 
-The `@graphql2mcp/lib` package lets you register GraphQL tools on an existing MCP server instance. This is useful when you want to combine
-GraphQL tools with your own custom tools in a single server.
+The `@graphql2mcp/lib` package lets you register GraphQL tools on an existing MCP server instance. This is useful when you want to combine GraphQL tools with your own custom tools in a single server.
 
 ## Installation
 
@@ -34,8 +33,7 @@ await server.connect(transport);
 
 ## `registerGraphQLTools(server, options)`
 
-Registers GraphQL tools on an MCP server instance and returns metadata about the registered tools. Does not create or manage transports --
-the caller controls the server lifecycle.
+Registers GraphQL tools on an MCP server instance and returns metadata about the registered tools. Does not create or manage transports -- the caller controls the server lifecycle.
 
 **Parameters:**
 
@@ -46,8 +44,7 @@ the caller controls the server lifecycle.
 
 ## `getGraphQLTools(options)`
 
-Generates tools with bound execution handlers without registering them on a server. Use this when you need full control over how tools are
-registered, or when integrating with a non-standard MCP server.
+Generates tools with bound execution handlers without registering them on a server. Use this when you need full control over how tools are registered, or when integrating with a non-standard MCP server.
 
 ```typescript
 import { getGraphQLTools } from '@graphql2mcp/lib';
@@ -279,8 +276,7 @@ type MutationMode = 'none' | 'all' | { whitelist: string[] };
 
 ### `ToolAnnotations`
 
-Re-exported from `@modelcontextprotocol/sdk`. Queries get `readOnlyHint: true, destructiveHint: false`. Mutations get
-`readOnlyHint: false, destructiveHint: true`.
+Re-exported from `@modelcontextprotocol/sdk`. Queries get `readOnlyHint: true, destructiveHint: false`. Mutations get `readOnlyHint: false, destructiveHint: true`.
 
 ### `McpServerLike`
 
