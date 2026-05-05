@@ -4,6 +4,10 @@ packages/*/test/fixtures/
 # Symlinked/included docs (follow symlinks causes issues)
 docs/packages/
 
+# Generated README copies (Prettier should not reformat)
+packages/site/content/docs/packages/lib.mdx
+packages/site/content/docs/packages/proxy.mdx
+
 # Build output
 **/dist/
 packages/site/out/
