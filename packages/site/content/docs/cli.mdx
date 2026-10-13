@@ -32,20 +32,22 @@ The `<source>` argument can be:
 
 ## Options
 
-| Flag                              | Alias | Type                       | Default              | Description                                      |
-| --------------------------------- | ----- | -------------------------- | -------------------- | ------------------------------------------------ |
-| `--transport <type>`              | `-t`  | `stdio \| http`            | `stdio`              | MCP transport type                               |
-| `--port <number>`                 | `-p`  | `number`                   | `3000`               | HTTP port (when transport is `http`)             |
-| `--mutations <mode>`              | `-m`  | `all \| none \| whitelist` | `none`               | Mutation exposure mode                           |
-| `--mutation-whitelist <names...>` |       | `string[]`                 |                      | Mutation names to whitelist                      |
-| `--header <headers...>`           | `-H`  | `string[]`                 |                      | HTTP headers (e.g., `"Authorization: Bearer x"`) |
-| `--endpoint <url>`                | `-e`  | `string`                   |                      | GraphQL execution endpoint                       |
-| `--name <name>`                   | `-n`  | `string`                   | `graphql-mcp-server` | MCP server name                                  |
-| `--depth <number>`                | `-d`  | `number`                   | `3`                  | Field selection depth for return types           |
-| `--include <names...>`            |       | `string[]`                 |                      | Only include these operation names               |
-| `--exclude <names...>`            |       | `string[]`                 |                      | Exclude these operation names                    |
-| `--version`                       | `-V`  |                            |                      | Show version number                              |
-| `--help`                          | `-h`  |                            |                      | Show help                                        |
+| Flag                           | Alias | Type                       | Default              | Description                                                 |
+| ------------------------------ | ----- | -------------------------- | -------------------- | ----------------------------------------------------------- |
+| `--transport <type>`           | `-t`  | `stdio \| http`            | `stdio`              | MCP transport type                                          |
+| `--port <number>`              | `-p`  | `number`                   | `3000`               | HTTP port (when transport is `http`)                        |
+| `--mutations <mode>`           | `-m`  | `all \| none \| whitelist` | `none`               | Mutation exposure mode                                      |
+| `--mutation-whitelist <names>` |       | `string[]`                 |                      | Comma-separated mutation names to whitelist                 |
+| `--header <header>`            | `-H`  | `string[]`                 |                      | HTTP header (e.g., `"Authorization: Bearer x"`), repeatable |
+| `--endpoint <url>`             | `-e`  | `string`                   |                      | GraphQL execution endpoint                                  |
+| `--name <name>`                | `-n`  | `string`                   | `graphql-mcp-server` | MCP server name                                             |
+| `--depth <number>`             | `-d`  | `number`                   | `3`                  | Field selection depth for return types                      |
+| `--include <names>`            |       | `string[]`                 |                      | Only include these operation names (comma-separated)        |
+| `--exclude <names>`            |       | `string[]`                 |                      | Exclude these operation names (comma-separated)             |
+| `--version`                    | `-V`  |                            |                      | Show version number                                         |
+| `--help`                       | `-h`  |                            |                      | Show help                                                   |
+
+List flags (`--include`, `--exclude`, `--mutation-whitelist`) take comma-separated names, such as `--include users,user`. You can also repeat the flag (`--include users --include user`). Space-separated names (`--include users user`) are rejected with `error: too many arguments`.
 
 ## Examples
 
@@ -95,7 +97,7 @@ Expose specific mutations by name:
 ```bash
 graphql2mcp https://api.example.com/graphql \
   -m whitelist \
-  --mutation-whitelist createUser updateUser
+  --mutation-whitelist createUser,updateUser
 ```
 
 See the [Mutations guide](/docs/mutations) for details on mutation modes and tool annotations.
@@ -106,14 +108,22 @@ Only include specific operations:
 
 ```bash
 graphql2mcp https://api.example.com/graphql \
-  --include users user searchUsers
+  --include users,user,searchUsers
 ```
 
 Exclude specific operations:
 
 ```bash
 graphql2mcp https://api.example.com/graphql \
-  --exclude internalMetrics debugQuery
+  --exclude internalMetrics,debugQuery
+```
+
+`--include` applies to mutations as well as queries. If you combine it with whitelisted mutations, list those mutations in `--include` too:
+
+```bash
+graphql2mcp https://api.example.com/graphql \
+  --include users,user,createUser \
+  -m whitelist --mutation-whitelist createUser
 ```
 
 ### Glob pattern

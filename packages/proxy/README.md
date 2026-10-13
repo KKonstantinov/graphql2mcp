@@ -53,7 +53,7 @@ graphql2mcp schema.graphql -e https://api.example.com/graphql -m all
 
 # Specific mutations only
 graphql2mcp schema.graphql -e https://api.example.com/graphql \
-    -m whitelist --mutation-whitelist createUser updateUser
+    -m whitelist --mutation-whitelist createUser,updateUser
 ```
 
 ### Filter operations
@@ -61,12 +61,14 @@ graphql2mcp schema.graphql -e https://api.example.com/graphql \
 ```bash
 # Only include specific queries
 graphql2mcp schema.graphql -e https://api.example.com/graphql \
-    --include users user
+    --include users,user
 
 # Exclude specific queries
 graphql2mcp schema.graphql -e https://api.example.com/graphql \
-    --exclude internalMetrics debugInfo
+    --exclude internalMetrics,debugInfo
 ```
+
+List flags take comma-separated names. You can also repeat the flag (`--include users --include user`). `--include` filters mutations too, so list any whitelisted mutations there as well.
 
 ### Streamable HTTP transport (recommended)
 
@@ -76,19 +78,19 @@ graphql2mcp https://api.example.com/graphql -t http -p 8080
 
 ### CLI Flags
 
-| Flag                              | Description                                            | Default              |
-| --------------------------------- | ------------------------------------------------------ | -------------------- |
-| `-e, --endpoint <url>`            | GraphQL execution endpoint (required for file sources) | -                    |
-| `-t, --transport <type>`          | MCP transport type (`stdio` or `http`)                 | `stdio`              |
-| `-p, --port <number>`             | HTTP port (when transport is `http`)                   | `3000`               |
-| `-m, --mutations <mode>`          | Mutation exposure mode (`all`, `none`, or `whitelist`) | `none`               |
-| `--mutation-whitelist <names...>` | Mutation names to whitelist                            | -                    |
-| `-H, --header <headers...>`       | HTTP headers (e.g. `"Authorization: Bearer x"`)        | -                    |
-| `-n, --name <name>`               | MCP server name                                        | `graphql-mcp-server` |
-| `-d, --depth <number>`            | Field selection depth for return types                 | `3`                  |
-| `--include <names...>`            | Only include these operations                          | -                    |
-| `--exclude <names...>`            | Exclude these operations                               | -                    |
-| `-V, --version`                   | Show version number                                    | -                    |
+| Flag                           | Description                                                | Default              |
+| ------------------------------ | ---------------------------------------------------------- | -------------------- |
+| `-e, --endpoint <url>`         | GraphQL execution endpoint (required for file sources)     | -                    |
+| `-t, --transport <type>`       | MCP transport type (`stdio` or `http`)                     | `stdio`              |
+| `-p, --port <number>`          | HTTP port (when transport is `http`)                       | `3000`               |
+| `-m, --mutations <mode>`       | Mutation exposure mode (`all`, `none`, or `whitelist`)     | `none`               |
+| `--mutation-whitelist <names>` | Comma-separated mutation names to whitelist                | -                    |
+| `-H, --header <header>`        | HTTP header (e.g. `"Authorization: Bearer x"`), repeatable | -                    |
+| `-n, --name <name>`            | MCP server name                                            | `graphql-mcp-server` |
+| `-d, --depth <number>`         | Field selection depth for return types                     | `3`                  |
+| `--include <names>`            | Only include these operations (comma-separated)            | -                    |
+| `--exclude <names>`            | Exclude these operations (comma-separated)                 | -                    |
+| `-V, --version`                | Show version number                                        | -                    |
 
 ## Programmatic Usage
 

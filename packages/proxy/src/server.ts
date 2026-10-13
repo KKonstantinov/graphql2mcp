@@ -1,6 +1,6 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { DEFAULT_TIMEOUT, loadSchemaFromUrl, registerGraphQLTools } from '@graphql2mcp/core';
-import type { MutationMode } from '@graphql2mcp/core';
+import type { McpServerLike, MutationMode } from '@graphql2mcp/core';
 
 /**
  * Configuration for a single GraphQL endpoint in a multi-endpoint proxy.
@@ -42,6 +42,67 @@ export interface ProxyServerOptions {
     mutationPrefix?: string;
 }
 
+/** Options for {@link createProxyServerFromUrl}. */
+export interface UrlProxyServerOptions {
+    /** GraphQL endpoint URL to introspect */
+    url: string;
+    /** GraphQL execution endpoint URL. Default: `url` */
+    endpoint?: string;
+    /** HTTP headers for both introspection and runtime execution */
+    headers?: Record<string, string>;
+    /** Mutation exposure mode. Default: `"none"` */
+    mutations?: MutationMode;
+    /** MCP server name. Default: `"graphql-mcp-server"` */
+    name?: string;
+    /** MCP server version. Default: `"1.0.0"` */
+    version?: string;
+    /** Maximum depth for return-type field selection. Default: `3` */
+    depth?: number;
+    /** Request timeout in milliseconds. Default: `30000` */
+    timeout?: number;
+    /** Only include these operations */
+    include?: string[];
+    /** Exclude these operations */
+    exclude?: string[];
+}
+
+type ToolRegistration = Parameters<McpServerLike['registerTool']>;
+
+/**
+ * Create a factory that builds identically configured proxy MCP servers.
+ *
+ * Schemas are loaded and tools are generated once, when the factory is created,
+ * so loading errors surface immediately. Each call returns a new {@link McpServer}
+ * with those tools registered. Use this when every connection needs its own server,
+ * as with stateless Streamable HTTP, where each request gets a new server and transport.
+ *
+ * @param options - Server name/version, endpoint configs, and shared defaults
+ * @returns A function that returns a new configured McpServer on each call
+ */
+export function createProxyServerFactory(options: ProxyServerOptions): () => McpServer {
+    const serverName = options.name ?? 'graphql-mcp-server';
+    const serverVersion = options.version ?? '1.0.0';
+
+    const registrations: ToolRegistration[] = [];
+    registerEndpoints(
+        {
+            registerTool: (...registration) => {
+                registrations.push(registration);
+            }
+        },
+        options
+    );
+
+    return () => {
+        const server = new McpServer({ name: serverName, version: serverVersion });
+        const target: McpServerLike = server;
+        for (const registration of registrations) {
+            target.registerTool(...registration);
+        }
+        return server;
+    };
+}
+
 /**
  * Create and configure a proxy MCP server from one or more GraphQL endpoints.
  *
@@ -52,15 +113,16 @@ export interface ProxyServerOptions {
  * @returns A configured McpServer ready to be connected to a transport
  */
 export function createProxyServer(options: ProxyServerOptions): McpServer {
-    const serverName = options.name ?? 'graphql-mcp-server';
-    const serverVersion = options.version ?? '1.0.0';
+    return createProxyServerFactory(options)();
+}
+
+/** Load each endpoint's schema and register its tools on `target`. */
+function registerEndpoints(target: McpServerLike, options: ProxyServerOptions): void {
     const depth = options.depth ?? 3;
     const timeout = options.timeout ?? DEFAULT_TIMEOUT;
 
-    const server = new McpServer({ name: serverName, version: serverVersion });
-
     for (const epConfig of options.endpoints) {
-        registerGraphQLTools(server, {
+        registerGraphQLTools(target, {
             source: epConfig.source,
             endpoint: epConfig.endpoint ?? epConfig.source,
             headers: epConfig.headers,
@@ -73,8 +135,6 @@ export function createProxyServer(options: ProxyServerOptions): McpServer {
             timeout
         });
     }
-
-    return server;
 }
 
 /**
@@ -129,18 +189,19 @@ export function createSimpleProxyServer(options: {
  * @param options - URL to introspect, plus server configuration
  * @returns A configured McpServer ready to be connected to a transport
  */
-export async function createProxyServerFromUrl(options: {
-    url: string;
-    endpoint?: string;
-    headers?: Record<string, string>;
-    mutations?: MutationMode;
-    name?: string;
-    version?: string;
-    depth?: number;
-    timeout?: number;
-    include?: string[];
-    exclude?: string[];
-}): Promise<McpServer> {
+export async function createProxyServerFromUrl(options: UrlProxyServerOptions): Promise<McpServer> {
+    return createProxyServer(await resolveUrlProxyOptions(options));
+}
+
+/**
+ * Introspect a live GraphQL endpoint and return equivalent {@link ProxyServerOptions}.
+ *
+ * Pass the result to {@link createProxyServer} or {@link createProxyServerFactory}.
+ *
+ * @param options - URL to introspect, plus server configuration
+ * @returns Proxy options with the introspected schema as an SDL source
+ */
+export async function resolveUrlProxyOptions(options: UrlProxyServerOptions): Promise<ProxyServerOptions> {
     const { printSchema } = await import('graphql');
     const schema = await loadSchemaFromUrl({
         url: options.url,
@@ -148,7 +209,7 @@ export async function createProxyServerFromUrl(options: {
         timeout: options.timeout
     });
 
-    return createProxyServer({
+    return {
         endpoints: [
             {
                 source: printSchema(schema),
@@ -163,5 +224,5 @@ export async function createProxyServerFromUrl(options: {
         version: options.version,
         depth: options.depth,
         timeout: options.timeout
-    });
+    };
 }
