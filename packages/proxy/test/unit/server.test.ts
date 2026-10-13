@@ -1,6 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import path from 'node:path';
-import { createProxyServer, createSimpleProxyServer } from '../../src/server.js';
+import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { createProxyServer, createProxyServerFactory, createSimpleProxyServer } from '../../src/server.js';
 
 const FIXTURES_DIR = path.join(import.meta.dirname, '../fixtures');
 const simpleSdl = path.join(FIXTURES_DIR, 'simple.graphql');
@@ -139,5 +142,38 @@ describe('Proxy Server', () => {
                 ]
             })
         ).toThrow();
+    });
+});
+
+describe('createProxyServerFactory', () => {
+    async function listToolNames(server: McpServer): Promise<string[]> {
+        const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
+        const client = new Client({ name: 'test-client', version: '1.0.0' });
+        await Promise.all([client.connect(clientTransport), server.connect(serverTransport)]);
+        const { tools } = await client.listTools();
+        await client.close();
+        return tools.map(t => t.name);
+    }
+
+    it('returns a new server with the same tools on every call', async () => {
+        const createServer = createProxyServerFactory({
+            endpoints: [{ source: simpleSdl, endpoint: 'http://localhost:4000/graphql' }]
+        });
+
+        const first = createServer();
+        const second = createServer();
+
+        expect(first).not.toBe(second);
+        const firstTools = await listToolNames(first);
+        expect(firstTools).toEqual(['query_hello', 'query_user', 'query_users']);
+        expect(await listToolNames(second)).toEqual(firstTools);
+    });
+
+    it('loads schemas when the factory is created, not on each call', () => {
+        expect(() =>
+            createProxyServerFactory({
+                endpoints: [{ source: 'nonexistent.graphql', endpoint: 'http://localhost:4000/graphql' }]
+            })
+        ).toThrow('Schema file not found');
     });
 });

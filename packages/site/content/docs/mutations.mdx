@@ -78,7 +78,7 @@ CLI:
 ```bash
 graphql2mcp https://api.example.com/graphql \
   -m whitelist \
-  --mutation-whitelist createUser updateUser
+  --mutation-whitelist createUser,updateUser
 ```
 
 Library:
@@ -149,8 +149,10 @@ registerGraphQLTools(server, {
 # Expose all mutations except deleteUser and dropDatabase
 graphql2mcp https://api.example.com/graphql \
   -m all \
-  --exclude deleteUser dropDatabase
+  --exclude deleteUser,dropDatabase
 ```
+
+`include` filters mutations as well as queries. In the example above, `createUser` is in the include list. Without it, `createUser` would not be exposed even though `mutations` is `'all'`.
 
 ## Recommended Approach
 

@@ -1,6 +1,7 @@
 import { Command, Option } from 'commander';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { createProxyServer, createProxyServerFromUrl } from './server.js';
+import { createProxyServerFactory, resolveUrlProxyOptions } from './server.js';
+import type { ProxyServerOptions } from './server.js';
 import { VERSION, collectCsv, collectList, resolveCliConfig } from './cli-utils.js';
 import type { CliOptions } from './cli-utils.js';
 
@@ -32,8 +33,8 @@ const program = new Command()
                 console.error(`Warning: ${w}`);
             }
 
-            const server = config.isUrl
-                ? await createProxyServerFromUrl({
+            const proxyOptions: ProxyServerOptions = config.isUrl
+                ? await resolveUrlProxyOptions({
                       url: config.source,
                       endpoint: config.endpoint,
                       headers: config.headers,
@@ -44,7 +45,7 @@ const program = new Command()
                       include: config.include,
                       exclude: config.exclude
                   })
-                : createProxyServer({
+                : {
                       endpoints: [
                           {
                               source: config.source,
@@ -58,22 +59,13 @@ const program = new Command()
                       name: config.name,
                       version: config.version,
                       depth: config.depth
-                  });
+                  };
+            const createServer = createProxyServerFactory(proxyOptions);
 
             if (config.transport === 'http') {
-                const { StreamableHTTPServerTransport } = await import('@modelcontextprotocol/sdk/server/streamableHttp.js');
-                const { createServer } = await import('node:http');
-
-                const httpTransport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
-                await server.connect(httpTransport);
-
-                const httpServer = createServer((req, res) => {
-                    void httpTransport.handleRequest(req, res);
-                });
-
-                httpServer.listen(config.port, () => {
-                    console.error(`MCP HTTP server listening on port ${String(config.port)}`);
-                });
+                const { startHttpServer } = await import('./http.js');
+                const httpServer = await startHttpServer(createServer, config.port);
+                console.error(`MCP HTTP server listening on port ${String(config.port)}`);
 
                 const shutdown = () => {
                     console.error('Shutting down...');
@@ -85,7 +77,7 @@ const program = new Command()
             } else {
                 // stdio transport
                 const transport = new StdioServerTransport();
-                await server.connect(transport);
+                await createServer().connect(transport);
 
                 const shutdown = () => {
                     process.exit(0);
