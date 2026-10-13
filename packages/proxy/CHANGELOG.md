@@ -1,5 +1,12 @@
 # graphql2mcp
 
+## 0.3.1
+
+### Patch Changes
+
+- [#6](https://github.com/KKonstantinov/graphql2mcp/pull/6) [`eda1771`](https://github.com/KKonstantinov/graphql2mcp/commit/eda1771daaceae15d8d0efb423836a3d21f592a4) Thanks [@KKonstantinov](https://github.com/KKonstantinov)! - Fix `--transport http`, which failed every request
+  after the first one. The CLI now creates a new MCP server and stateless Streamable HTTP transport for each request, so MCP clients can connect and call tools. GET and DELETE requests now return 405.
+
 ## 0.3.0
 
 ### Minor Changes
