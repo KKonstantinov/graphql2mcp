@@ -7,8 +7,7 @@ pre-commit:
           stage_fixed: true
 
         - name: format
-          glob: '*.{js,ts,mts,tsx,jsx,json,yml,yaml,md,css,html,graphql}'
-          exclude: 'docs/packages/**'
+          glob: '*.{js,ts,mts,tsx,jsx,json,yml,yaml,md,mdx,css,html,graphql}'
           run: pnpm prettier --write {staged_files}
           stage_fixed: true
 

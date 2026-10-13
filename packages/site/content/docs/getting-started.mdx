@@ -1,8 +1,17 @@
-# Getting Started
+---
+title: Getting Started
+description: Install graphql2mcp and convert your first GraphQL schema into an MCP server.
+---
 
 This guide walks you through installing `graphql2mcp` and converting your first GraphQL schema into an MCP server.
 
 ## Installation
+
+### Library (integrate into existing MCP server)
+
+```bash
+npm install @graphql2mcp/lib
+```
 
 ### CLI Proxy (standalone server)
 
@@ -18,17 +27,34 @@ Or install globally:
 npm install -g graphql2mcp
 ```
 
-### Library (integrate into existing MCP server)
-
-```bash
-npm install @graphql2mcp/lib
-```
-
 ## Your First MCP Server
+
+### From Code
+
+If you have an existing MCP server and want to add GraphQL tools alongside your own:
+
+```typescript
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import { registerGraphQLTools } from '@graphql2mcp/lib';
+
+const server = new McpServer({ name: 'my-server', version: '1.0.0' });
+
+// Register GraphQL tools from a schema
+const result = registerGraphQLTools(server, {
+    source: './schema.graphql',
+    endpoint: 'https://api.example.com/graphql'
+});
+
+console.error(`Registered ${result.count} tools`);
+
+const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
+await server.connect(transport);
+```
 
 ### From a URL
 
-The simplest way to get started is to point at a GraphQL endpoint. The CLI will introspect the schema and start an MCP server:
+Point at a GraphQL endpoint. The CLI will introspect the schema and start an MCP server:
 
 ```bash
 npx graphql2mcp https://countries.trevorblades.com/graphql -t http
@@ -76,32 +102,9 @@ enum Role {
 
 The CLI generates MCP tools named `query_user` and `query_users`, each with a Zod input schema matching the GraphQL arguments.
 
-### From Code
-
-If you have an existing MCP server and want to add GraphQL tools alongside your own:
-
-```typescript
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-import { registerGraphQLTools } from '@graphql2mcp/lib';
-
-const server = new McpServer({ name: 'my-server', version: '1.0.0' });
-
-// Register GraphQL tools from a schema
-const result = registerGraphQLTools(server, {
-    source: './schema.graphql',
-    endpoint: 'https://api.example.com/graphql'
-});
-
-console.error(`Registered ${result.count} tools`);
-
-const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
-await server.connect(transport);
-```
-
 ## What's Next
 
-- [CLI Reference](cli.md) -- all flags, options, and usage patterns
-- [Library Mode](library.md) -- integrate into existing MCP servers
-- [Mutations](mutations.md) -- configure which mutations are exposed as tools
-- [Architecture](architecture.md) -- how GraphQL schemas become MCP tools
+- [Library Mode](/docs/library) -- integrate into existing MCP servers
+- [CLI Reference](/docs/cli) -- all flags, options, and usage patterns
+- [Mutations](/docs/mutations) -- configure which mutations are exposed as tools
+- [Architecture](/docs/architecture) -- how GraphQL schemas become MCP tools

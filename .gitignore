@@ -2,6 +2,9 @@ node_modules/
 dist/
 *.tsbuildinfo
 .DS_Store
-docs/.vitepress/cache/
-docs/.vitepress/dist/
+packages/site/.next/
+packages/site/content/docs/packages/lib.mdx
+packages/site/content/docs/packages/proxy.mdx
+packages/site/.source/
+packages/site/out/
 .playwright-mcp
