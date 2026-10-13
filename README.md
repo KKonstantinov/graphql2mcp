@@ -84,6 +84,17 @@ Or from a local SDL file:
 npx graphql2mcp schema.graphql -e https://api.example.com/graphql -t http
 ```
 
+## Agent Skill
+
+This repository ships an [Agent Skill](https://agentskills.io) that teaches coding agents (Claude Code, Cursor, Codex, and others) to set up graphql2mcp correctly. It covers CLI flags, MCP client configuration, library usage, and common pitfalls. Install it with
+[skills.sh](https://skills.sh):
+
+```bash
+npx skills add KKonstantinov/graphql2mcp
+```
+
+The skill is named `graphql-mcp-server` and lives in [`skills/graphql-mcp-server/`](skills/graphql-mcp-server/SKILL.md).
+
 ## Packages
 
 This is a monorepo managed with [pnpm workspaces](https://pnpm.io/workspaces):
